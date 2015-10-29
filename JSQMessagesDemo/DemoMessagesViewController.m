@@ -644,10 +644,10 @@
     return kJSQMessagesCollectionViewCellLabelHeightDefault;
 }
 
-#pragma mark - Adjusting cell spacing between cell subviews
+#pragma mark - Adjust Spacing between cell subviews
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout spacingBetweenCellBottomLabelAndMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath {
-    return 40.0f;
+    return 0.0f;
 }
 
 #pragma mark - Responding to collection view tap events
