@@ -107,6 +107,12 @@
     _bottomAccessorySpacerHeight = [self jsq_correctedLabelHeightForHeight:bottomAccessorySpacerHeight];
 }
 
+- (void)setBottomCellSpacerHeight:(CGFloat)bottomCellSpacerHeight
+{
+    NSParameterAssert(bottomCellSpacerHeight >= 0.0f);
+    _bottomCellSpacerHeight = [self jsq_correctedLabelHeightForHeight:bottomCellSpacerHeight];
+}
+
 #pragma mark - Utilities
 
 - (CGSize)jsq_correctedAvatarSizeFromSize:(CGSize)size
@@ -146,7 +152,8 @@
             || (int)layoutAttributes.messageBubbleBottomLabelHeight != (int)self.messageBubbleBottomLabelHeight
             || (int)layoutAttributes.bottomLabelsSpacerHeight != (int)self.bottomLabelsSpacerHeight
             || (int)layoutAttributes.bottomAccessoryViewHeight != (int)self.bottomAccessoryViewHeight
-            || (int)layoutAttributes.bottomAccessorySpacerHeight != (int)self.bottomAccessorySpacerHeight) {
+            || (int)layoutAttributes.bottomAccessorySpacerHeight != (int)self.bottomAccessorySpacerHeight
+            || (int)layoutAttributes.bottomCellSpacerHeight != (int)self.bottomCellSpacerHeight) {
             return NO;
         }
     }
@@ -182,6 +189,7 @@
     copy.bottomLabelsSpacerHeight = self.bottomLabelsSpacerHeight;
     copy.bottomAccessoryViewHeight = self.bottomAccessoryViewHeight;
     copy.bottomAccessorySpacerHeight = self.bottomAccessorySpacerHeight;
+    copy.bottomCellSpacerHeight = self.bottomCellSpacerHeight;
     
     return copy;
 }

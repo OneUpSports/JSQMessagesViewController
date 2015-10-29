@@ -46,25 +46,38 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 /* Cell SpacerViews */
 @property (weak, nonatomic) IBOutlet UIView *bottomLabelsSpacerView;
 @property (weak, nonatomic) IBOutlet UIView *bottomAccessorySpacerView;
+@property (weak, nonatomic) IBOutlet UIView *bottomCellSpacerView;
+
+
+
 
 /* Cell Accessory Container Views */
 @property (weak, nonatomic) IBOutlet UIView *bottomAccessoryContainerView;
 
 
+
+
+
+
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleContainerWidthConstraint;
+
 /* UITextView Constraints */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewTopVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewAvatarHorizontalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewMarginHorizontalSpaceConstraint;
+
 /* UILabel Constraints */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellTopLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleTopLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellBottomLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleBottomLabelHeightConstraint;
+
 /* Spacer Constraints */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelsSpacerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomAccessorySpacerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomCellSpacerHeightConstraint;
 
 
 /* Accessory Constraints*/
@@ -155,6 +168,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     /* Spacers between Cell SubViews */
     self.bottomLabelsSpacerHeightConstraint.constant = 0.0f;
     self.bottomAccessorySpacerHeightConstraint.constant = 0.0f;
+    self.bottomCellSpacerHeightConstraint.constant = 0.0f;
     
     self.avatarViewSize = CGSizeZero;
 
@@ -257,12 +271,17 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     [self jsq_updateConstraint:self.bottomAccessoryViewHeightConstraint
                   withConstant:customAttributes.bottomAccessoryViewHeight];
     
+    
     /* Spacers For Cell Subviews */
     [self jsq_updateConstraint:self.bottomLabelsSpacerHeightConstraint
                   withConstant:customAttributes.bottomLabelsSpacerHeight];
     
     [self jsq_updateConstraint:self.bottomAccessorySpacerHeightConstraint
                   withConstant:customAttributes.bottomAccessorySpacerHeight];
+    
+    [self jsq_updateConstraint:self.bottomCellSpacerHeightConstraint
+                  withConstant:customAttributes.bottomCellSpacerHeight];
+    
 
     if ([self isKindOfClass:[JSQMessagesCollectionViewCellIncoming class]]) {
         self.avatarViewSize = customAttributes.incomingAvatarViewSize;

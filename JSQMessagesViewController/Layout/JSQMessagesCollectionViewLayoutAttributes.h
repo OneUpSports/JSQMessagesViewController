@@ -137,4 +137,15 @@
  *  @see JSQMessagesCollectionViewCell.
  */
 @property (assign, nonatomic) CGFloat bottomAccessorySpacerHeight;
+
+
+/**
+ *  The spacing between bottomAccessoryView & the next cell to appear below this cell of the `bottomAccessorySpacerHeightConstraint` of a `bottomCellSpacerHeightConstraint`.
+ *  This value should be greater than or equal to `0.0`.
+ *
+ *  @see JSQMessagesCollectionViewCell.
+ */
+@property (assign, nonatomic) CGFloat bottomCellSpacerHeight;
+
+
 @end

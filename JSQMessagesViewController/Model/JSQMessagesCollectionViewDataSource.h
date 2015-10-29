@@ -178,7 +178,7 @@
  *
  *  @see JSQMessagesCollectionViewCell.
  */
-- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView accessoryViewForBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath;
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryAtIndexPath:(NSIndexPath *)indexPath;
 
 
 @end

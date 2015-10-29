@@ -451,7 +451,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     return nil;
 }
 
-- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView accessoryViewForBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Accessory Views
+
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryAtIndexPath:(NSIndexPath *)indexPath
 {
     return nil;
 }
@@ -542,7 +544,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     cell.cellBottomLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellBottomLabelAtIndexPath:indexPath];
     cell.messageBubbleBottomLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForMessageBubbleBottomLabelAtIndexPath:indexPath];
 
-    cell.bottomAccessoryView = [collectionView.dataSource collectionView:collectionView accessoryViewForBottomAccessoryViewAtIndexPath:indexPath];
+    cell.bottomAccessoryView = [collectionView.dataSource collectionView:collectionView viewForBottomAccessoryAtIndexPath:indexPath];
     
     CGFloat bubbleTopLabelInset = (avatarImageDataSource != nil) ? 60.0f : 15.0f;
 
@@ -687,6 +689,12 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 {
     return 0.0f;
 }
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout spacingBetweenBottomAccessoryViewAndBottomOfCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 0.0f;
+}
+
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView
  didTapAvatarImageView:(UIImageView *)avatarImageView
