@@ -8,10 +8,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="4lh-CK-yVn" customClass="JSQMessagesCollectionViewCellIncoming">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="214"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="254"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="214"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="254"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="cell top label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="afj-rd-iNv" userLabel="Cell top label" customClass="JSQMessagesLabel">
@@ -104,37 +104,62 @@
                             <constraint firstAttribute="height" constant="20" id="rco-hd-JB8"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7u-yy-f4e">
+                        <rect key="frame" x="0.0" y="234" width="320" height="20"/>
+                        <color key="backgroundColor" red="0.35294117650000001" green="0.54117647059999996" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="PrX-EI-zL6"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kc5-U6-4GU">
+                        <rect key="frame" x="0.0" y="214" width="320" height="20"/>
+                        <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.043137254899999998" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Z3m-d1-WzA"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="UPz-5x-c1T" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="54r-MX-MGW"/>
-                <constraint firstAttribute="bottom" secondItem="YgF-ew-85L" secondAttribute="bottom" id="7ci-GP-ddZ"/>
+                <constraint firstItem="L7u-yy-f4e" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="6Ic-X6-nv1"/>
                 <constraint firstAttribute="trailing" secondItem="UPz-5x-c1T" secondAttribute="trailing" id="G3U-h0-DWS"/>
+                <constraint firstItem="kc5-U6-4GU" firstAttribute="top" secondItem="YgF-ew-85L" secondAttribute="bottom" id="JUd-he-1gm"/>
                 <constraint firstAttribute="trailing" secondItem="afj-rd-iNv" secondAttribute="trailing" id="Ka4-Dy-jCS"/>
                 <constraint firstItem="far-99-04D" firstAttribute="top" secondItem="UPz-5x-c1T" secondAttribute="bottom" id="L8O-CC-Got"/>
+                <constraint firstAttribute="bottom" secondItem="L7u-yy-f4e" secondAttribute="bottom" id="Ndh-m8-9xB"/>
                 <constraint firstItem="afj-rd-iNv" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="OnD-mZ-QtR"/>
+                <constraint firstItem="kc5-U6-4GU" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="RHk-FB-dHq"/>
                 <constraint firstItem="YgF-ew-85L" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="V6a-vd-tNY"/>
                 <constraint firstItem="Ufa-bF-l1Y" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="Z5z-m3-8Ne"/>
                 <constraint firstItem="afj-rd-iNv" firstAttribute="top" secondItem="4lh-CK-yVn" secondAttribute="top" id="ZG9-2M-N52"/>
                 <constraint firstAttribute="trailing" secondItem="Ufa-bF-l1Y" secondAttribute="trailing" id="cWQ-1Q-xOA"/>
                 <constraint firstAttribute="trailing" secondItem="far-99-04D" secondAttribute="trailing" id="d74-Lh-LQp"/>
                 <constraint firstItem="UPz-5x-c1T" firstAttribute="top" secondItem="Da1-09-wR4" secondAttribute="bottom" id="dDB-B0-c6J"/>
+                <constraint firstItem="L7u-yy-f4e" firstAttribute="top" secondItem="kc5-U6-4GU" secondAttribute="bottom" id="g6m-yW-Qqj"/>
                 <constraint firstItem="YgF-ew-85L" firstAttribute="top" secondItem="far-99-04D" secondAttribute="bottom" id="hmv-ps-hDs"/>
                 <constraint firstItem="Ufa-bF-l1Y" firstAttribute="top" secondItem="afj-rd-iNv" secondAttribute="bottom" id="i9Y-sV-v6b"/>
                 <constraint firstItem="btS-p8-B7Z" firstAttribute="leading" secondItem="Da1-09-wR4" secondAttribute="trailing" constant="2" id="j0I-pm-eex"/>
                 <constraint firstItem="btS-p8-B7Z" firstAttribute="top" secondItem="Ufa-bF-l1Y" secondAttribute="bottom" id="jAu-Dn-7rN"/>
                 <constraint firstItem="Da1-09-wR4" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="jiu-B4-TSD"/>
+                <constraint firstAttribute="trailing" secondItem="L7u-yy-f4e" secondAttribute="trailing" id="mVv-DJ-ibx"/>
+                <constraint firstAttribute="trailing" secondItem="kc5-U6-4GU" secondAttribute="trailing" id="oa5-0o-Ogt"/>
                 <constraint firstItem="far-99-04D" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="rA5-mO-Ibr"/>
                 <constraint firstItem="UPz-5x-c1T" firstAttribute="top" secondItem="btS-p8-B7Z" secondAttribute="bottom" id="s8G-Je-7GA"/>
+                <constraint firstItem="kc5-U6-4GU" firstAttribute="top" secondItem="YgF-ew-85L" secondAttribute="bottom" id="tNC-er-AyV"/>
                 <constraint firstAttribute="trailing" secondItem="YgF-ew-85L" secondAttribute="trailing" id="x84-Rd-6j5"/>
             </constraints>
-            <size key="customSize" width="317" height="305"/>
+            <size key="customSize" width="317" height="345"/>
             <connections>
                 <outlet property="avatarContainerView" destination="Da1-09-wR4" id="tpM-P4-qUR"/>
                 <outlet property="avatarContainerViewHeightConstraint" destination="tZk-AK-JFa" id="tPu-mC-ITh"/>
                 <outlet property="avatarContainerViewWidthConstraint" destination="YwX-fW-Me6" id="5PN-NL-hEP"/>
                 <outlet property="avatarImageView" destination="w23-sL-0Rh" id="Yf4-UR-VRC"/>
+                <outlet property="bottomAccessoryContainerView" destination="L7u-yy-f4e" id="7Wq-Xr-JMr"/>
+                <outlet property="bottomAccessorySpacerHeightConstraint" destination="Z3m-d1-WzA" id="ndC-fm-Dnx"/>
+                <outlet property="bottomAccessorySpacerView" destination="kc5-U6-4GU" id="nF1-gH-R8l"/>
+                <outlet property="bottomAccessoryViewHeightConstraint" destination="PrX-EI-zL6" id="Ov8-Ap-4PP"/>
                 <outlet property="bottomLabelsSpacerHeightConstraint" destination="rco-hd-JB8" id="srm-N5-hTZ"/>
                 <outlet property="bottomLabelsSpacerView" destination="far-99-04D" id="aBy-Cb-cL5"/>
                 <outlet property="cellBottomLabel" destination="YgF-ew-85L" id="1kq-Db-Pbg"/>
@@ -154,7 +179,7 @@
                 <outlet property="textViewMarginHorizontalSpaceConstraint" destination="4qS-03-PFO" id="1Qe-Ee-fUO"/>
                 <outlet property="textViewTopVerticalSpaceConstraint" destination="aEL-yH-N1p" id="WPl-0b-tf1"/>
             </connections>
-            <point key="canvasLocation" x="255" y="232"/>
+            <point key="canvasLocation" x="255" y="252"/>
         </collectionViewCell>
     </objects>
 </document>

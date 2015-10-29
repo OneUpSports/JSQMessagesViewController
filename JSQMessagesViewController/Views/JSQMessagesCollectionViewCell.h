@@ -87,7 +87,6 @@
  */
 @interface JSQMessagesCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomAccessoryViewHeightConstraint;
 
 - (void)showHideBottomAccessoryView;
 
@@ -176,6 +175,13 @@
  *  @warning If this value is non-nil, then textView and messageBubbleImageView will both be `nil`.
  */
 @property (weak, nonatomic) UIView *mediaView;
+
+
+/**
+ *  The Bottom Accessory View of the cell.
+ *  This view displays the contents of bottom accessory view that appears below the cells contents.
+ */
+@property (weak, nonatomic) UIView *bottomAccessoryView;
 
 /**
  *  Returns the underlying gesture recognizer for tap gestures in the avatarImageView of the cell.

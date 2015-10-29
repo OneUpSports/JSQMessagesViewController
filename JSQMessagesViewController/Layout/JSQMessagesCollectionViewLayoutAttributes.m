@@ -87,11 +87,24 @@
     _messageBubbleBottomLabelHeight = [self jsq_correctedLabelHeightForHeight:messageBubbleBottomLabelHeight];
 }
 
+/* Cell Accessory Views */
+- (void)setBottomAccessoryViewHeight:(CGFloat)bottomAccessoryViewHeight
+{
+    NSParameterAssert(bottomAccessoryViewHeight >= 0.0f);
+    _bottomAccessoryViewHeight = [self jsq_correctedLabelHeightForHeight:bottomAccessoryViewHeight];
+}
+
 /* Cell Subview Spacers */
 - (void)setBottomLabelsSpacerHeight:(CGFloat)bottomLabelsSpacerHeight
 {
     NSParameterAssert(bottomLabelsSpacerHeight >= 0.0f);
     _bottomLabelsSpacerHeight = [self jsq_correctedLabelHeightForHeight:bottomLabelsSpacerHeight];
+}
+
+- (void)setBottomAccessorySpacerHeight:(CGFloat)bottomAccessorySpacerHeight
+{
+    NSParameterAssert(bottomAccessorySpacerHeight >= 0.0f);
+    _bottomAccessorySpacerHeight = [self jsq_correctedLabelHeightForHeight:bottomAccessorySpacerHeight];
 }
 
 #pragma mark - Utilities
@@ -131,7 +144,9 @@
             || (int)layoutAttributes.messageBubbleTopLabelHeight != (int)self.messageBubbleTopLabelHeight
             || (int)layoutAttributes.cellBottomLabelHeight != (int)self.cellBottomLabelHeight
             || (int)layoutAttributes.messageBubbleBottomLabelHeight != (int)self.messageBubbleBottomLabelHeight
-            || (int)layoutAttributes.bottomLabelsSpacerHeight != (int)self.bottomLabelsSpacerHeight) {
+            || (int)layoutAttributes.bottomLabelsSpacerHeight != (int)self.bottomLabelsSpacerHeight
+            || (int)layoutAttributes.bottomAccessoryViewHeight != (int)self.bottomAccessoryViewHeight
+            || (int)layoutAttributes.bottomAccessorySpacerHeight != (int)self.bottomAccessorySpacerHeight) {
             return NO;
         }
     }
@@ -165,6 +180,8 @@
     copy.cellBottomLabelHeight = self.cellBottomLabelHeight;
     copy.messageBubbleBottomLabelHeight = self.messageBubbleBottomLabelHeight;
     copy.bottomLabelsSpacerHeight = self.bottomLabelsSpacerHeight;
+    copy.bottomAccessoryViewHeight = self.bottomAccessoryViewHeight;
+    copy.bottomAccessorySpacerHeight = self.bottomAccessorySpacerHeight;
     
     return copy;
 }

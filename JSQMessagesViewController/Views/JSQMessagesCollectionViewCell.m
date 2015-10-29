@@ -45,21 +45,30 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 /* Cell SpacerViews */
 @property (weak, nonatomic) IBOutlet UIView *bottomLabelsSpacerView;
+@property (weak, nonatomic) IBOutlet UIView *bottomAccessorySpacerView;
+
+/* Cell Accessory Container Views */
+@property (weak, nonatomic) IBOutlet UIView *bottomAccessoryContainerView;
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleContainerWidthConstraint;
-
+/* UITextView Constraints */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewTopVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewAvatarHorizontalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewMarginHorizontalSpaceConstraint;
-
+/* UILabel Constraints */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellTopLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleTopLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellBottomLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleBottomLabelHeightConstraint;
+/* Spacer Constraints */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelsSpacerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomAccessorySpacerHeightConstraint;
 
+
+/* Accessory Constraints*/
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomAccessoryViewHeightConstraint;
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewWidthConstraint;
@@ -81,17 +90,17 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 @implementation JSQMessagesCollectionViewCell
 
 - (void)showHideBottomAccessoryView {
-    if (self.bottomAccessoryViewHeightConstraint != nil) {
-        if (self.bottomAccessoryViewHeightConstraint.constant == 0.0) {
-            self.bottomAccessoryViewHeightConstraint.constant = 100.0f;
-        } else {
-            self.bottomAccessoryViewHeightConstraint.constant = 0.0f;
-        }
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.contentView layoutIfNeeded];
-        });
-    }
+//    if (self.bottomAccessoryViewHeightConstraint != nil) {
+//        if (self.bottomAccessoryViewHeightConstraint.constant == 0.0) {
+//            self.bottomAccessoryViewHeightConstraint.constant = 100.0f;
+//        } else {
+//            self.bottomAccessoryViewHeightConstraint.constant = 0.0f;
+//        }
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.contentView layoutIfNeeded];
+//        });
+//    }
 }
 
 #pragma mark - Class methods
@@ -140,8 +149,12 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.cellBottomLabelHeightConstraint.constant = 0.0f;
     self.messageBubbleBottomLabelHeightConstraint.constant = 0.0f;
     
+    /* Accessory Views */
+    self.bottomAccessoryViewHeightConstraint.constant = 0.0f;
+    
     /* Spacers between Cell SubViews */
     self.bottomLabelsSpacerHeightConstraint.constant = 0.0f;
+    self.bottomAccessorySpacerHeightConstraint.constant = 0.0f;
     
     self.avatarViewSize = CGSizeZero;
 
@@ -171,11 +184,14 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     _cellTopLabel = nil;
     _messageBubbleTopLabel = nil;
     _cellBottomLabel = nil;
-
+    
     _textView = nil;
     _messageBubbleImageView = nil;
     _mediaView = nil;
 
+    /* Accessory Views */
+    _bottomAccessoryView = nil;
+    
     _avatarImageView = nil;
 
     [_tapGestureRecognizer removeTarget:nil action:NULL];
@@ -237,9 +253,16 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     [self jsq_updateConstraint:self.messageBubbleBottomLabelHeightConstraint
                   withConstant:customAttributes.messageBubbleBottomLabelHeight];
     
+    /* Accessory View */
+    [self jsq_updateConstraint:self.bottomAccessoryViewHeightConstraint
+                  withConstant:customAttributes.bottomAccessoryViewHeight];
+    
     /* Spacers For Cell Subviews */
     [self jsq_updateConstraint:self.bottomLabelsSpacerHeightConstraint
                   withConstant:customAttributes.bottomLabelsSpacerHeight];
+    
+    [self jsq_updateConstraint:self.bottomAccessorySpacerHeightConstraint
+                  withConstant:customAttributes.bottomAccessorySpacerHeight];
 
     if ([self isKindOfClass:[JSQMessagesCollectionViewCellIncoming class]]) {
         self.avatarViewSize = customAttributes.incomingAvatarViewSize;
@@ -353,6 +376,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 - (void)setMediaView:(UIView *)mediaView
 {
+    if (mediaView == nil) return;
+
     [self.messageBubbleImageView removeFromSuperview];
     [self.textView removeFromSuperview];
 
@@ -370,6 +395,30 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
         for (NSUInteger i = 0; i < self.messageBubbleContainerView.subviews.count; i++) {
             if (self.messageBubbleContainerView.subviews[i] != _mediaView) {
                 [self.messageBubbleContainerView.subviews[i] removeFromSuperview];
+            }
+        }
+    });
+}
+
+/* Accessory Views */
+- (void)setBottomAccessoryView:(UIView *)bottomAccessoryView
+{
+    if (bottomAccessoryView == nil) return;
+    
+    [bottomAccessoryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    bottomAccessoryView.frame = self.bottomAccessoryContainerView.bounds;
+    
+    [self.bottomAccessoryContainerView addSubview:bottomAccessoryView];
+    [self.bottomAccessoryContainerView jsq_pinAllEdgesOfSubview:bottomAccessoryView];
+    _bottomAccessoryView = bottomAccessoryView;
+    
+    //  because of cell re-use (and caching accessory views, if using built-in library accessory item)
+    //  we may have dequeued a cell with a accessory view and add this one on top
+    //  thus, remove any additional subviews hidden behind the new Accessory view
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (NSUInteger i = 0; i < self.bottomAccessoryContainerView.subviews.count; i++) {
+            if (self.bottomAccessoryContainerView.subviews[i] != _bottomAccessoryView) {
+                [self.bottomAccessoryContainerView.subviews[i] removeFromSuperview];
             }
         }
     });

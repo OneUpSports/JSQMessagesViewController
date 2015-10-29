@@ -166,4 +166,19 @@
  */
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath;
 
+
+/**
+ *  Asks the data source for the accessory to display in the `bottomAccessoryView` for the specified
+ *  message data item at indexPath in the collectionView.
+ *
+ *  @param collectionView The collection view requesting this information.
+ *  @param indexPath      The index path that specifies the location of the item.
+ *
+ *  @return A configured accessory view or `nil` if you do not want bottom accessory view displayed for the item at indexPath.
+ *
+ *  @see JSQMessagesCollectionViewCell.
+ */
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView accessoryViewForBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath;
+
+
 @end

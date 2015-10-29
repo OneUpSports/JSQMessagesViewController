@@ -90,6 +90,21 @@
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath;
 
+
+/**
+ *  Asks the delegate for the Height for the cell bottom accessory view for the item at the specified indexPath.
+ *
+ *  @param collectionView       The collection view object displaying the flow layout.
+ *  @param collectionViewLayout The layout object requesting the information.
+ *  @param indexPath            The index path of the item.
+ *
+ *  @return The Height for "bottomAccessoryView" for the item at indexPath.
+ *
+ *  @see JSQMessagesCollectionViewCell.
+ */
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath;
+
 /**
  *  Asks the delegate for the Spacing between cellBottomLabel & messageBottomLabel for the item at the specified indexPath.
  *
@@ -104,6 +119,19 @@
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout spacingBetweenCellBottomLabelAndMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath;
 
+/**
+ *  Asks the delegate for the Spacing between cellBottomLabel & bottomAccessoryView for the item at the specified indexPath.
+ *
+ *  @param collectionView       The collection view object displaying the flow layout.
+ *  @param collectionViewLayout The layout object requesting the information.
+ *  @param indexPath            The index path of the item.
+ *
+ *  @return The Spacing between cellBottomLabel & bottomAccessoryView for the item at indexPath.
+ *
+ *  @see JSQMessagesCollectionViewCell.
+ */
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout spacingBetweenCellBottomLabelAndBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath;
 
 /**
  *  Notifies the delegate that the avatar image view at the specified indexPath did receive a tap event.

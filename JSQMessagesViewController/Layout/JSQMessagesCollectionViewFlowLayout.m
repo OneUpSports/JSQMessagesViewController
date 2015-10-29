@@ -449,7 +449,9 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     finalHeight += attributes.messageBubbleBottomLabelHeight;
     /* Spacing For Cell Subviews */
     finalHeight += attributes.bottomLabelsSpacerHeight;
-    
+    finalHeight += attributes.bottomAccessorySpacerHeight;
+    /* Cell Accessory Views*/
+    finalHeight += attributes.bottomAccessoryViewHeight;
     
     return CGSizeMake(self.itemWidth, ceilf(finalHeight));
 }
@@ -488,10 +490,18 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
                                                                                             layout:self
                                                       heightForMessageBubbleBottomLabelAtIndexPath:indexPath];
     
+    /* Cell Accessory Views */
+    layoutAttributes.bottomAccessoryViewHeight = [self.collectionView.delegate collectionView:self.collectionView
+                                                                                       layout:self
+                                                      heightForBottomAccessoryViewAtIndexPath:indexPath];
+    
     /* Cell Subview Spacing */
     layoutAttributes.bottomLabelsSpacerHeight = [self.collectionView.delegate collectionView:self.collectionView
                                                                                       layout:self
                          spacingBetweenCellBottomLabelAndMessageBubbleBottomLabelAtIndexPath:indexPath];
+    
+    layoutAttributes.bottomAccessorySpacerHeight = [self.collectionView.delegate collectionView:self.collectionView
+                                                                                         layout:self heightForBottomAccessoryViewAtIndexPath:indexPath];
 }
 
 #pragma mark - Spring behavior utilities
