@@ -36,6 +36,7 @@
     [super viewDidLoad];
     
     self.title = @"JSQMessages";
+    self.navigationController.navigationBarHidden = YES;
     
     /**
      *  You MUST set your senderId and display name
@@ -476,7 +477,31 @@
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    return [[NSAttributedString alloc] initWithString:@"attributedTextForCellBottomLabelAtIndexPath"];
+}
+
+- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath
+{
+//    JSQMessage *message = [self.demoData.messages objectAtIndex:indexPath.item];
+    
+    /**
+     *  iOS7-style sender name labels
+     */
+//    if ([message.senderId isEqualToString:self.senderId]) {
+//        return nil;
+//    }
+//    
+//    if (indexPath.item - 1 > 0) {
+//        JSQMessage *previousMessage = [self.demoData.messages objectAtIndex:indexPath.item - 1];
+//        if ([[previousMessage senderId] isEqualToString:message.senderId]) {
+//            return nil;
+//        }
+//    }
+    
+    /**
+     *  Don't specify attributes to use the defaults.
+     */
+    return [[NSAttributedString alloc] initWithString:@"Fuck face look here!"]; //message.senderDisplayName];
 }
 
 #pragma mark - UICollectionView DataSource
@@ -612,7 +637,17 @@
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0.0f;
+    return kJSQMessagesCollectionViewCellLabelHeightDefault;
+}
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath {
+    return kJSQMessagesCollectionViewCellLabelHeightDefault;
+}
+
+#pragma mark - Adjusting cell spacing between cell subviews
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout spacingBetweenCellBottomLabelAndMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath {
+    return 40.0f;
 }
 
 #pragma mark - Responding to collection view tap events
@@ -631,6 +666,16 @@
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Tapped message bubble!");
+//    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
+//    
+//    JSQMessage *currentMessage = [self.demoData.messages objectAtIndex:indexPath.item];
+//    if (![[currentMessage senderId] isEqualToString:self.senderId]) {
+//        [cell showHideBottomAccessoryView];
+//        [collectionView.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
+//        [UIView animateWithDuration:0.2f animations:^{
+//            [collectionView layoutIfNeeded];
+//        }];
+//    }
 }
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation

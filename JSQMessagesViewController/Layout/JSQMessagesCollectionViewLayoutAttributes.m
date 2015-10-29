@@ -81,6 +81,19 @@
     _cellBottomLabelHeight = [self jsq_correctedLabelHeightForHeight:cellBottomLabelHeight];
 }
 
+- (void)setMessageBubbleBottomLabelHeight:(CGFloat)messageBubbleBottomLabelHeight
+{
+    NSParameterAssert(messageBubbleBottomLabelHeight >= 0.0f);
+    _messageBubbleBottomLabelHeight = [self jsq_correctedLabelHeightForHeight:messageBubbleBottomLabelHeight];
+}
+
+/* Cell Subview Spacers */
+- (void)setBottomLabelsSpacerHeight:(CGFloat)bottomLabelsSpacerHeight
+{
+    NSParameterAssert(bottomLabelsSpacerHeight >= 0.0f);
+    _bottomLabelsSpacerHeight = [self jsq_correctedLabelHeightForHeight:bottomLabelsSpacerHeight];
+}
+
 #pragma mark - Utilities
 
 - (CGSize)jsq_correctedAvatarSizeFromSize:(CGSize)size
@@ -116,7 +129,9 @@
             || (int)layoutAttributes.messageBubbleContainerViewWidth != (int)self.messageBubbleContainerViewWidth
             || (int)layoutAttributes.cellTopLabelHeight != (int)self.cellTopLabelHeight
             || (int)layoutAttributes.messageBubbleTopLabelHeight != (int)self.messageBubbleTopLabelHeight
-            || (int)layoutAttributes.cellBottomLabelHeight != (int)self.cellBottomLabelHeight) {
+            || (int)layoutAttributes.cellBottomLabelHeight != (int)self.cellBottomLabelHeight
+            || (int)layoutAttributes.messageBubbleBottomLabelHeight != (int)self.messageBubbleBottomLabelHeight
+            || (int)layoutAttributes.bottomLabelsSpacerHeight != (int)self.bottomLabelsSpacerHeight) {
             return NO;
         }
     }
@@ -148,6 +163,8 @@
     copy.cellTopLabelHeight = self.cellTopLabelHeight;
     copy.messageBubbleTopLabelHeight = self.messageBubbleTopLabelHeight;
     copy.cellBottomLabelHeight = self.cellBottomLabelHeight;
+    copy.messageBubbleBottomLabelHeight = self.messageBubbleBottomLabelHeight;
+    copy.bottomLabelsSpacerHeight = self.bottomLabelsSpacerHeight;
     
     return copy;
 }

@@ -87,6 +87,10 @@
  */
 @interface JSQMessagesCollectionViewCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomAccessoryViewHeightConstraint;
+
+- (void)showHideBottomAccessoryView;
+
 /**
  *  The object that acts as the delegate for the cell.
  */
@@ -109,6 +113,12 @@
  *  This label is most commonly used to display message delivery status.
  */
 @property (weak, nonatomic, readonly) JSQMessagesLabel *cellBottomLabel;
+
+/**
+ *  Returns the label that is pinned just above the messageBubbleImageView, and below the cellTopLabel.
+ *  This label is most commonly used to display the message sender.
+ */
+@property (weak, nonatomic, readonly) JSQMessagesLabel *messageBubbleBottomLabel;
 
 /**
  *  Returns the text view of the cell. This text view contains the message body text.
@@ -153,6 +163,12 @@
  *  Doing so could result in unexpected behavior.
  */
 @property (weak, nonatomic, readonly) UIView *avatarContainerView;
+
+/**
+ *  Returns the SpacerView that is pinned between the cellBottomLabel & messageBubbleBottomLabel.
+ *  This View is used to add additional spacing between the two above mentioned labels.
+ */
+@property (weak, nonatomic, readonly) UIView *bottomLabelsSpacerView;
 
 /**
  *  The media view of the cell. This view displays the contents of a media message.

@@ -34,6 +34,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 @property (weak, nonatomic) IBOutlet JSQMessagesLabel *cellTopLabel;
 @property (weak, nonatomic) IBOutlet JSQMessagesLabel *messageBubbleTopLabel;
 @property (weak, nonatomic) IBOutlet JSQMessagesLabel *cellBottomLabel;
+@property (weak, nonatomic) IBOutlet JSQMessagesLabel *messageBubbleBottomLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *messageBubbleContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *messageBubbleImageView;
@@ -41,6 +42,10 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UIView *avatarContainerView;
+
+/* Cell SpacerViews */
+@property (weak, nonatomic) IBOutlet UIView *bottomLabelsSpacerView;
+
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleContainerWidthConstraint;
 
@@ -52,6 +57,10 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellTopLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleTopLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellBottomLabelHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleBottomLabelHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelsSpacerHeightConstraint;
+
+
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewHeightConstraint;
@@ -70,6 +79,20 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 
 @implementation JSQMessagesCollectionViewCell
+
+- (void)showHideBottomAccessoryView {
+    if (self.bottomAccessoryViewHeightConstraint != nil) {
+        if (self.bottomAccessoryViewHeightConstraint.constant == 0.0) {
+            self.bottomAccessoryViewHeightConstraint.constant = 100.0f;
+        } else {
+            self.bottomAccessoryViewHeightConstraint.constant = 0.0f;
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.contentView layoutIfNeeded];
+        });
+    }
+}
 
 #pragma mark - Class methods
 
@@ -111,12 +134,18 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.backgroundColor = [UIColor whiteColor];
 
+    /* Label Height Constraints */
     self.cellTopLabelHeightConstraint.constant = 0.0f;
     self.messageBubbleTopLabelHeightConstraint.constant = 0.0f;
     self.cellBottomLabelHeightConstraint.constant = 0.0f;
-
+    self.messageBubbleBottomLabelHeightConstraint.constant = 0.0f;
+    
+    /* Spacers between Cell SubViews */
+    self.bottomLabelsSpacerHeightConstraint.constant = 0.0f;
+    
     self.avatarViewSize = CGSizeZero;
 
+    /* Label Default Fonts */
     self.cellTopLabel.textAlignment = NSTextAlignmentCenter;
     self.cellTopLabel.font = [UIFont boldSystemFontOfSize:12.0f];
     self.cellTopLabel.textColor = [UIColor lightGrayColor];
@@ -126,6 +155,9 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.cellBottomLabel.font = [UIFont systemFontOfSize:11.0f];
     self.cellBottomLabel.textColor = [UIColor lightGrayColor];
+    
+    self.messageBubbleBottomLabel.font = [UIFont systemFontOfSize:11.0f];
+    self.messageBubbleBottomLabel.textColor = [UIColor lightGrayColor];
 
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];
@@ -159,6 +191,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.cellTopLabel.text = nil;
     self.messageBubbleTopLabel.text = nil;
     self.cellBottomLabel.text = nil;
+    self.messageBubbleBottomLabel.text = nil;
 
     self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.textView.text = nil;
@@ -200,6 +233,13 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     [self jsq_updateConstraint:self.cellBottomLabelHeightConstraint
                   withConstant:customAttributes.cellBottomLabelHeight];
+    
+    [self jsq_updateConstraint:self.messageBubbleBottomLabelHeightConstraint
+                  withConstant:customAttributes.messageBubbleBottomLabelHeight];
+    
+    /* Spacers For Cell Subviews */
+    [self jsq_updateConstraint:self.bottomLabelsSpacerHeightConstraint
+                  withConstant:customAttributes.bottomLabelsSpacerHeight];
 
     if ([self isKindOfClass:[JSQMessagesCollectionViewCellIncoming class]]) {
         self.avatarViewSize = customAttributes.incomingAvatarViewSize;
@@ -277,7 +317,11 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.cellTopLabel.backgroundColor = backgroundColor;
     self.messageBubbleTopLabel.backgroundColor = backgroundColor;
     self.cellBottomLabel.backgroundColor = backgroundColor;
+    self.messageBubbleBottomLabel.backgroundColor = backgroundColor;
 
+    /* Cell Spacer Views */
+    self.bottomLabelsSpacerView.backgroundColor = backgroundColor;
+    
     self.messageBubbleImageView.backgroundColor = backgroundColor;
     self.avatarImageView.backgroundColor = backgroundColor;
 

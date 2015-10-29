@@ -103,4 +103,21 @@
  */
 @property (assign, nonatomic) CGFloat cellBottomLabelHeight;
 
+/**
+ *  The height of the `messageBubbleBottomLabel` of a `JSQMessagesCollectionViewCell`.
+ *  This value should be greater than or equal to `0.0`.
+ *
+ *  @see JSQMessagesCollectionViewCell.
+ */
+@property (assign, nonatomic) CGFloat messageBubbleBottomLabelHeight;
+
+
+/**
+ *  The spacing between cellBottomLabel & messageBubbleBottomLabel of the `bottomLabelsSpacerHeightConstraint` of a `JSQMessagesCollectionViewCell`.
+ *  This value should be greater than or equal to `0.0`.
+ *
+ *  @see JSQMessagesCollectionViewCell.
+ */
+@property (assign, nonatomic) CGFloat bottomLabelsSpacerHeight;
+
 @end
