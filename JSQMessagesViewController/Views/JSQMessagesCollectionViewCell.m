@@ -180,20 +180,6 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     
     self.messageBubbleBottomLabel.font = [UIFont systemFontOfSize:11.0f];
     self.messageBubbleBottomLabel.textColor = [UIColor lightGrayColor];
-
-//    self.cellTopLabel.textAlignment = NSTextAlignmentCenter;
-//    self.cellTopLabel.font = [UIFont boldSystemFontOfSize:22.0f];
-//    self.cellTopLabel.textColor = [UIColor lightGrayColor];
-//    
-//    self.messageBubbleTopLabel.font = [UIFont systemFontOfSize:22.0f];
-//    self.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];
-//    
-//    self.cellBottomLabel.font = [UIFont systemFontOfSize:21.0f];
-//    self.cellBottomLabel.textColor = [UIColor lightGrayColor];
-//    
-//    self.messageBubbleBottomLabel.font = [UIFont systemFontOfSize:21.0f];
-//    self.messageBubbleBottomLabel.textColor = [UIColor lightGrayColor];
-    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];
@@ -441,7 +427,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     bottomAccessoryView.frame = self.bottomAccessoryContainerView.bounds;
         
     [self.bottomAccessoryContainerView addSubview:bottomAccessoryView];
-//    [self.bottomAccessoryContainerView jsq_pinAllEdgesOfSubview:bottomAccessoryView];
+    [self.bottomAccessoryContainerView jsq_pinAllEdgesOfSubview:bottomAccessoryView];
     _bottomAccessoryView = bottomAccessoryView;
 
     //  because of cell re-use (and caching media views, if using built-in library media item)
