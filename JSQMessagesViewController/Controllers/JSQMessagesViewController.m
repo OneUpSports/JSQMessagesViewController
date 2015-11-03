@@ -41,10 +41,7 @@
 #import "UIDevice+JSQMessages.h"
 #import "NSBundle+JSQMessages.h"
 
-
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
-
-
 
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
                                          JSQMessagesKeyboardControllerDelegate>
@@ -64,6 +61,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 @property (weak, nonatomic) UIGestureRecognizer *currentInteractivePopGestureRecognizer;
 
 @property (assign, nonatomic) BOOL textViewWasFirstResponderDuringInteractivePop;
+
+@property (nonatomic) CGFloat lastBottomInset;
 
 - (void)jsq_configureMessagesViewController;
 
@@ -470,6 +469,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     return 1;
 }
 
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView willDisplayCell:(JSQMessagesCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (cell.bottomAccessoryView) {
+        cell.bottomAccessoryView.frame = cell.bottomAccessoryContainerView.bounds;//CGRectMake(0.0, 0.0, cell.frame.size.width, 160.0f);
+    }
+//    cell.bottomAccessoryView = [collectionView.dataSource collectionView:collectionView viewForBottomAccessoryAtIndexPath:indexPath];
+}
+
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     id<JSQMessageData> messageItem = [collectionView.dataSource collectionView:collectionView messageDataForItemAtIndexPath:indexPath];
@@ -695,7 +702,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     return 0.0f;
 }
 
-
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView
  didTapAvatarImageView:(UIImageView *)avatarImageView
            atIndexPath:(NSIndexPath *)indexPath { }
@@ -823,6 +829,22 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     JSQMessagesCollectionViewCell *selectedCell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:self.selectedIndexPathForMenu];
     selectedCell.textView.selectable = YES;
     self.selectedIndexPathForMenu = nil;
+}
+
+/* 
+ * set our custom insets here if assigned. Insets must be greater than UIEdgeInsetsZero
+ */
+- (void)jsq_didReceiveKeyboardDidHideNotification:(NSNotification *)notification
+{
+    if (!UIEdgeInsetsEqualToEdgeInsets(self.contentInsets, UIEdgeInsetsZero)) {
+        self.collectionView.contentInset = self.contentInsets;
+        self.collectionView.scrollIndicatorInsets = self.contentInsets;
+    }
+}
+
+- (void)jsq_didReceiveKeyboardDidShowNotification:(NSNotification *)notification
+{
+
 }
 
 #pragma mark - Key-value observing
@@ -1011,6 +1033,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     UIEdgeInsets insets = UIEdgeInsetsMake(top, 0.0f, bottom, 0.0f);
     self.collectionView.contentInset = insets;
     self.collectionView.scrollIndicatorInsets = insets;
+    self.lastBottomInset = bottom;
 }
 
 - (BOOL)jsq_isMenuVisible
@@ -1069,6 +1092,16 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
                                                  selector:@selector(jsq_didReceiveMenuWillHideNotification:)
                                                      name:UIMenuControllerWillHideMenuNotification
                                                    object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(jsq_didReceiveKeyboardDidHideNotification:)
+                                                     name:UIKeyboardDidHideNotification
+                                                   object:nil];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(jsq_didReceiveKeyboardDidShowNotification:)
+                                                     name:UIKeyboardDidShowNotification
+                                                   object:nil];
     }
     else {
         [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -1081,6 +1114,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:UIMenuControllerWillHideMenuNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardDidHideNotification
+                                                      object:nil];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:UIKeyboardDidShowNotification
                                                       object:nil];
     }
 }

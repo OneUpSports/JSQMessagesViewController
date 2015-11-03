@@ -17,6 +17,11 @@
 //
 
 #import "DemoMessagesViewController.h"
+#import "TestBottomAccessoryView.h"
+
+@interface DemoMessagesViewController ()
+@property (strong, nonatomic) TestBottomAccessoryView *bottomAccessoryView;
+@end
 
 @implementation DemoMessagesViewController
 
@@ -37,6 +42,8 @@
     
     self.title = @"JSQMessages";
     self.navigationController.navigationBarHidden = YES;
+//    self.collectionView.collectionViewLayout.messageBubbleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    self.bottomAccessoryView = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 60.0f)];
     
     /**
      *  You MUST set your senderId and display name
@@ -478,7 +485,7 @@
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [[NSAttributedString alloc] initWithString:@"attributedTextForCellBottomLabelAtIndexPath"];
+    return nil;//[[NSAttributedString alloc] initWithString:@"attributedTextForCellBottomLabelAtIndexPath"];
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath
@@ -502,12 +509,15 @@
     /**
      *  Don't specify attributes to use the defaults.
      */
-    return [[NSAttributedString alloc] initWithString:@"Fuck face look here!"]; //message.senderDisplayName];
+    return nil;//[[NSAttributedString alloc] initWithString:@"Fuck face look here!"]; //message.senderDisplayName];
 }
 
 #pragma mark - Accessory Views
 - (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+//    CGSize cellSize = [collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
+    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    TestBottomAccessoryView *view = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(100.0, 0.0, cell.bottomAccessoryContainerView.bounds.size.width, 60.0f)];
+    return view;
 }
 
 #pragma mark - UICollectionView DataSource
@@ -643,17 +653,17 @@
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return kJSQMessagesCollectionViewCellLabelHeightDefault;
+    return 0.0f;//kJSQMessagesCollectionViewCellLabelHeightDefault;
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath {
-    return kJSQMessagesCollectionViewCellLabelHeightDefault;
+    return 0.0f;//kJSQMessagesCollectionViewCellLabelHeightDefault;
 }
 
 #pragma mark - Adjust Height or Width of cell accessory subviews
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath {
-    return 0.0f;
+    return 160.0f;
 }
 
 #pragma mark - Adjust Spacing between cell subviews

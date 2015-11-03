@@ -27,6 +27,7 @@
  *  @param attribute The layout constraint attribute specifying one of `NSLayoutAttributeBottom`, `NSLayoutAttributeTop`, `NSLayoutAttributeLeading`, `NSLayoutAttributeTrailing`.
  */
 - (void)jsq_pinSubview:(UIView *)subview toEdge:(NSLayoutAttribute)attribute;
+- (void)jsq_pinSubviewToContainerView:(UIView *)subview toEdge:(NSLayoutAttribute)attribute;
 
 /**
  *  Pins all edges of the specified subview to the receiver.
@@ -34,5 +35,5 @@
  *  @param subview The subview to which the receiver will be pinned.
  */
 - (void)jsq_pinAllEdgesOfSubview:(UIView *)subview;
-
+- (void)jsq_pinAllEdgesOfSubviewToContainerView:(UIView *)subview;
 @end

@@ -60,10 +60,10 @@
                             <constraint firstItem="OCS-Fu-acq" firstAttribute="top" secondItem="btS-p8-B7Z" secondAttribute="top" id="zTa-8g-VY4"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Da1-09-wR4" userLabel="Avatar container">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Da1-09-wR4" userLabel="Avatar container" customClass="JSQMessagesAvatarView">
                         <rect key="frame" x="0.0" y="120" width="34" height="34"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w23-sL-0Rh" userLabel="Avatar Image View">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JSQMessagesAvatarImageView" translatesAutoresizingMaskIntoConstraints="NO" id="w23-sL-0Rh" userLabel="Avatar Image View" customClass="JSQMessagesAvatarImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
                             </imageView>
                         </subviews>
@@ -104,7 +104,7 @@
                             <constraint firstAttribute="height" constant="20" id="rco-hd-JB8"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7u-yy-f4e">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7u-yy-f4e" customClass="JSQMessagesCellAccessoryView">
                         <rect key="frame" x="0.0" y="234" width="320" height="20"/>
                         <color key="backgroundColor" red="0.35294117650000001" green="0.54117647059999996" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -194,4 +194,7 @@
             <point key="canvasLocation" x="255" y="262"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="JSQMessagesAvatarImageView" width="16" height="16"/>
+    </resources>
 </document>

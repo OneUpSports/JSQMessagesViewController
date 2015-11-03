@@ -40,8 +40,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 @property (weak, nonatomic) IBOutlet UIImageView *messageBubbleImageView;
 @property (weak, nonatomic) IBOutlet JSQMessagesCellTextView *textView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
-@property (weak, nonatomic) IBOutlet UIView *avatarContainerView;
+@property (weak, nonatomic) IBOutlet JSQMessagesAvatarImageView *avatarImageView;
+@property (weak, nonatomic) IBOutlet JSQMessagesAvatarView *avatarContainerView;
 
 /* Cell SpacerViews */
 @property (weak, nonatomic) IBOutlet UIView *bottomLabelsSpacerView;
@@ -52,12 +52,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 
 /* Cell Accessory Container Views */
-@property (weak, nonatomic) IBOutlet UIView *bottomAccessoryContainerView;
-
-
-
-
-
+@property (weak, nonatomic) IBOutlet JSQMessagesCellAccessoryView *bottomAccessoryContainerView;
 
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleContainerWidthConstraint;
@@ -155,7 +150,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 
     self.backgroundColor = [UIColor whiteColor];
-
+    
     /* Label Height Constraints */
     self.cellTopLabelHeightConstraint.constant = 0.0f;
     self.messageBubbleTopLabelHeightConstraint.constant = 0.0f;
@@ -186,6 +181,20 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.messageBubbleBottomLabel.font = [UIFont systemFontOfSize:11.0f];
     self.messageBubbleBottomLabel.textColor = [UIColor lightGrayColor];
 
+//    self.cellTopLabel.textAlignment = NSTextAlignmentCenter;
+//    self.cellTopLabel.font = [UIFont boldSystemFontOfSize:22.0f];
+//    self.cellTopLabel.textColor = [UIColor lightGrayColor];
+//    
+//    self.messageBubbleTopLabel.font = [UIFont systemFontOfSize:22.0f];
+//    self.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];
+//    
+//    self.cellBottomLabel.font = [UIFont systemFontOfSize:21.0f];
+//    self.cellBottomLabel.textColor = [UIColor lightGrayColor];
+//    
+//    self.messageBubbleBottomLabel.font = [UIFont systemFontOfSize:21.0f];
+//    self.messageBubbleBottomLabel.textColor = [UIColor lightGrayColor];
+    
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];
     self.tapGestureRecognizer = tap;
@@ -229,6 +238,10 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.avatarImageView.image = nil;
     self.avatarImageView.highlightedImage = nil;
+    if (_bottomAccessoryView != nil) {
+        [_bottomAccessoryView removeFromSuperview];
+    }
+    _bottomAccessoryView = nil;
 }
 
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
@@ -424,16 +437,16 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 {
     if (bottomAccessoryView == nil) return;
     
-    [bottomAccessoryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [bottomAccessoryView setTranslatesAutoresizingMaskIntoConstraints:NO];
     bottomAccessoryView.frame = self.bottomAccessoryContainerView.bounds;
-    
+        
     [self.bottomAccessoryContainerView addSubview:bottomAccessoryView];
-    [self.bottomAccessoryContainerView jsq_pinAllEdgesOfSubview:bottomAccessoryView];
+//    [self.bottomAccessoryContainerView jsq_pinAllEdgesOfSubview:bottomAccessoryView];
     _bottomAccessoryView = bottomAccessoryView;
-    
-    //  because of cell re-use (and caching accessory views, if using built-in library accessory item)
-    //  we may have dequeued a cell with a accessory view and add this one on top
-    //  thus, remove any additional subviews hidden behind the new Accessory view
+
+    //  because of cell re-use (and caching media views, if using built-in library media item)
+    //  we may have dequeued a cell with a media view and add this one on top
+    //  thus, remove any additional subviews hidden behind the new media view
     dispatch_async(dispatch_get_main_queue(), ^{
         for (NSUInteger i = 0; i < self.bottomAccessoryContainerView.subviews.count; i++) {
             if (self.bottomAccessoryContainerView.subviews[i] != _bottomAccessoryView) {
