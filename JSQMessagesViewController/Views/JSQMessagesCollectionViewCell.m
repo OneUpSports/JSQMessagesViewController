@@ -472,10 +472,18 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 #pragma mark - AccessoryView
 
-- (void)showHideBottomAccessoryView:(BOOL)showHide
+- (void)showHideBottomAccessoryView:(BOOL)showHide withVisibleCells:(NSArray *)cells animated:(BOOL)animated
 {
+    if (cells != nil) {
+        for (JSQMessagesCollectionViewCell *cell in cells) {
+            if (cell != self) {
+                [cell showHideBottomAccessoryView:NO withVisibleCells:nil animated:NO];
+            }
+        }
+    }
+
     self.showBottomAccessoryView = showHide;
-    [self.delegate messagesCollectionViewCell:self willShowBottomAccessoryView:showHide];
+    [self.delegate messagesCollectionViewCell:self willShowBottomAccessoryView:showHide animated:animated];
 }
 
 #pragma mark - Gesture recognizers

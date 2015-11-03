@@ -456,14 +456,6 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     
     /* Cell Accessory Views*/
     finalHeight += attributes.bottomAccessoryViewHeight;
-
-    //    CGFloat bottomAccessoryViewHeight = 0.0;
-//    BOOL showBottomAccessoryView = [self.collectionView.delegate collectionView:self.collectionView layout:self willShowBottomAccessoryViewAtIndexPath:indexPath];
-//    if (showBottomAccessoryView) {
-//        bottomAccessoryViewHeight = [self.collectionView.delegate collectionView:self.collectionView layout:self heightForBottomAccessoryViewAtIndexPath:indexPath];
-//    }
-//    
-//    finalHeight += bottomAccessoryViewHeight;//attributes.bottomAccessoryViewHeight;
     
     return CGSizeMake(self.itemWidth, ceilf(finalHeight));
 }

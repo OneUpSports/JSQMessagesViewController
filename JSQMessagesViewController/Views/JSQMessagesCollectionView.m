@@ -170,28 +170,21 @@
                     touchLocation:position];
 }
 
-
-- (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide
+- (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide animated:(BOOL)animated
 {
     NSIndexPath *indexPath = [self indexPathForCell:cell];
     if (indexPath == nil) {
         return;
     }
     
+    CGFloat animationDuration = animated ? 0.25f : 0.0f;
+    
     // Prepare for animation
-//    [self.collectionViewLayout invalidateLayout];
     [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
-
-    JSQMessagesCollectionViewCell *__weak theCell = cell; // Avoid retain cycles
-    JSQMessagesCollectionView *__weak weakSelf = self; // Avoid retain cycles
-    
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-        [UIView animateWithDuration:0.25f animations:^{
-
-            [weakSelf layoutIfNeeded];
-        }];
-//    });
+//    [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+    [UIView animateWithDuration:animationDuration animations:^{
+        [self layoutIfNeeded];
+    }];
 }
 
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell didPerformAction:(SEL)action withSender:(id)sender

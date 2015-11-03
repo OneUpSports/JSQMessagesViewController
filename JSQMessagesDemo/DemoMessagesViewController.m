@@ -720,8 +720,7 @@
     NSLog(@"Tapped message bubble!");
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
 
-    [cell showHideBottomAccessoryView:YES];
-    
+    [cell showHideBottomAccessoryView:YES withVisibleCells:collectionView.visibleCells animated:YES];
     
 //    JSQMessage *currentMessage = [self.demoData.messages objectAtIndex:indexPath.item];
 //    if (![[currentMessage senderId] isEqualToString:self.senderId]) {

@@ -76,7 +76,7 @@
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell didPerformAction:(SEL)action withSender:(id)sender;
 
 
-- (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide;
+- (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide animated:(BOOL)animated;
 @end
 
 
@@ -93,7 +93,7 @@
 @interface JSQMessagesCollectionViewCell : UICollectionViewCell
 
 
-- (void)showHideBottomAccessoryView:(BOOL)showHide;
+- (void)showHideBottomAccessoryView:(BOOL)showHide withVisibleCells:(NSArray *)cells animated:(BOOL)animated;
 
 /**
  *  The object that acts as the delegate for the cell.

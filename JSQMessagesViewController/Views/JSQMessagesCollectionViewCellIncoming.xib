@@ -157,7 +157,7 @@
                 <constraint firstAttribute="trailing" secondItem="kc5-U6-4GU" secondAttribute="trailing" id="oa5-0o-Ogt"/>
                 <constraint firstItem="far-99-04D" firstAttribute="leading" secondItem="4lh-CK-yVn" secondAttribute="leading" id="rA5-mO-Ibr"/>
                 <constraint firstItem="UPz-5x-c1T" firstAttribute="top" secondItem="btS-p8-B7Z" secondAttribute="bottom" id="s8G-Je-7GA"/>
-                <constraint firstItem="kc5-U6-4GU" firstAttribute="top" secondItem="YgF-ew-85L" secondAttribute="bottom" id="tNC-er-AyV"/>
+                <constraint firstItem="kc5-U6-4GU" firstAttribute="top" secondItem="YgF-ew-85L" secondAttribute="bottom" priority="750" id="tNC-er-AyV"/>
                 <constraint firstAttribute="trailing" secondItem="YgF-ew-85L" secondAttribute="trailing" id="x84-Rd-6j5"/>
             </constraints>
             <size key="customSize" width="317" height="365"/>
