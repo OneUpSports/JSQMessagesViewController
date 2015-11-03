@@ -564,6 +564,13 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     else {
         cell.messageBubbleTopLabel.textInsets = UIEdgeInsetsMake(0.0f, bubbleTopLabelInset, 0.0f, 0.0f);
     }
+    
+//    BOOL showAccessoryView = [collectionView.delegate collectionView:collectionView layout:collectionView.collectionViewLayout willShowBottomAccessoryViewAtIndexPath:indexPath];
+//    CGFloat bottomAccessoryViewHeight = [collectionView.delegate collectionView:collectionView layout:collectionView.collectionViewLayout heightForBottomAccessoryViewAtIndexPath:indexPath];
+//
+//    CGRect cellBottomAccessoryViewFrame = cell.bottomAccessoryContainerView.frame;
+//    cellBottomAccessoryViewFrame.size.height = bottomAccessoryViewHeight;
+//    cell.bottomAccessoryContainerView.frame = cellBottomAccessoryViewFrame;
 
     cell.textView.dataDetectorTypes = UIDataDetectorTypeAll;
 
@@ -653,6 +660,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     }
 }
 
+
 #pragma mark - Collection view delegate flow layout
 
 - (CGSize)collectionView:(JSQMessagesCollectionView *)collectionView
@@ -703,6 +711,15 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout spacingBetweenBottomAccessoryViewAndBottomOfCellAtIndexPath:(NSIndexPath *)indexPath
 {
     return 0.0f;
+}
+
+/* Show Cell Accessory Views */
+
+- (NSNumber *)collectionView:(JSQMessagesCollectionView *)collectionView
+                layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
 }
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView

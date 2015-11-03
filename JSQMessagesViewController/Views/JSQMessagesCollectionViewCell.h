@@ -75,6 +75,8 @@
  */
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell didPerformAction:(SEL)action withSender:(id)sender;
 
+
+- (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide;
 @end
 
 
@@ -91,7 +93,7 @@
 @interface JSQMessagesCollectionViewCell : UICollectionViewCell
 
 
-- (void)showHideBottomAccessoryView;
+- (void)showHideBottomAccessoryView:(BOOL)showHide;
 
 /**
  *  The object that acts as the delegate for the cell.
@@ -188,6 +190,9 @@
 
 @property (weak, nonatomic) UIView *bottomAccessoryView;
 
+@property (assign, nonatomic) BOOL showBottomAccessoryView;
+
+@property (assign, nonatomic) CGFloat bottomAccessoryViewHeight;
 /**
  *  Returns the underlying gesture recognizer for tap gestures in the avatarImageView of the cell.
  *  This gesture handles the tap event for the avatarImageView and notifies the cell's delegate.

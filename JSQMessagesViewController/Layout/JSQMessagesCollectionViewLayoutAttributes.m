@@ -25,6 +25,7 @@
 
 - (CGFloat)jsq_correctedLabelHeightForHeight:(CGFloat)height;
 
+@property (assign, nonatomic) CGFloat cellBottomAccessoryViewHeight;
 @end
 
 
@@ -91,7 +92,7 @@
 - (void)setBottomAccessoryViewHeight:(CGFloat)bottomAccessoryViewHeight
 {
     NSParameterAssert(bottomAccessoryViewHeight >= 0.0f);
-    _bottomAccessoryViewHeight = [self jsq_correctedLabelHeightForHeight:bottomAccessoryViewHeight];
+    _cellBottomAccessoryViewHeight = [self jsq_correctedLabelHeightForHeight:bottomAccessoryViewHeight];
 }
 
 /* Cell Subview Spacers */
@@ -111,6 +112,20 @@
 {
     NSParameterAssert(bottomCellSpacerHeight >= 0.0f);
     _bottomCellSpacerHeight = [self jsq_correctedLabelHeightForHeight:bottomCellSpacerHeight];
+}
+
+/* Show Hide Accessory Views */
+
+- (void)setShowBottomCellAccessoryView:(BOOL)showBottomCellAccessoryView
+{
+    _showBottomCellAccessoryView = showBottomCellAccessoryView;
+}
+
+#pragma mark - Getters
+
+- (CGFloat)bottomAccessoryViewHeight
+{
+    return _showBottomCellAccessoryView ? _cellBottomAccessoryViewHeight : 0.0f;
 }
 
 #pragma mark - Utilities
@@ -151,9 +166,11 @@
             || (int)layoutAttributes.cellBottomLabelHeight != (int)self.cellBottomLabelHeight
             || (int)layoutAttributes.messageBubbleBottomLabelHeight != (int)self.messageBubbleBottomLabelHeight
             || (int)layoutAttributes.bottomLabelsSpacerHeight != (int)self.bottomLabelsSpacerHeight
+            || (int)layoutAttributes.cellBottomAccessoryViewHeight != (int)self.cellBottomAccessoryViewHeight
             || (int)layoutAttributes.bottomAccessoryViewHeight != (int)self.bottomAccessoryViewHeight
             || (int)layoutAttributes.bottomAccessorySpacerHeight != (int)self.bottomAccessorySpacerHeight
-            || (int)layoutAttributes.bottomCellSpacerHeight != (int)self.bottomCellSpacerHeight) {
+            || (int)layoutAttributes.bottomCellSpacerHeight != (int)self.bottomCellSpacerHeight
+            || layoutAttributes.showBottomCellAccessoryView != self.showBottomCellAccessoryView) {
             return NO;
         }
     }
@@ -187,9 +204,11 @@
     copy.cellBottomLabelHeight = self.cellBottomLabelHeight;
     copy.messageBubbleBottomLabelHeight = self.messageBubbleBottomLabelHeight;
     copy.bottomLabelsSpacerHeight = self.bottomLabelsSpacerHeight;
+    copy.cellBottomAccessoryViewHeight = self.cellBottomAccessoryViewHeight;
     copy.bottomAccessoryViewHeight = self.bottomAccessoryViewHeight;
     copy.bottomAccessorySpacerHeight = self.bottomAccessorySpacerHeight;
     copy.bottomCellSpacerHeight = self.bottomCellSpacerHeight;
+    copy.showBottomCellAccessoryView = self.showBottomCellAccessoryView;
     
     return copy;
 }

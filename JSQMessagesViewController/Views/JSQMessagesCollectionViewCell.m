@@ -97,19 +97,6 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 @implementation JSQMessagesCollectionViewCell
 
-- (void)showHideBottomAccessoryView {
-//    if (self.bottomAccessoryViewHeightConstraint != nil) {
-//        if (self.bottomAccessoryViewHeightConstraint.constant == 0.0) {
-//            self.bottomAccessoryViewHeightConstraint.constant = 100.0f;
-//        } else {
-//            self.bottomAccessoryViewHeightConstraint.constant = 0.0f;
-//        }
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.contentView layoutIfNeeded];
-//        });
-//    }
-}
 
 #pragma mark - Class methods
 
@@ -181,6 +168,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.messageBubbleBottomLabel.font = [UIFont systemFontOfSize:11.0f];
     self.messageBubbleBottomLabel.textColor = [UIColor lightGrayColor];
     
+    self.showBottomAccessoryView = NO;
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];
     self.tapGestureRecognizer = tap;
@@ -207,6 +196,15 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     _tapGestureRecognizer = nil;
 }
 
+- (void)setBottomAccessoryViewHeight:(CGFloat)bottomAccessoryViewHeight
+{
+    _bottomAccessoryViewHeight = bottomAccessoryViewHeight;
+    CGRect frame = self.bottomAccessoryContainerView.frame;
+    frame.size.height = bottomAccessoryViewHeight;
+    self.bottomAccessoryContainerView.frame = frame;
+    self.bottomAccessoryViewHeightConstraint.constant = bottomAccessoryViewHeight;
+}
+
 #pragma mark - Collection view cell
 
 - (void)prepareForReuse
@@ -228,6 +226,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
         [_bottomAccessoryView removeFromSuperview];
     }
     _bottomAccessoryView = nil;
+    
+    self.showBottomAccessoryView = NO;
 }
 
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
@@ -422,8 +422,9 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 - (void)setBottomAccessoryView:(UIView *)bottomAccessoryView
 {
     if (bottomAccessoryView == nil) return;
-    
-//    [bottomAccessoryView setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    [_bottomAccessoryContainerView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [bottomAccessoryView setTranslatesAutoresizingMaskIntoConstraints:NO];
     bottomAccessoryView.frame = self.bottomAccessoryContainerView.bounds;
         
     [self.bottomAccessoryContainerView addSubview:bottomAccessoryView];
@@ -467,6 +468,14 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     }
 
     constraint.constant = constant;
+}
+
+#pragma mark - AccessoryView
+
+- (void)showHideBottomAccessoryView:(BOOL)showHide
+{
+    self.showBottomAccessoryView = showHide;
+    [self.delegate messagesCollectionViewCell:self willShowBottomAccessoryView:showHide];
 }
 
 #pragma mark - Gesture recognizers

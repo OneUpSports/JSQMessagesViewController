@@ -147,5 +147,7 @@
  */
 @property (assign, nonatomic) CGFloat bottomCellSpacerHeight;
 
+/* Show Cell Accessory Views */
+@property (assign, nonatomic) BOOL showBottomCellAccessoryView;
 
 @end

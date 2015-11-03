@@ -37,7 +37,7 @@
     
     if (self.subviews.count > 0) {
         UIView *view = self.subviews[0];
-        [self jsq_pinAllEdgesOfSubview:view];
+//        [self jsq_pinAllEdgesOfSubview:view];
         
     }
 }

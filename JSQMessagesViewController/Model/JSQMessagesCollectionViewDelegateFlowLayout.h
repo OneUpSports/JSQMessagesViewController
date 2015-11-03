@@ -157,6 +157,10 @@ spacingBetweenCellBottomLabelAndBottomAccessoryViewAtIndexPath:(NSIndexPath *)in
 spacingBetweenBottomAccessoryViewAndBottomOfCellAtIndexPath:(NSIndexPath *)indexPath;
 
 
+- (BOOL)collectionView:(JSQMessagesCollectionView *)collectionView
+                layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath;
+
 
 
 /**
@@ -201,5 +205,4 @@ spacingBetweenBottomAccessoryViewAndBottomOfCellAtIndexPath:(NSIndexPath *)index
  */
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView
                 header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender;
-
 @end

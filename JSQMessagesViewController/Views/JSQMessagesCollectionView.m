@@ -26,6 +26,7 @@
 #import "JSQMessagesLoadEarlierHeaderView.h"
 
 #import "UIColor+JSQMessages.h"
+#import "JSQMessagesCollectionViewFlowLayoutInvalidationContext.h"
 
 
 @interface JSQMessagesCollectionView () <JSQMessagesLoadEarlierHeaderViewDelegate>
@@ -167,6 +168,30 @@
     [self.delegate collectionView:self
             didTapCellAtIndexPath:indexPath
                     touchLocation:position];
+}
+
+
+- (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide
+{
+    NSIndexPath *indexPath = [self indexPathForCell:cell];
+    if (indexPath == nil) {
+        return;
+    }
+    
+    // Prepare for animation
+//    [self.collectionViewLayout invalidateLayout];
+    [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
+
+    JSQMessagesCollectionViewCell *__weak theCell = cell; // Avoid retain cycles
+    JSQMessagesCollectionView *__weak weakSelf = self; // Avoid retain cycles
+    
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.25f animations:^{
+
+            [weakSelf layoutIfNeeded];
+        }];
+//    });
 }
 
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell didPerformAction:(SEL)action withSender:(id)sender

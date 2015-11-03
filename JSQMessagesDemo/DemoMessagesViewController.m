@@ -41,7 +41,7 @@
     [super viewDidLoad];
     
     self.title = @"JSQMessages";
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
 //    self.collectionView.collectionViewLayout.messageBubbleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
     self.bottomAccessoryView = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 60.0f)];
     
@@ -663,7 +663,8 @@
 #pragma mark - Adjust Height or Width of cell accessory subviews
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath {
-    return 160.0f;
+    CGFloat height = 160.0f;
+    return height;
 }
 
 #pragma mark - Adjust Spacing between cell subviews
@@ -678,6 +679,27 @@
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout spacingBetweenBottomAccessoryViewAndBottomOfCellAtIndexPath:(NSIndexPath *)indexPath {
     return 0.0f;
+}
+
+
+#pragma mark - Show Hide Cell Accessory Views
+
+/* Show Cell Accessory Views */
+
+- (BOOL)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    return cell.showBottomAccessoryView;
+//    if (indexPath.item == 0) {
+//        return NO;
+//    }
+    
+//    if (indexPath.item % 3 == 0) {
+//        return YES;
+//    }
+//
+//    return NO;
 }
 
 #pragma mark - Responding to collection view tap events
@@ -696,8 +718,11 @@
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"Tapped message bubble!");
-//    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-//    
+    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+
+    [cell showHideBottomAccessoryView:YES];
+    
+    
 //    JSQMessage *currentMessage = [self.demoData.messages objectAtIndex:indexPath.item];
 //    if (![[currentMessage senderId] isEqualToString:self.senderId]) {
 //        [cell showHideBottomAccessoryView];
@@ -711,6 +736,10 @@
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation
 {
     NSLog(@"Tapped cell at %@!", NSStringFromCGPoint(touchLocation));
+}
+
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView bottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath {
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
 }
 
 #pragma mark - JSQMessagesComposerTextViewPasteDelegate methods
