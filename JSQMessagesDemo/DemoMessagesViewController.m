@@ -39,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.maximumMessageLength = 10;
     
     self.title = @"JSQMessages";
 //    self.navigationController.navigationBarHidden = YES;
@@ -310,6 +311,7 @@
          senderDisplayName:(NSString *)senderDisplayName
                       date:(NSDate *)date
 {
+    
     /**
      *  Sending a message. Your implementation of this method should do *at least* the following:
      *
@@ -719,8 +721,8 @@
 {
     NSLog(@"Tapped message bubble!");
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-
-    [cell showHideBottomAccessoryView:YES withVisibleCells:collectionView.visibleCells animated:YES];
+    cell.showBottomAccessoryView = !cell.showBottomAccessoryView;
+//    [cell showHideBottomAccessoryView:YES animated:YES hideOtherCellsAccessoryViews:YES];
     
 //    JSQMessage *currentMessage = [self.demoData.messages objectAtIndex:indexPath.item];
 //    if (![[currentMessage senderId] isEqualToString:self.senderId]) {

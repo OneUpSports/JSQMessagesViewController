@@ -170,21 +170,48 @@
                     touchLocation:position];
 }
 
-- (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide animated:(BOOL)animated
+- (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide
+                          animated:(BOOL)animated
+      hideOtherCellsAccessoryViews:(BOOL)hideOtherCellsAccessoryViews
 {
     NSIndexPath *indexPath = [self indexPathForCell:cell];
     if (indexPath == nil) {
         return;
     }
     
+    if (hideOtherCellsAccessoryViews) {
+        for (JSQMessagesCollectionViewCell *visibleCell in self.visibleCells) {
+            if (![cell isEqual: visibleCell]) {
+                visibleCell.showBottomAccessoryView = NO;
+            }
+        }
+    }
+
+    
     CGFloat animationDuration = animated ? 0.25f : 0.0f;
     
     // Prepare for animation
-    [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
+//    [CATransaction begin];
+//    [CATransaction setCompletionBlock:onCompletion];
+//    [CATransaction setAnimationDuration:animationDuration*4];
 //    [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
-    [UIView animateWithDuration:animationDuration animations:^{
-        [self layoutIfNeeded];
+//    [CATransaction commit];
+//    [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+
+    [self performBatchUpdates:^{
+        [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
+    } completion:^(BOOL finished) {
+
     }];
+//    [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
+//    [self performBatchUpdates:nil completion:nil];
+//    [UIView animateWithDuration:animationDuration animations:^{
+//        //        CGRect frame = cell.frame;
+//        //        frame.size = [self.collectionViewLayout sizeForItemAtIndexPath:indexPath];
+//        //        cell.frame = frame;
+//        
+//        [cell layoutIfNeeded];
+//    }];
 }
 
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell didPerformAction:(SEL)action withSender:(id)sender

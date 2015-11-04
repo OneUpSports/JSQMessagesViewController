@@ -31,10 +31,29 @@
  */
 @interface JSQMessagesViewController : UIViewController <JSQMessagesCollectionViewDataSource,
                                                          JSQMessagesCollectionViewDelegateFlowLayout,
-                                                         UITextViewDelegate>
+                                                         UITextViewDelegate, UIScrollViewDelegate>
 
+@property (assign, nonatomic) BOOL dissmissCellAccessoryViewsOnScroll;
 
 @property (nonatomic) UIEdgeInsets contentInsets;
+
+@property (nonatomic, assign) NSInteger maximumMessageLength;
+
+- (void)setMaxMessageLength:(NSInteger)maxLength
+           withErrorMessage:(NSString *)errorMessage;
+
+- (void)setMaxMessageLength:(NSInteger)maxLength
+           withErrorMessage:(NSString *)errorMessage
+    withTextViewColorChange:(UIColor *)color;
+
+- (void)setMaxMessageLength:(NSInteger)maxLength
+    withTextViewColorChange:(UIColor *)color;
+
+- (void)setMaxMessageLength:(NSInteger)maxLength
+           withErrorMessage:(NSString *)errorMessage
+    withTextViewColorChange:(UIColor *)color
+shouldShowErrorOnSendAction:(BOOL)showOnSend
+ shouldAllowContinuosTyping:(BOOL)continueTyping;
 
 /**
  *  Returns the collection view object managed by this view controller.

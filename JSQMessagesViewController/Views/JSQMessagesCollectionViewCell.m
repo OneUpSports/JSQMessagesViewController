@@ -288,6 +288,11 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     else if ([self isKindOfClass:[JSQMessagesCollectionViewCellOutgoing class]]) {
         self.avatarViewSize = customAttributes.outgoingAvatarViewSize;
     }
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        [self layoutIfNeeded];
+    }];
+
 }
 
 - (void)setHighlighted:(BOOL)highlighted
@@ -443,6 +448,15 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     });
 }
 
+- (void)setShowBottomAccessoryView:(BOOL)showBottomAccessoryView
+{
+    _showBottomAccessoryView = showBottomAccessoryView;
+    [self.delegate messagesCollectionViewCell:self
+                  willShowBottomAccessoryView:showBottomAccessoryView
+                                     animated:YES
+                 hideOtherCellsAccessoryViews:showBottomAccessoryView];
+}
+
 #pragma mark - Getters
 
 - (CGSize)avatarViewSize
@@ -472,18 +486,10 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 #pragma mark - AccessoryView
 
-- (void)showHideBottomAccessoryView:(BOOL)showHide withVisibleCells:(NSArray *)cells animated:(BOOL)animated
+- (void)showHideBottomAccessoryView:(BOOL)showHide animated:(BOOL)animated hideOtherCellsAccessoryViews:(BOOL)hideOtherCellsAccessoryViews
 {
-    if (cells != nil) {
-        for (JSQMessagesCollectionViewCell *cell in cells) {
-            if (cell != self) {
-                [cell showHideBottomAccessoryView:NO withVisibleCells:nil animated:NO];
-            }
-        }
-    }
-
-    self.showBottomAccessoryView = showHide;
-    [self.delegate messagesCollectionViewCell:self willShowBottomAccessoryView:showHide animated:animated];
+//    self.showBottomAccessoryView = showHide;
+    [self.delegate messagesCollectionViewCell:self willShowBottomAccessoryView:showHide animated:animated hideOtherCellsAccessoryViews:hideOtherCellsAccessoryViews];
 }
 
 #pragma mark - Gesture recognizers

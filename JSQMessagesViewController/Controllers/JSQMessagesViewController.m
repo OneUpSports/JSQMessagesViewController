@@ -64,6 +64,14 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 @property (nonatomic) CGFloat lastBottomInset;
 
+/* Maximum Message Length Related Properties */
+@property (strong, nonatomic) NSString *maximumMessageLengthErrorMessage;
+@property (strong, nonatomic) UIColor *textViewErrorColor;
+@property (strong, nonatomic) UIColor *originalTextViewColor;
+@property (assign, nonatomic) BOOL shouldShowErrorOnSendAction;
+@property (assign, nonatomic) BOOL shouldAllowContinuousTyping;
+
+
 - (void)jsq_configureMessagesViewController;
 
 - (NSString *)jsq_currentlyComposedMessageText;
@@ -121,7 +129,12 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     self.view.backgroundColor = [UIColor whiteColor];
 
     self.jsq_isObserving = NO;
+    self.maximumMessageLength =  NSIntegerMax;
+    self.shouldShowErrorOnSendAction = NO;
+    self.shouldAllowContinuousTyping = NO;
 
+    self.dissmissCellAccessoryViewsOnScroll = YES;
+    
     self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
 
     self.collectionView.dataSource = self;
@@ -471,10 +484,12 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView willDisplayCell:(JSQMessagesCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (cell.bottomAccessoryView) {
-//        cell.bottomAccessoryView.frame = cell.bottomAccessoryContainerView.bounds;//CGRectMake(0.0, 0.0, cell.frame.size.width, 160.0f);
-//    }
-//    cell.bottomAccessoryView = [collectionView.dataSource collectionView:collectionView viewForBottomAccessoryAtIndexPath:indexPath];
+
+}
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didEndDisplayingCell:(JSQMessagesCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
 }
 
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -498,7 +513,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     cell.delegate = collectionView;
-
+    
     if (!isMediaMessage) {
         cell.textView.text = [messageItem text];
 
@@ -715,11 +730,12 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 /* Show Cell Accessory Views */
 
-- (NSNumber *)collectionView:(JSQMessagesCollectionView *)collectionView
+- (BOOL)collectionView:(JSQMessagesCollectionView *)collectionView
                 layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
 willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;
+    JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    return cell.showBottomAccessoryView;
 }
 
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView
@@ -740,6 +756,10 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
         [self didPressAccessoryButton:sender];
     }
     else {
+        if ([self shouldStopSendMessage]) {
+            return;
+        }
+        
         [self didPressSendButton:sender
                  withMessageText:[self jsq_currentlyComposedMessageText]
                         senderId:self.senderId
@@ -751,6 +771,10 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 - (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didPressRightBarButton:(UIButton *)sender
 {
     if (toolbar.sendButtonOnRight) {
+        if ([self shouldStopSendMessage]) {
+            return;
+        }
+        
         [self didPressSendButton:sender
                  withMessageText:[self jsq_currentlyComposedMessageText]
                         senderId:self.senderId
@@ -795,6 +819,11 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
     [self.inputToolbar toggleSendButtonEnabled];
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    return [self allowTextInputFromTextView:textView shouldChangeTextInRange:range replacementText:text];
+}
+
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     if (textView != self.inputToolbar.contentView.textView) {
@@ -802,6 +831,17 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
     }
 
     [textView resignFirstResponder];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.dissmissCellAccessoryViewsOnScroll) {
+        [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(setShowBottomAccessoryView:)
+                                                          withObject:[[NSNumber alloc] initWithBool:NO]];
+
+    }
 }
 
 #pragma mark - Notifications
@@ -1159,6 +1199,142 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
                                                                       action:@selector(jsq_handleInteractivePopGestureRecognizer:)];
         self.currentInteractivePopGestureRecognizer = self.navigationController.interactivePopGestureRecognizer;
     }
+}
+
+#pragma mark - Maximum Message Length Configurations
+
+- (void)setMaxMessageLength:(NSInteger)maxLength withErrorMessage:(NSString *)errorMessage
+{
+    _maximumMessageLength = maxLength;
+    _maximumMessageLengthErrorMessage = errorMessage;
+    _shouldShowErrorOnSendAction = NO;
+    _shouldAllowContinuousTyping = NO;
+}
+
+- (void)setMaxMessageLength:(NSInteger)maxLength withErrorMessage:(NSString *)errorMessage withTextViewColorChange:(UIColor *)color
+{
+    _maximumMessageLength = maxLength;
+    _maximumMessageLengthErrorMessage = errorMessage;
+    _originalTextViewColor = self.inputToolbar.contentView.textView.textColor;
+    _textViewErrorColor = color;
+    _shouldShowErrorOnSendAction = YES;
+    _shouldAllowContinuousTyping = YES;
+}
+
+- (void)setMaxMessageLength:(NSInteger)maxLength withTextViewColorChange:(UIColor *)color
+{
+    _maximumMessageLength = maxLength;
+    _originalTextViewColor = self.inputToolbar.contentView.textView.textColor;
+    _textViewErrorColor = color;
+    _shouldShowErrorOnSendAction = NO;
+    _shouldAllowContinuousTyping = NO;
+}
+
+- (void)setMaxMessageLength:(NSInteger)maxLength withErrorMessage:(NSString *)errorMessage withTextViewColorChange:(UIColor *)color shouldShowErrorOnSendAction:(BOOL)showOnSend shouldAllowContinuosTyping:(BOOL)continueTyping
+{
+    _maximumMessageLength = maxLength;
+    _maximumMessageLengthErrorMessage = errorMessage;
+    _originalTextViewColor = self.inputToolbar.contentView.textView.textColor;
+    _textViewErrorColor = color;
+    _shouldShowErrorOnSendAction = showOnSend;
+    _shouldAllowContinuousTyping = continueTyping;
+}
+
+- (BOOL)allowTextInputFromTextView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (textView != _inputToolbar.contentView.textView) {
+        return NO;
+    }
+    
+    if (_maximumMessageLength == NSIntegerMax) {
+        return YES;
+    }
+    
+    BOOL isOverLimit = textView.text.length + (text.length - range.length) <= _maximumMessageLength;
+    
+    if (!isOverLimit) {
+        if (_textViewErrorColor != nil) {
+            _inputToolbar.contentView.textView.textColor = _textViewErrorColor;
+        }
+        
+        if (!_shouldShowErrorOnSendAction) {
+            if (_maximumMessageLengthErrorMessage != nil) {
+                NSString *errorMessage = _maximumMessageLengthErrorMessage;
+                [self showErrorWithMessage:errorMessage];
+            }
+        }
+        
+        return _shouldAllowContinuousTyping;
+    } else {
+        if (_originalTextViewColor != nil) {
+            _inputToolbar.contentView.textView.textColor = _originalTextViewColor;
+        }
+    }
+    
+    return isOverLimit;
+}
+
+- (BOOL)shouldStopSendMessage
+{
+    if (_maximumMessageLength == NSIntegerMax) {
+        return NO;
+    }
+    
+    NSUInteger textLength = self.inputToolbar.contentView.textView.text.length;
+    BOOL isOverLimit = textLength <= _maximumMessageLength;
+
+    if (!isOverLimit) {
+        if (_shouldShowErrorOnSendAction) {
+            NSString *errorMessage = [NSString stringWithFormat:@"You may only send messages that do not exceed %li characters", (long)self.maximumMessageLength];
+            if (_maximumMessageLengthErrorMessage != nil) {
+                errorMessage = _maximumMessageLengthErrorMessage;
+            }
+           
+            [self showErrorWithMessage:errorMessage];
+
+            return YES;
+        }
+        
+        return _shouldAllowContinuousTyping;
+
+    }
+    
+    return NO;
+}
+
+- (void)showErrorWithMessage:(NSString *)message
+{
+    if (message == nil) return;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (NSClassFromString(@"UIAlertController")) {
+            UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+            
+            
+            UIAlertAction *cancelAction = [UIAlertAction
+                                           actionWithTitle:@"OK"
+                                           style:UIAlertActionStyleCancel
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               [alertVC dismissViewControllerAnimated:YES
+                                                                           completion:nil];
+                                           }];
+            
+            [alertVC addAction:cancelAction];
+            [self presentViewController:alertVC
+                               animated:YES
+                             completion:nil];
+        } else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:message
+                                                               delegate:nil
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"OK", nil];
+            
+            [alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
+        }
+    });
 }
 
 @end
