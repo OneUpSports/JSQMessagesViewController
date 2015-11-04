@@ -475,6 +475,12 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
 #pragma mark - Utilities
 
+- (void)hideBottomAccessoryViews {
+    if (self.showBottomAccessoryView) {
+        self.showBottomAccessoryView = NO;
+    }
+}
+
 - (void)jsq_updateConstraint:(NSLayoutConstraint *)constraint withConstant:(CGFloat)constant
 {
     if (constraint.constant == constant) {

@@ -33,8 +33,6 @@
                                                          JSQMessagesCollectionViewDelegateFlowLayout,
                                                          UITextViewDelegate, UIScrollViewDelegate>
 
-@property (assign, nonatomic) BOOL dissmissCellAccessoryViewsOnScroll;
-
 @property (nonatomic) UIEdgeInsets contentInsets;
 
 @property (nonatomic, assign) NSInteger maximumMessageLength;

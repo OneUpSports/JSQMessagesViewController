@@ -33,6 +33,8 @@
  */
 @interface JSQMessagesCollectionView : UICollectionView <JSQMessagesCollectionViewCellDelegate>
 
+@property (assign, nonatomic) BOOL dissmissCellAccessoryViewsOnScroll;
+
 /**
  *  The object that provides the data for the collection view.
  *  The data source must adopt the `JSQMessagesCollectionViewDataSource` protocol.

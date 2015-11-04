@@ -39,7 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.maximumMessageLength = 10;
     
     self.title = @"JSQMessages";
 //    self.navigationController.navigationBarHidden = YES;

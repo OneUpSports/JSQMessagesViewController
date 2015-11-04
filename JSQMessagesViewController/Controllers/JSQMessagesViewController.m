@@ -133,7 +133,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     self.shouldShowErrorOnSendAction = NO;
     self.shouldAllowContinuousTyping = NO;
 
-    self.dissmissCellAccessoryViewsOnScroll = YES;
+    self.collectionView.dissmissCellAccessoryViewsOnScroll = YES;
     
     self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
 
@@ -835,12 +835,14 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewDidScroll:(JSQMessagesCollectionView *)scrollView
 {
-    if (self.dissmissCellAccessoryViewsOnScroll) {
-        [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(setShowBottomAccessoryView:)
-                                                          withObject:[[NSNumber alloc] initWithBool:NO]];
-
+    if ([scrollView isKindOfClass:[JSQMessagesCollectionView class]]) {
+        if (scrollView.dissmissCellAccessoryViewsOnScroll) {
+            [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(setShowBottomAccessoryView:)
+                                                              withObject:[[NSNumber alloc] initWithBool:NO]];
+            
+        }
     }
 }
 

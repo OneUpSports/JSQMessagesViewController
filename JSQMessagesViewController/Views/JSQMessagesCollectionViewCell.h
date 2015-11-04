@@ -201,6 +201,8 @@
  */
 @property (weak, nonatomic, readonly) UITapGestureRecognizer *tapGestureRecognizer;
 
+- (void)hideBottomAccessoryViews;
+
 #pragma mark - Class methods
 
 /**

@@ -30,9 +30,10 @@
 
 
 @interface JSQMessagesCollectionView () <JSQMessagesLoadEarlierHeaderViewDelegate>
+@property (assign, nonatomic) BOOL shouldDissmissCellAccessoryViewsOnScroll;
+
 
 - (void)jsq_configureCollectionView;
-
 @end
 
 
@@ -154,7 +155,7 @@
     if (indexPath == nil) {
         return;
     }
-
+    
     [self.delegate collectionView:self didTapMessageBubbleAtIndexPath:indexPath];
 }
 
@@ -170,6 +171,7 @@
                     touchLocation:position];
 }
 
+
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell willShowBottomAccessoryView:(BOOL)showHide
                           animated:(BOOL)animated
       hideOtherCellsAccessoryViews:(BOOL)hideOtherCellsAccessoryViews
@@ -180,38 +182,30 @@
     }
     
     if (hideOtherCellsAccessoryViews) {
+        CGFloat animationDuration = animated ? 0.25f : 0.0f;
+        _dissmissCellAccessoryViewsOnScroll = NO;
+
+        [UIView animateWithDuration:animationDuration*2 animations:^{
+            [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+        } completion:^(BOOL finished){
+            _dissmissCellAccessoryViewsOnScroll = _shouldDissmissCellAccessoryViewsOnScroll;
+        }];
+        
         for (JSQMessagesCollectionViewCell *visibleCell in self.visibleCells) {
             if (![cell isEqual: visibleCell]) {
-                visibleCell.showBottomAccessoryView = NO;
+                //                    visibleCell.showBottomAccessoryView = NO;
+                [visibleCell hideBottomAccessoryViews];
             }
         }
+        
+        [self performBatchUpdates:^{
+            [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
+        } completion:^(BOOL finished) { }];
+    } else {
+        [self performBatchUpdates:^{
+            [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
+        } completion:^(BOOL finished) { }];
     }
-
-    
-    CGFloat animationDuration = animated ? 0.25f : 0.0f;
-    
-    // Prepare for animation
-//    [CATransaction begin];
-//    [CATransaction setCompletionBlock:onCompletion];
-//    [CATransaction setAnimationDuration:animationDuration*4];
-//    [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
-//    [CATransaction commit];
-//    [self scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
-
-    [self performBatchUpdates:^{
-        [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
-    } completion:^(BOOL finished) {
-
-    }];
-//    [self.collectionViewLayout invalidateLayoutWithContext:[JSQMessagesCollectionViewFlowLayoutInvalidationContext context]];
-//    [self performBatchUpdates:nil completion:nil];
-//    [UIView animateWithDuration:animationDuration animations:^{
-//        //        CGRect frame = cell.frame;
-//        //        frame.size = [self.collectionViewLayout sizeForItemAtIndexPath:indexPath];
-//        //        cell.frame = frame;
-//        
-//        [cell layoutIfNeeded];
-//    }];
 }
 
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell didPerformAction:(SEL)action withSender:(id)sender
@@ -225,6 +219,14 @@
                     performAction:action
                forItemAtIndexPath:indexPath
                        withSender:sender];
+}
+
+#pragma mark - Setters
+
+- (void)setDissmissCellAccessoryViewsOnScroll:(BOOL)dissmissCellAccessoryViewsOnScroll
+{
+    _dissmissCellAccessoryViewsOnScroll = dissmissCellAccessoryViewsOnScroll;
+    _shouldDissmissCellAccessoryViewsOnScroll = _dissmissCellAccessoryViewsOnScroll;
 }
 
 @end
