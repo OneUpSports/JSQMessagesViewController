@@ -62,6 +62,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 @property (assign, nonatomic) BOOL textViewWasFirstResponderDuringInteractivePop;
 
+@property (assign, nonatomic) BOOL accessoryViewWasFirstResponderDuringInteractivePop;
+
+
 @property (nonatomic) CGFloat lastBottomInset;
 
 /* Maximum Message Length Related Properties */
@@ -164,7 +167,13 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [self jsq_updateCollectionViewInsets];
 
     // Don't set keyboardController if client creates custom content view via -loadToolbarContentView
-    if (self.inputToolbar.contentView.textView != nil) {
+    if (self.inputToolbar.contentView.textView != nil && self.inputToolbar.contentView.accessoryView != nil) {
+        self.keyboardController = [[JSQMessagesKeyboardController alloc] initWithTextView:self.inputToolbar.contentView.textView
+                                                                            accessoryView:self.inputToolbar.contentView.accessoryView
+                                                                              contextView:self.view
+                                                                     panGestureRecognizer:self.collectionView.panGestureRecognizer
+                                                                                 delegate:self];
+    } else if (self.inputToolbar.contentView.textView != nil) {
         self.keyboardController = [[JSQMessagesKeyboardController alloc] initWithTextView:self.inputToolbar.contentView.textView
                                                                               contextView:self.view
                                                                      panGestureRecognizer:self.collectionView.panGestureRecognizer
@@ -915,8 +924,10 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 {
     if (context == kJSQMessagesKeyValueObservingContext) {
 
-        if (object == self.inputToolbar.contentView.textView
-            && [keyPath isEqualToString:NSStringFromSelector(@selector(contentSize))]) {
+        if ((object == self.inputToolbar.contentView.textView
+            && [keyPath isEqualToString:NSStringFromSelector(@selector(contentSize))])
+            || (object == self.inputToolbar.contentView.accessoryView
+               && [keyPath isEqualToString:NSStringFromSelector(@selector(contentSize))])) {
 
             CGSize oldContentSize = [[change objectForKey:NSKeyValueChangeOldKey] CGSizeValue];
             CGSize newContentSize = [[change objectForKey:NSKeyValueChangeNewKey] CGSizeValue];
@@ -936,7 +947,8 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)keyboardController:(JSQMessagesKeyboardController *)keyboardController keyboardDidChangeFrame:(CGRect)keyboardFrame
 {
-    if (![self.inputToolbar.contentView.textView isFirstResponder] && self.toolbarBottomLayoutGuide.constant == 0.0f) {
+    if ((![self.inputToolbar.contentView.textView isFirstResponder] && self.toolbarBottomLayoutGuide.constant == 0.0f)
+        && (![self.inputToolbar.contentView.accessoryView isFirstResponder] && self.toolbarBottomLayoutGuide.constant == 0.0f)) {
         return;
     }
 
@@ -973,11 +985,14 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
             }
 
             self.textViewWasFirstResponderDuringInteractivePop = [self.inputToolbar.contentView.textView isFirstResponder];
+            self.accessoryViewWasFirstResponderDuringInteractivePop = [self.inputToolbar.contentView.accessoryView isFirstResponder];
 
             [self.keyboardController endListeningForKeyboard];
 
             if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
                 [self.inputToolbar.contentView.textView resignFirstResponder];
+                [self.inputToolbar.contentView.accessoryView resignFirstResponder];
+
                 [UIView animateWithDuration:0.0
                                  animations:^{
                                      [self jsq_setToolbarBottomLayoutGuideConstant:0.0f];
@@ -997,6 +1012,8 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
             [self.keyboardController beginListeningForKeyboard];
             if (self.textViewWasFirstResponderDuringInteractivePop) {
                 [self.inputToolbar.contentView.textView becomeFirstResponder];
+            } else if (self.accessoryViewWasFirstResponderDuringInteractivePop) {
+                [self.inputToolbar.contentView.accessoryView becomeFirstResponder];
             }
 
             if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
@@ -1117,6 +1134,12 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
                                              forKeyPath:NSStringFromSelector(@selector(contentSize))
                                                 options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
                                                 context:kJSQMessagesKeyValueObservingContext];
+    
+    [self.inputToolbar.contentView.accessoryView addObserver:self
+                                             forKeyPath:NSStringFromSelector(@selector(contentSize))
+                                                options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
+                                                context:kJSQMessagesKeyValueObservingContext];
+    
 
     self.jsq_isObserving = YES;
 }
@@ -1129,6 +1152,10 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
     @try {
         [_inputToolbar.contentView.textView removeObserver:self
+                                                forKeyPath:NSStringFromSelector(@selector(contentSize))
+                                                   context:kJSQMessagesKeyValueObservingContext];
+        
+        [_inputToolbar.contentView.accessoryView removeObserver:self
                                                 forKeyPath:NSStringFromSelector(@selector(contentSize))
                                                    context:kJSQMessagesKeyValueObservingContext];
     }

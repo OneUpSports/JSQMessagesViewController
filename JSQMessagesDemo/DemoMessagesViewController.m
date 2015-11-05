@@ -18,6 +18,7 @@
 
 #import "DemoMessagesViewController.h"
 #import "TestBottomAccessoryView.h"
+#import "TestInputView.h"
 
 @interface DemoMessagesViewController ()
 @property (strong, nonatomic) TestBottomAccessoryView *bottomAccessoryView;
@@ -52,6 +53,10 @@
     self.senderDisplayName = kJSQDemoAvatarDisplayNameSquires;
     
     self.inputToolbar.contentView.textView.pasteDelegate = self;
+    
+    TestInputView *accessoryView = [[TestInputView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 260.0f)];
+    accessoryView.autoresizingMask = UIViewAutoresizingNone;
+    [self.inputToolbar.contentView attachAccessoryView:accessoryView];
     
     /**
      *  Load up our fake data for the demo
@@ -332,13 +337,14 @@
 
 - (void)didPressAccessoryButton:(UIButton *)sender
 {
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Media messages"
-                                                       delegate:self
-                                              cancelButtonTitle:@"Cancel"
-                                         destructiveButtonTitle:nil
-                                              otherButtonTitles:@"Send photo", @"Send location", @"Send video", nil];
-    
-    [sheet showFromToolbar:self.inputToolbar];
+    [self.inputToolbar.contentView showAccessoryView];
+//    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Media messages"
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"Cancel"
+//                                         destructiveButtonTitle:nil
+//                                              otherButtonTitles:@"Send photo", @"Send location", @"Send video", nil];
+//    
+//    [sheet showFromToolbar:self.inputToolbar];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex

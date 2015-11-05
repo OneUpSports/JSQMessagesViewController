@@ -434,6 +434,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
         
     [self.bottomAccessoryContainerView addSubview:bottomAccessoryView];
     [self.bottomAccessoryContainerView jsq_pinAllEdgesOfSubview:bottomAccessoryView];
+    [self.bottomAccessoryContainerView setNeedsUpdateConstraints];
+
     _bottomAccessoryView = bottomAccessoryView;
 
     //  because of cell re-use (and caching media views, if using built-in library media item)

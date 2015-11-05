@@ -133,6 +133,8 @@
  */
 @property (weak, nonatomic, readonly) JSQMessagesCellTextView *textView;
 
+
+
 /**
  *  Returns the bubble image view of the cell that is responsible for displaying message bubble images.
  *

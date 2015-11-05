@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9059"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestInputView">
+            <connections>
+                <outlet property="containerView" destination="foP-Vb-XgF" id="Eam-O3-lgo"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="foP-Vb-XgF" customClass="TestInputView">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYp-zh-ihx">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcQ-bc-ccs">
+                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Xnp-01-0Ww"/>
+                                <constraint firstAttribute="width" constant="20" id="p5n-T0-rFE"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oe9-Y8-I09">
+                            <rect key="frame" x="0.0" y="580" width="20" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="L0J-Vk-3cW"/>
+                                <constraint firstAttribute="height" constant="20" id="yWE-bE-SlN"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dz1-bT-sNB">
+                            <rect key="frame" x="580" y="0.0" width="20" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="JdP-Zg-yNZ"/>
+                                <constraint firstAttribute="width" constant="20" id="pfN-hk-Uso"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EMa-1B-Bwq">
+                            <rect key="frame" x="580" y="580" width="20" height="20"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="NUp-id-Tvk"/>
+                                <constraint firstAttribute="height" constant="20" id="NzO-vz-gJw"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.043137254899999998" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstItem="Dz1-bT-sNB" firstAttribute="top" secondItem="NYp-zh-ihx" secondAttribute="top" id="AOL-G3-b6O"/>
+                        <constraint firstAttribute="bottom" secondItem="EMa-1B-Bwq" secondAttribute="bottom" id="Mzf-a8-AKK"/>
+                        <constraint firstAttribute="bottom" secondItem="Oe9-Y8-I09" secondAttribute="bottom" id="YPW-Ts-c6A"/>
+                        <constraint firstItem="Oe9-Y8-I09" firstAttribute="leading" secondItem="NYp-zh-ihx" secondAttribute="leading" id="foK-em-ENM"/>
+                        <constraint firstItem="hcQ-bc-ccs" firstAttribute="top" secondItem="NYp-zh-ihx" secondAttribute="top" id="hlj-xE-HQA"/>
+                        <constraint firstItem="hcQ-bc-ccs" firstAttribute="leading" secondItem="NYp-zh-ihx" secondAttribute="leading" id="q2l-pt-tCI"/>
+                        <constraint firstAttribute="trailing" secondItem="Dz1-bT-sNB" secondAttribute="trailing" id="qvR-Jw-zZL"/>
+                        <constraint firstAttribute="trailing" secondItem="EMa-1B-Bwq" secondAttribute="trailing" id="ulh-QI-Aq4"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="NYp-zh-ihx" secondAttribute="bottom" id="5gg-7d-lqF"/>
+                <constraint firstAttribute="trailing" secondItem="NYp-zh-ihx" secondAttribute="trailing" id="HTt-tE-frx"/>
+                <constraint firstItem="NYp-zh-ihx" firstAttribute="leading" secondItem="foP-Vb-XgF" secondAttribute="leading" id="Ytd-Jb-EXo"/>
+                <constraint firstItem="NYp-zh-ihx" firstAttribute="top" secondItem="foP-Vb-XgF" secondAttribute="top" id="txN-Gq-TBx"/>
+            </constraints>
+            <point key="canvasLocation" x="432" y="130"/>
+        </view>
+    </objects>
+</document>

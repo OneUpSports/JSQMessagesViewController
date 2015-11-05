@@ -87,6 +87,30 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     return self;
 }
 
+- (instancetype)initWithTextView:(UITextView *)textView
+                   accessoryView:(UITextView *)accessoryView
+                     contextView:(UIView *)contextView
+            panGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer
+                        delegate:(id<JSQMessagesKeyboardControllerDelegate>)delegate
+
+{
+    NSParameterAssert(textView != nil);
+    NSParameterAssert(accessoryView != nil);
+    NSParameterAssert(contextView != nil);
+    NSParameterAssert(panGestureRecognizer != nil);
+    
+    self = [super init];
+    if (self) {
+        _textView = textView;
+        _accessoryView = accessoryView;
+        _contextView = contextView;
+        _panGestureRecognizer = panGestureRecognizer;
+        _delegate = delegate;
+        _jsq_isObserving = NO;
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [self jsq_removeKeyboardFrameObserver];
@@ -268,6 +292,9 @@ typedef void (^JSQAnimationCompletionBlock)(BOOL finished);
     [self jsq_setKeyboardViewHidden:YES];
     [self jsq_removeKeyboardFrameObserver];
     [self.textView resignFirstResponder];
+    if (self.accessoryView != nil) {
+        [self.accessoryView resignFirstResponder];
+    }
 }
 
 #pragma mark - Key-value observing

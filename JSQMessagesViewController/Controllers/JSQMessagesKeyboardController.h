@@ -82,6 +82,15 @@ FOUNDATION_EXPORT NSString * const JSQMessagesKeyboardControllerUserInfoKeyKeybo
  */
 @property (weak, nonatomic, readonly) UITextView *textView;
 
+
+/**
+ *  The accessory view in which the user is editing with the from the custom displayed view.
+ *  The accessory view is the view that is displayed instead of the UIKeyboard. 
+ *  The text view assignes the accessory view as the inputView to be displayed.
+ */
+@property (weak, nonatomic, readonly) UITextView *accessoryView;
+
+
 /**
  *  The view in which the keyboard will be shown. This should be the parent or a sibling of `textView`.
  */
@@ -121,6 +130,23 @@ FOUNDATION_EXPORT NSString * const JSQMessagesKeyboardControllerUserInfoKeyKeybo
  *  @return An initialized `JSQMessagesKeyboardController` if created successfully, `nil` otherwise.
  */
 - (instancetype)initWithTextView:(UITextView *)textView
+                     contextView:(UIView *)contextView
+            panGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer
+                        delegate:(id<JSQMessagesKeyboardControllerDelegate>)delegate;
+
+/**
+ *  Creates a new keyboard controller object with the specified textView, accessoryView, contextView, panGestureRecognizer, and delegate.
+ *
+ *  @param textView             The text view in which the user is editing with the system keyboard. This value must not be `nil`.
+ *  @param accessoryView        The accessory view in which the user is editing with the custom view displayed in uikeyboards place. This value must not be `nil`.
+ *  @param contextView          The view in which the keyboard will be shown. This should be the parent or a sibling of `textView`. This value must not be `nil`.
+ *  @param panGestureRecognizer The pan gesture recognizer responsible for handling user interaction with the system keyboard. This value must not be `nil`.
+ *  @param delegate             The object that acts as the delegate of the keyboard controller.
+ *
+ *  @return An initialized `JSQMessagesKeyboardController` if created successfully, `nil` otherwise.
+ */
+- (instancetype)initWithTextView:(UITextView *)textView
+                   accessoryView:(UITextView *)accessoryView
                      contextView:(UIView *)contextView
             panGestureRecognizer:(UIPanGestureRecognizer *)panGestureRecognizer
                         delegate:(id<JSQMessagesKeyboardControllerDelegate>)delegate;

@@ -22,10 +22,13 @@
 
 const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
+const NSInteger kJSQMessagesToolBarContentViewAttachedAccessoryViewTag = 777;
 
 @interface JSQMessagesToolbarContentView ()
 
 @property (weak, nonatomic) IBOutlet JSQMessagesComposerTextView *textView;
+
+@property (weak, nonatomic) IBOutlet JSQMessagesComposerTextView *accessoryView;
 
 @property (weak, nonatomic) IBOutlet UIView *leftBarButtonContainerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftBarButtonContainerViewWidthConstraint;
@@ -196,6 +199,30 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 {
     [super setNeedsDisplay];
     [self.textView setNeedsDisplay];
+    [self.accessoryView setNeedsDisplay];
 }
+
+
+#pragma mark - Accessory View
+
+- (void)attachAccessoryView:(UIView *)accessoryView
+{
+    if (accessoryView == nil) return;
+    self.accessoryView.inputView = accessoryView;
+    self.accessoryView.tag = kJSQMessagesToolBarContentViewAttachedAccessoryViewTag;
+}
+
+- (void)showAccessoryView
+{
+    if (self.accessoryView.tag == kJSQMessagesToolBarContentViewAttachedAccessoryViewTag) {
+        [self.accessoryView becomeFirstResponder];
+    }
+}
+
+- (void)hideAccessoryView
+{
+    if (self.accessoryView.tag == kJSQMessagesToolBarContentViewAttachedAccessoryViewTag) {
+        [self.accessoryView resignFirstResponder];
+    }}
 
 @end

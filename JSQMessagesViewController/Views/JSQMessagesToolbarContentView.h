@@ -39,6 +39,9 @@ FOUNDATION_EXPORT const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingD
  */
 @property (weak, nonatomic, readonly) JSQMessagesComposerTextView *textView;
 
+
+@property (weak, nonatomic, readonly) JSQMessagesComposerTextView *accessoryView;
+
 /**
  *  A custom button item displayed on the left of the toolbar content view.
  *
@@ -120,5 +123,12 @@ FOUNDATION_EXPORT const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingD
  *  initialization or the nib file could not be located.
  */
 + (UINib *)nib;
+
+
+- (void)attachAccessoryView:(UIView *)accessoryView;
+
+- (void)showAccessoryView;
+
+- (void)hideAccessoryView;
 
 @end
