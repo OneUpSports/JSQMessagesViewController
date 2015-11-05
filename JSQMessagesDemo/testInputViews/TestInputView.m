@@ -7,6 +7,7 @@
 //
 
 #import "TestInputView.h"
+#import "UIView+JSQMessages.h"
 
 @implementation TestInputView
 
@@ -15,11 +16,11 @@
     [self addSubview:self.containerView];
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    
-    self = [super initWithCoder:aDecoder];
+- (instancetype)init
+{
+    self = [super init];
     if (self) {
-        
+        [self setup];
     }
     return self;
 }
@@ -37,9 +38,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-//    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self setNeedsUpdateConstraints];
-    [self layoutIfNeeded];
+    [self setup];
 }
+
 
 @end

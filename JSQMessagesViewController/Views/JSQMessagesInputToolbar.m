@@ -25,6 +25,9 @@
 #import "UIColor+JSQMessages.h"
 #import "UIImage+JSQMessages.h"
 #import "UIView+JSQMessages.h"
+#import "UIView+JSQNibLoading.h"
+
+const NSInteger kJSQMessagesToolBarContentViewAttachedAccessoryViewTag = 777;
 
 static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesInputToolbarKeyValueObservingContext;
 
@@ -95,6 +98,13 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 {
     NSParameterAssert(preferredDefaultHeight > 0.0f);
     _preferredDefaultHeight = preferredDefaultHeight;
+}
+
+- (void)setShowAccessory:(BOOL)showAccessory
+{
+    // YES : NO;
+    _showAccessory = showAccessory;
+    _showAccessory ? [self showAccessoryView] : [self hideAccessoryView];
 }
 
 #pragma mark - Actions
@@ -193,6 +203,40 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
     @catch (NSException *__unused exception) { }
     
     _jsq_isObserving = NO;
+}
+
+#pragma mark - Accessory View
+
+- (void)attachAccessoryController:(UIViewController *)controller
+{
+    if (controller == nil) return;
+    controller.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [controller.view adjustConstraintsForNib];
+    self.contentView.accessoryView.inputView = controller.view;
+    self.contentView.accessoryView.tag = kJSQMessagesToolBarContentViewAttachedAccessoryViewTag;
+}
+
+- (void)attachAccessoryView:(UIView *)accessoryView
+{
+    if (accessoryView == nil) return;
+    accessoryView.translatesAutoresizingMaskIntoConstraints = NO;
+    [accessoryView adjustConstraintsForNib];
+    self.contentView.accessoryView.inputView = accessoryView;
+    self.contentView.accessoryView.tag = kJSQMessagesToolBarContentViewAttachedAccessoryViewTag;
+}
+
+- (void)showAccessoryView
+{
+    if (self.contentView.accessoryView.tag == kJSQMessagesToolBarContentViewAttachedAccessoryViewTag) {
+        [self.contentView.accessoryView becomeFirstResponder];
+    }
+}
+
+- (void)hideAccessoryView
+{
+    if (self.contentView.accessoryView.tag == kJSQMessagesToolBarContentViewAttachedAccessoryViewTag) {
+        [self.contentView.accessoryView resignFirstResponder];
+    }
 }
 
 @end

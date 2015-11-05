@@ -915,7 +915,9 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)jsq_didReceiveKeyboardDidShowNotification:(NSNotification *)notification
 {
-
+    if (self.inputToolbar.contentView.textView.isFirstResponder) {
+        self.inputToolbar.showAccessory = NO;
+    }
 }
 
 #pragma mark - Key-value observing

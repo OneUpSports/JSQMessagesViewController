@@ -54,9 +54,12 @@
     
     self.inputToolbar.contentView.textView.pasteDelegate = self;
     
-    TestInputView *accessoryView = [[TestInputView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 260.0f)];
-    accessoryView.autoresizingMask = UIViewAutoresizingNone;
-    [self.inputToolbar.contentView attachAccessoryView:accessoryView];
+    TestInputView *accessoryView = [[TestInputView alloc] initWithFrame:CGRectZero];
+    [self.inputToolbar attachAccessoryView:accessoryView];
+
+//    UIViewController *controller = [UIViewController new];
+//    controller.view.backgroundColor = [UIColor greenColor];
+//    [self.inputToolbar attachAccessoryController:controller];
     
     /**
      *  Load up our fake data for the demo
@@ -337,7 +340,8 @@
 
 - (void)didPressAccessoryButton:(UIButton *)sender
 {
-    [self.inputToolbar.contentView showAccessoryView];
+    self.inputToolbar.showAccessory = !self.inputToolbar.showAccessory;
+//    [self.inputToolbar.contentView showAccessoryView];
 //    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Media messages"
 //                                                       delegate:self
 //                                              cancelButtonTitle:@"Cancel"
@@ -523,7 +527,7 @@
 - (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryAtIndexPath:(NSIndexPath *)indexPath {
 //    CGSize cellSize = [collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    TestBottomAccessoryView *view = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(100.0, 0.0, cell.bottomAccessoryContainerView.bounds.size.width, 60.0f)];
+    TestBottomAccessoryView *view = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(100.0, 0.0, cell.bottomAccessoryView.bounds.size.width, 60.0f)];
     return view;
 }
 

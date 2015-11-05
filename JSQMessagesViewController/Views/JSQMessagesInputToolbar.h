@@ -107,4 +107,14 @@
  */
 - (JSQMessagesToolbarContentView *)loadToolbarContentView;
 
+- (void)attachAccessoryController:(UIViewController *)controller;
+
+- (void)attachAccessoryView:(UIView *)accessoryView;
+
+- (void)showAccessoryView;
+
+- (void)hideAccessoryView;
+
+@property (assign, nonatomic) BOOL showAccessory;
+
 @end

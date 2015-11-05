@@ -189,6 +189,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     /* Accessory Views */
     _bottomAccessoryView = nil;
+
     
     _avatarImageView = nil;
 
@@ -226,6 +227,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
         [_bottomAccessoryView removeFromSuperview];
     }
     _bottomAccessoryView = nil;
+
     
     self.showBottomAccessoryView = NO;
 }
@@ -427,20 +429,9 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 - (void)setBottomAccessoryView:(UIView *)bottomAccessoryView
 {
     if (bottomAccessoryView == nil) return;
-
-    [_bottomAccessoryContainerView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [bottomAccessoryView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    bottomAccessoryView.frame = self.bottomAccessoryContainerView.bounds;
-        
     [self.bottomAccessoryContainerView addSubview:bottomAccessoryView];
-    [self.bottomAccessoryContainerView jsq_pinAllEdgesOfSubview:bottomAccessoryView];
-    [self.bottomAccessoryContainerView setNeedsUpdateConstraints];
-
     _bottomAccessoryView = bottomAccessoryView;
 
-    //  because of cell re-use (and caching media views, if using built-in library media item)
-    //  we may have dequeued a cell with a media view and add this one on top
-    //  thus, remove any additional subviews hidden behind the new media view
     dispatch_async(dispatch_get_main_queue(), ^{
         for (NSUInteger i = 0; i < self.bottomAccessoryContainerView.subviews.count; i++) {
             if (self.bottomAccessoryContainerView.subviews[i] != _bottomAccessoryView) {

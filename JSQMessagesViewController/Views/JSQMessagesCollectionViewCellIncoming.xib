@@ -166,7 +166,7 @@
                 <outlet property="avatarContainerViewHeightConstraint" destination="tZk-AK-JFa" id="tPu-mC-ITh"/>
                 <outlet property="avatarContainerViewWidthConstraint" destination="YwX-fW-Me6" id="5PN-NL-hEP"/>
                 <outlet property="avatarImageView" destination="w23-sL-0Rh" id="Yf4-UR-VRC"/>
-                <outlet property="bottomAccessoryContainerView" destination="L7u-yy-f4e" id="7Wq-Xr-JMr"/>
+                <outlet property="bottomAccessoryContainerView" destination="L7u-yy-f4e" id="Zps-jf-mIZ"/>
                 <outlet property="bottomAccessorySpacerHeightConstraint" destination="Z3m-d1-WzA" id="ndC-fm-Dnx"/>
                 <outlet property="bottomAccessorySpacerView" destination="kc5-U6-4GU" id="nF1-gH-R8l"/>
                 <outlet property="bottomAccessoryViewHeightConstraint" destination="PrX-EI-zL6" id="Ov8-Ap-4PP"/>

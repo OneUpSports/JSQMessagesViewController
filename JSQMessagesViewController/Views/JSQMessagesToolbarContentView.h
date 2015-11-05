@@ -125,10 +125,10 @@ FOUNDATION_EXPORT const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingD
 + (UINib *)nib;
 
 
-- (void)attachAccessoryView:(UIView *)accessoryView;
-
-- (void)showAccessoryView;
-
-- (void)hideAccessoryView;
+//- (void)attachAccessoryView:(UIView *)accessoryView;
+//
+//- (void)showAccessoryView;
+//
+//- (void)hideAccessoryView;
 
 @end
