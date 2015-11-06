@@ -66,7 +66,8 @@
      */
     self.demoData = [[DemoModelData alloc] init];
     
-    
+    self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
+
     /**
      *  You can set custom avatar sizes
      */

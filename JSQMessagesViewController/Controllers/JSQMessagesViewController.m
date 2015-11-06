@@ -135,7 +135,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     self.maximumMessageLength =  NSIntegerMax;
     self.shouldShowErrorOnSendAction = NO;
     self.shouldAllowContinuousTyping = NO;
-
+    
+    
     self.collectionView.dissmissCellAccessoryViewsOnScroll = YES;
     
     self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
@@ -848,9 +849,11 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([scrollView isKindOfClass:[JSQMessagesCollectionView class]]) {
         if (scrollView.dissmissCellAccessoryViewsOnScroll) {
-            [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(setShowBottomAccessoryView:)
-                                                              withObject:[[NSNumber alloc] initWithBool:NO]];
-            
+//            [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(setShowBottomAccessoryView:)
+//                                                              withObject:[[NSNumber alloc] initWithBool:NO]];
+
+            [self.collectionView.visibleCells makeObjectsPerformSelector:@selector(hideBottomAccessoryViews)
+                                                              withObject:nil];
         }
     }
 }

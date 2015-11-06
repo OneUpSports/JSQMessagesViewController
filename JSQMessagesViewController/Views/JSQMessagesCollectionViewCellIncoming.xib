@@ -162,10 +162,10 @@
             </constraints>
             <size key="customSize" width="317" height="365"/>
             <connections>
-                <outlet property="avatarContainerView" destination="Da1-09-wR4" id="tpM-P4-qUR"/>
+                <outlet property="avatarContainerView" destination="Da1-09-wR4" id="nnb-d8-7HU"/>
                 <outlet property="avatarContainerViewHeightConstraint" destination="tZk-AK-JFa" id="tPu-mC-ITh"/>
                 <outlet property="avatarContainerViewWidthConstraint" destination="YwX-fW-Me6" id="5PN-NL-hEP"/>
-                <outlet property="avatarImageView" destination="w23-sL-0Rh" id="Yf4-UR-VRC"/>
+                <outlet property="avatarImageView" destination="w23-sL-0Rh" id="H8T-Ji-PfG"/>
                 <outlet property="bottomAccessoryContainerView" destination="L7u-yy-f4e" id="Zps-jf-mIZ"/>
                 <outlet property="bottomAccessorySpacerHeightConstraint" destination="Z3m-d1-WzA" id="ndC-fm-Dnx"/>
                 <outlet property="bottomAccessorySpacerView" destination="kc5-U6-4GU" id="nF1-gH-R8l"/>
@@ -195,6 +195,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="JSQMessagesAvatarImageView" width="16" height="16"/>
+        <image name="JSQMessagesAvatarImageView" width="40" height="36"/>
     </resources>
 </document>

@@ -133,7 +133,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-
+    
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 
     self.backgroundColor = [UIColor whiteColor];
@@ -230,6 +230,16 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     
     self.showBottomAccessoryView = NO;
+}
+
+- (void)willTransitionFromLayout:(UICollectionViewLayout *)oldLayout toLayout:(UICollectionViewLayout *)newLayout
+{
+    [super willTransitionFromLayout:oldLayout toLayout:newLayout];
+}
+
+- (void)didTransitionFromLayout:(UICollectionViewLayout *)oldLayout toLayout:(UICollectionViewLayout *)newLayout
+{
+    [super willTransitionFromLayout:oldLayout toLayout:newLayout];
 }
 
 - (UICollectionViewLayoutAttributes *)preferredLayoutAttributesFittingAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes

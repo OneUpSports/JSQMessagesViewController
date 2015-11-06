@@ -51,5 +51,5 @@
  *  @see JSQMessagesBubbleImageFactory.
  */
 - (instancetype)initWithMessageBubbleImage:(UIImage *)image highlightedImage:(UIImage *)highlightedImage;
-
+- (instancetype)initWithMessageBubbleImage:(UIImage *)image;
 @end

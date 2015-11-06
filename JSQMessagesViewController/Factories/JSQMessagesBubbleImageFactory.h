@@ -73,4 +73,6 @@
  */
 - (JSQMessagesBubbleImage *)incomingMessagesBubbleImageWithColor:(UIColor *)color;
 
+
+- (JSQMessagesBubbleImage *)messagesBubbleImageWillMirrorImage:(BOOL)mirror;
 @end

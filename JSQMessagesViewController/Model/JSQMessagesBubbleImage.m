@@ -35,6 +35,18 @@
     return self;
 }
 
+- (instancetype)initWithMessageBubbleImage:(UIImage *)image
+{
+    NSParameterAssert(image != nil);
+    
+    self = [super init];
+    if (self) {
+        _messageBubbleImage = image;
+        _messageBubbleHighlightedImage = image;
+    }
+    return self;
+}
+
 - (id)init
 {
     NSAssert(NO, @"%s is not a valid initializer for %@. Use %@ instead.",

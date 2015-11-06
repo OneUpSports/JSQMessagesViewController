@@ -83,6 +83,11 @@
     return [self jsq_messagesBubbleImageWithColor:color flippedForIncoming:YES];
 }
 
+- (JSQMessagesBubbleImage *)messagesBubbleImageWillMirrorImage:(BOOL)mirror
+{
+    return [self jsq_messagesBubbleImageWithMirrorImage:mirror];
+}
+
 #pragma mark - Private
 
 - (UIEdgeInsets)jsq_centerPointEdgeInsetsForImageSize:(CGSize)bubbleImageSize
@@ -108,6 +113,19 @@
     highlightedBubble = [self jsq_stretchableImageFromImage:highlightedBubble withCapInsets:self.capInsets];
     
     return [[JSQMessagesBubbleImage alloc] initWithMessageBubbleImage:normalBubble highlightedImage:highlightedBubble];
+}
+
+- (JSQMessagesBubbleImage *)jsq_messagesBubbleImageWithMirrorImage:(BOOL)mirrorImage
+{
+    UIImage *normalBubble = self.bubbleImage;
+    
+    if (mirrorImage) {
+        normalBubble = [self jsq_horizontallyFlippedImageFromImage:normalBubble];
+    }
+    
+    normalBubble = [self jsq_stretchableImageFromImage:normalBubble withCapInsets:self.capInsets];
+    
+    return [[JSQMessagesBubbleImage alloc] initWithMessageBubbleImage:normalBubble];
 }
 
 - (UIImage *)jsq_horizontallyFlippedImageFromImage:(UIImage *)image
