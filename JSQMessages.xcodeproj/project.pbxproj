@@ -15,7 +15,6 @@
 		77C0E8891BEAB2C600E95604 /* TestBottomAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C0E8861BEAB2C500E95604 /* TestBottomAccessoryView.xib */; };
 		77C0E88C1BEAB2E900E95604 /* TestInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E88B1BEAB2E900E95604 /* TestInputView.m */; };
 		77C0E88E1BEAB30B00E95604 /* TestInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C0E88D1BEAB30B00E95604 /* TestInputView.xib */; };
-		77C0E8941BEBB87500E95604 /* LENibLoadedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E8911BEBB87500E95604 /* LENibLoadedView.m */; };
 		77C0E8981BEBC34300E95604 /* JSQMessagesContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E8971BEBC34300E95604 /* JSQMessagesContainerView.m */; };
 		77C0E89B1BEBC4DF00E95604 /* UIView+JSQNibLoading.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E89A1BEBC4DF00E95604 /* UIView+JSQNibLoading.m */; };
 		77CC17A895E6E12BC9CB549A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97E6750B77E8A7042BA0754B /* libPods.a */; };
@@ -145,8 +144,6 @@
 		77C0E88A1BEAB2E900E95604 /* TestInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestInputView.h; sourceTree = "<group>"; };
 		77C0E88B1BEAB2E900E95604 /* TestInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestInputView.m; sourceTree = "<group>"; };
 		77C0E88D1BEAB30B00E95604 /* TestInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestInputView.xib; sourceTree = "<group>"; };
-		77C0E8901BEBB87500E95604 /* LENibLoadedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LENibLoadedView.h; sourceTree = "<group>"; };
-		77C0E8911BEBB87500E95604 /* LENibLoadedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LENibLoadedView.m; sourceTree = "<group>"; };
 		77C0E8961BEBC34300E95604 /* JSQMessagesContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQMessagesContainerView.h; sourceTree = "<group>"; };
 		77C0E8971BEBC34300E95604 /* JSQMessagesContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQMessagesContainerView.m; sourceTree = "<group>"; };
 		77C0E8991BEBC4DF00E95604 /* UIView+JSQNibLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JSQNibLoading.h"; sourceTree = "<group>"; };
@@ -382,15 +379,6 @@
 			path = testInputViews;
 			sourceTree = "<group>";
 		};
-		77C0E88F1BEBB87500E95604 /* testCategories */ = {
-			isa = PBXGroup;
-			children = (
-				77C0E8901BEBB87500E95604 /* LENibLoadedView.h */,
-				77C0E8911BEBB87500E95604 /* LENibLoadedView.m */,
-			);
-			path = testCategories;
-			sourceTree = "<group>";
-		};
 		88A25EF919D8DEC400924534 = {
 			isa = PBXGroup;
 			children = (
@@ -438,7 +426,6 @@
 		88A25F2B19D8DF2500924534 /* JSQMessagesDemo */ = {
 			isa = PBXGroup;
 			children = (
-				77C0E88F1BEBB87500E95604 /* testCategories */,
 				77C0E8831BEAB2C500E95604 /* testCellAccessoryViews */,
 				77C0E8871BEAB2C500E95604 /* testInputViews */,
 				88A25F2C19D8DF2500924534 /* AppDelegate.h */,
@@ -892,7 +879,6 @@
 				88A25FBB19D8E01A00924534 /* JSQMessagesViewController.m in Sources */,
 				8885734D19DE55D000E89D20 /* NSUserDefaults+DemoSettings.m in Sources */,
 				883C11781A09FB100092A16D /* JSQMessagesCellTextView.m in Sources */,
-				77C0E8941BEBB87500E95604 /* LENibLoadedView.m in Sources */,
 				88A25FB919D8E01A00924534 /* UIView+JSQMessages.m in Sources */,
 				77C0E87F1BE7D5F000E95604 /* JSQMessagesAvatarImageView.m in Sources */,
 				88A25FCA19D8E01A00924534 /* JSQMessagesCollectionView.m in Sources */,
