@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JSQMessagesAvatarImageView.h"
 
 @interface JSQMessagesAvatarView : UIView
-//@property (nonatomic, strong) JSQMessagesAvatarImageView *imageView;
+/**
+ *  Returns the avatar image view of the cell that is responsible for displaying avatar images.
+ */
+@property (weak, nonatomic, readonly) JSQMessagesAvatarImageView *avatarImageView;
+
 @end

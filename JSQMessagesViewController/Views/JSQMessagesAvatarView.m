@@ -8,6 +8,11 @@
 
 #import "JSQMessagesAvatarView.h"
 
+@interface JSQMessagesAvatarView ()
+@property (weak, nonatomic) IBOutlet JSQMessagesAvatarImageView *avatarImageView;
+@end
+
 @implementation JSQMessagesAvatarView
 
 @end
+

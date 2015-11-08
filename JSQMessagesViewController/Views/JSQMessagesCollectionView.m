@@ -79,6 +79,8 @@
     _typingIndicatorEllipsisColor = [_typingIndicatorMessageBubbleColor jsq_colorByDarkeningColorWithValue:0.3f];
 
     _loadEarlierMessagesHeaderTextColor = [UIColor jsq_messageBubbleBlueColor];
+    
+    [JSQMessagesCollectionViewCell setConfigDelegate:self];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout
@@ -145,7 +147,7 @@
     }
 
     [self.delegate collectionView:self
-            didTapAvatarImageView:cell.avatarImageView
+            didTapAvatarImageView:cell.avatarContainerView.avatarImageView
                       atIndexPath:indexPath];
 }
 

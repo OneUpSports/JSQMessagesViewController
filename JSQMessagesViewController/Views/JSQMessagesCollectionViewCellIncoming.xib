@@ -76,6 +76,9 @@
                             <constraint firstItem="w23-sL-0Rh" firstAttribute="top" secondItem="Da1-09-wR4" secondAttribute="top" id="hxb-KR-hNK"/>
                             <constraint firstAttribute="height" constant="34" id="tZk-AK-JFa"/>
                         </constraints>
+                        <connections>
+                            <outlet property="avatarImageView" destination="w23-sL-0Rh" id="bN0-xA-jon"/>
+                        </connections>
                     </view>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bubble bottom label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPz-5x-c1T" userLabel="Bubble bottom label" customClass="JSQMessagesLabel">
                         <rect key="frame" x="0.0" y="154" width="320" height="20"/>
@@ -165,7 +168,6 @@
                 <outlet property="avatarContainerView" destination="Da1-09-wR4" id="nnb-d8-7HU"/>
                 <outlet property="avatarContainerViewHeightConstraint" destination="tZk-AK-JFa" id="tPu-mC-ITh"/>
                 <outlet property="avatarContainerViewWidthConstraint" destination="YwX-fW-Me6" id="5PN-NL-hEP"/>
-                <outlet property="avatarImageView" destination="w23-sL-0Rh" id="H8T-Ji-PfG"/>
                 <outlet property="bottomAccessoryContainerView" destination="L7u-yy-f4e" id="Zps-jf-mIZ"/>
                 <outlet property="bottomAccessorySpacerHeightConstraint" destination="Z3m-d1-WzA" id="ndC-fm-Dnx"/>
                 <outlet property="bottomAccessorySpacerView" destination="kc5-U6-4GU" id="nF1-gH-R8l"/>

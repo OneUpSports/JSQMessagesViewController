@@ -1,9 +1,5 @@
 //
-//  UIView+LENibLoading.h
-//  Auto Layout By Example
-//
-//  Created by Julius Parishy on 4/30/14.
-//  Copyright (c) 2014 jp. All rights reserved.
+//  UIView+JSQNibLoading.h
 //
 
 #import <UIKit/UIKit.h>

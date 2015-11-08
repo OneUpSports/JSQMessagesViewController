@@ -28,6 +28,7 @@
 
 static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
+id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
 
 @interface JSQMessagesCollectionViewCell ()
 
@@ -40,7 +41,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 @property (weak, nonatomic) IBOutlet UIImageView *messageBubbleImageView;
 @property (weak, nonatomic) IBOutlet JSQMessagesCellTextView *textView;
 
-@property (weak, nonatomic) IBOutlet JSQMessagesAvatarImageView *avatarImageView;
+//@property (weak, nonatomic) IBOutlet JSQMessagesAvatarImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet JSQMessagesAvatarView *avatarContainerView;
 
 /* Cell SpacerViews */
@@ -106,6 +107,11 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     dispatch_once(&onceToken, ^{
         jsqMessagesCollectionViewCellActions = [NSMutableSet new];
     });
+}
+
++ (void)setConfigDelegate:(id<JSQMessagesCollectionViewCellDelegate>)configurationDelegate
+{
+    configDelegate = configurationDelegate;
 }
 
 + (UINib *)nib
@@ -190,8 +196,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     /* Accessory Views */
     _bottomAccessoryView = nil;
 
-    
-    _avatarImageView = nil;
+    self.avatarContainerView.avatarImageView.image = nil;
 
     [_tapGestureRecognizer removeTarget:nil action:NULL];
     _tapGestureRecognizer = nil;
@@ -221,8 +226,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.textView.text = nil;
     self.textView.attributedText = nil;
 
-    self.avatarImageView.image = nil;
-    self.avatarImageView.highlightedImage = nil;
+    self.avatarContainerView.avatarImageView.image = nil;
+    self.avatarContainerView.avatarImageView.highlightedImage = nil;
     if (_bottomAccessoryView != nil) {
         [_bottomAccessoryView removeFromSuperview];
     }
@@ -381,7 +386,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.bottomLabelsSpacerView.backgroundColor = backgroundColor;
     
     self.messageBubbleImageView.backgroundColor = backgroundColor;
-    self.avatarImageView.backgroundColor = backgroundColor;
+    self.avatarContainerView.avatarImageView.backgroundColor = backgroundColor;
 
     self.messageBubbleContainerView.backgroundColor = backgroundColor;
     self.avatarContainerView.backgroundColor = backgroundColor;

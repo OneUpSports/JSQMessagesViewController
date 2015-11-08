@@ -21,8 +21,9 @@
 #import "JSQMessagesLabel.h"
 #import "JSQMessagesCellTextView.h"
 #import "JSQMessagesAvatarView.h"
-#import "JSQMessagesAvatarImageView.h"
+//#import "JSQMessagesAvatarImageView.h"
 #import "JSQMessagesCellAccessoryView.h"
+
 
 @class JSQMessagesCollectionViewCell;
 
@@ -82,6 +83,8 @@
 @end
 
 
+
+extern id<JSQMessagesCollectionViewCellDelegate> configDelegate;
 /**
  *  The `JSQMessagesCollectionViewCell` is an abstract base class that presents the content for
  *  a single message data item when that item is within the collection view’s visible bounds.
@@ -158,7 +161,7 @@
 /**
  *  Returns the avatar image view of the cell that is responsible for displaying avatar images.
  */
-@property (weak, nonatomic, readonly) JSQMessagesAvatarImageView *avatarImageView;
+//@property (weak, nonatomic, readonly) JSQMessagesAvatarImageView *avatarImageView;
 
 /**
  *  Returns the avatar container view of the cell. This view is the superview of the cell's avatarImageView.
@@ -241,4 +244,6 @@
  */
 + (void)registerMenuAction:(SEL)action;
 
+
++ (void)setConfigDelegate:(id<JSQMessagesCollectionViewCellDelegate>)configurationDelegate;
 @end

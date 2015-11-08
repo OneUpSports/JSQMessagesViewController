@@ -561,12 +561,12 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
             UIImage *avatarImage = [avatarImageDataSource avatarImage];
             if (avatarImage == nil) {
-                cell.avatarImageView.image = [avatarImageDataSource avatarPlaceholderImage];
-                cell.avatarImageView.highlightedImage = nil;
+                cell.avatarContainerView.avatarImageView.image = [avatarImageDataSource avatarPlaceholderImage];
+                cell.avatarContainerView.avatarImageView.highlightedImage = nil;
             }
             else {
-                cell.avatarImageView.image = avatarImage;
-                cell.avatarImageView.highlightedImage = [avatarImageDataSource avatarHighlightedImage];
+                cell.avatarContainerView.avatarImageView.image = avatarImage;
+                cell.avatarContainerView.avatarImageView.highlightedImage = [avatarImageDataSource avatarHighlightedImage];
             }
         }
     }
