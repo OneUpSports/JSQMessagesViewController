@@ -7,7 +7,7 @@ inhibit_all_warnings!
 
 pod 'JSQSystemSoundPlayer', '~> 2.0'
 pod 'UIView-Autolayout'
-
+pod 'SDWebImage', '~>3.7'
 target :JSQMessagesTests, :exclusive => true do
     pod 'OCMock'
 end

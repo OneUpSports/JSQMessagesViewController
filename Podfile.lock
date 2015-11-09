@@ -1,16 +1,21 @@
 PODS:
   - JSQSystemSoundPlayer (2.0.1)
-  - OCMock (3.1.5)
+  - OCMock (3.2)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
   - UIView-Autolayout (0.2.1)
 
 DEPENDENCIES:
   - JSQSystemSoundPlayer (~> 2.0)
   - OCMock
+  - SDWebImage (~> 3.7)
   - UIView-Autolayout
 
 SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
-  OCMock: 4c2925291f80407c3738dd1db14d21d0cc278864
+  OCMock: 28def049ef47f996b515a8eeea958be7ccab2dbb
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   UIView-Autolayout: 042510c499403f58620998278ddd60fa7b6cd4a7
 
 COCOAPODS: 0.38.2

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		36CF33BD29CF36EB06D0CCFD /* libPods-JSQMessagesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 782026E9E518622532ED474D /* libPods-JSQMessagesTests.a */; };
+		7749A8D81BF018D100656118 /* UIImageView+JSQMessagesImageViewUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7749A8D71BF018D100656118 /* UIImageView+JSQMessagesImageViewUtils.m */; };
+		7749A8DB1BF01AED00656118 /* UIImage+JSQMessageImageAnimatedGIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 7749A8DA1BF01AED00656118 /* UIImage+JSQMessageImageAnimatedGIF.m */; };
 		77C0E87C1BE7D5D100E95604 /* JSQMessagesAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E87B1BE7D5D100E95604 /* JSQMessagesAvatarView.m */; };
 		77C0E87F1BE7D5F000E95604 /* JSQMessagesAvatarImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E87E1BE7D5F000E95604 /* JSQMessagesAvatarImageView.m */; };
 		77C0E8821BE80B8400E95604 /* JSQMessagesCellAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C0E8811BE80B8400E95604 /* JSQMessagesCellAccessoryView.m */; };
@@ -133,6 +135,10 @@
 		0844AD596023C7658D39E241 /* Pods-JSQMessagesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQMessagesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-JSQMessagesTests/Pods-JSQMessagesTests.release.xcconfig"; sourceTree = "<group>"; };
 		223FBACE0F24ADEF8B7F3F24 /* Pods-JSQMessagesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSQMessagesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JSQMessagesTests/Pods-JSQMessagesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		27B7FD1B722B36B26CB3460B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7749A8D61BF018D100656118 /* UIImageView+JSQMessagesImageViewUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+JSQMessagesImageViewUtils.h"; sourceTree = "<group>"; };
+		7749A8D71BF018D100656118 /* UIImageView+JSQMessagesImageViewUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JSQMessagesImageViewUtils.m"; sourceTree = "<group>"; };
+		7749A8D91BF01AED00656118 /* UIImage+JSQMessageImageAnimatedGIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+JSQMessageImageAnimatedGIF.h"; sourceTree = "<group>"; };
+		7749A8DA1BF01AED00656118 /* UIImage+JSQMessageImageAnimatedGIF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+JSQMessageImageAnimatedGIF.m"; sourceTree = "<group>"; };
 		77C0E87A1BE7D5D100E95604 /* JSQMessagesAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQMessagesAvatarView.h; sourceTree = "<group>"; };
 		77C0E87B1BE7D5D100E95604 /* JSQMessagesAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQMessagesAvatarView.m; sourceTree = "<group>"; };
 		77C0E87D1BE7D5F000E95604 /* JSQMessagesAvatarImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQMessagesAvatarImageView.h; sourceTree = "<group>"; };
@@ -495,6 +501,10 @@
 				88A25F5E19D8E01A00924534 /* UIView+JSQMessages.m */,
 				77C0E8991BEBC4DF00E95604 /* UIView+JSQNibLoading.h */,
 				77C0E89A1BEBC4DF00E95604 /* UIView+JSQNibLoading.m */,
+				7749A8D61BF018D100656118 /* UIImageView+JSQMessagesImageViewUtils.h */,
+				7749A8D71BF018D100656118 /* UIImageView+JSQMessagesImageViewUtils.m */,
+				7749A8D91BF01AED00656118 /* UIImage+JSQMessageImageAnimatedGIF.h */,
+				7749A8DA1BF01AED00656118 /* UIImage+JSQMessageImageAnimatedGIF.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -884,6 +894,7 @@
 				88A25FBB19D8E01A00924534 /* JSQMessagesViewController.m in Sources */,
 				8885734D19DE55D000E89D20 /* NSUserDefaults+DemoSettings.m in Sources */,
 				883C11781A09FB100092A16D /* JSQMessagesCellTextView.m in Sources */,
+				7749A8DB1BF01AED00656118 /* UIImage+JSQMessageImageAnimatedGIF.m in Sources */,
 				88A25FB919D8E01A00924534 /* UIView+JSQMessages.m in Sources */,
 				77C0E87F1BE7D5F000E95604 /* JSQMessagesAvatarImageView.m in Sources */,
 				88A25FCA19D8E01A00924534 /* JSQMessagesCollectionView.m in Sources */,
@@ -911,6 +922,7 @@
 				886FFD2E19E9A65D00EB8485 /* UIDevice+JSQMessages.m in Sources */,
 				88B5C41F1B7C422900EC79D4 /* JSQMessagesBubblesSizeCalculator.m in Sources */,
 				77C0E8981BEBC34300E95604 /* JSQMessagesContainerView.m in Sources */,
+				7749A8D81BF018D100656118 /* UIImageView+JSQMessagesImageViewUtils.m in Sources */,
 				88A25FB619D8E01A00924534 /* NSString+JSQMessages.m in Sources */,
 				88A901B619F618B100F99777 /* JSQMediaItem.m in Sources */,
 				88A25FCC19D8E01A00924534 /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
