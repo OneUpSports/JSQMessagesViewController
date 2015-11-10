@@ -163,8 +163,12 @@ spacingBetweenMessageBubbleAndAvatarOfCellAtIndexPath:(NSIndexPath *)indexPath;
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
-spacingForLeftOfCellBottomLabel:(NSIndexPath *)indexPath;
+spacingForLeftOfCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath;
 
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingForAvatarCellAtIndexPath:(NSIndexPath *)indexPath;
 
 - (BOOL)collectionView:(JSQMessagesCollectionView *)collectionView
                 layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout

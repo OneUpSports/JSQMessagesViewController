@@ -78,6 +78,8 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomAccessorySpacerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomCellSpacerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelLeftSpacerConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarCellSpacerConstraint;
+
 
 
 /* Accessory Constraints*/
@@ -163,6 +165,7 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
     self.bottomCellSpacerHeightConstraint.constant = 0.0f;
     
     self.messageBubbleAvatarSpacingConstraint.constant = 2.0f;
+    self.avatarCellSpacerConstraint.constant = 0.0f;
     
     // label spacers
     self.bottomLabelLeftSpacerConstraint.constant = 0.0f;
@@ -310,6 +313,9 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
     
     [self jsq_updateConstraint:self.messageBubbleAvatarSpacingConstraint
                   withConstant:customAttributes.messageBubbleAvatarSpacing];
+    
+    [self jsq_updateConstraint:self.avatarCellSpacerConstraint
+                  withConstant:customAttributes.avatarCellSpacer];
     
     /* Labels spacers */
     [self jsq_updateConstraint:self.bottomLabelLeftSpacerConstraint

@@ -125,6 +125,11 @@
     _bottomLabelLeftSpacer = [self jsq_correctedLabelHeightForHeight:bottomLabelLeftSpacer];
 }
 
+- (void)setAvatarCellSpacer:(CGFloat)avatarCellSpacer
+{
+    _avatarCellSpacer = [self jsq_correctedLabelHeightForHeight:avatarCellSpacer];
+}
+
 /* Show Hide Accessory Views */
 
 - (void)setShowBottomCellAccessoryView:(BOOL)showBottomCellAccessoryView
@@ -183,7 +188,8 @@
             || (int)layoutAttributes.bottomCellSpacerHeight != (int)self.bottomCellSpacerHeight
             || layoutAttributes.showBottomCellAccessoryView != self.showBottomCellAccessoryView
             || layoutAttributes.messageBubbleAvatarSpacing != self.messageBubbleAvatarSpacing
-            || layoutAttributes.bottomLabelLeftSpacer != self.bottomLabelLeftSpacer) {
+            || layoutAttributes.bottomLabelLeftSpacer != self.bottomLabelLeftSpacer
+            || layoutAttributes.avatarCellSpacer != self.avatarCellSpacer) {
             
             return NO;
         }
@@ -225,6 +231,7 @@
     copy.showBottomCellAccessoryView = self.showBottomCellAccessoryView;
     copy.messageBubbleAvatarSpacing = self.messageBubbleAvatarSpacing;
     copy.bottomLabelLeftSpacer = self.bottomLabelLeftSpacer;
+    copy.avatarCellSpacer = self.avatarCellSpacer;
 
     
     return copy;

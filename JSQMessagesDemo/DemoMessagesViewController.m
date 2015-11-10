@@ -705,11 +705,17 @@ spacingBetweenMessageBubbleAndAvatarOfCellAtIndexPath:(NSIndexPath *)indexPath
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
-spacingForLeftOfCellBottomLabel:(NSIndexPath *)indexPath
+spacingForLeftOfCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
     return 65.0f;
 }
 
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingForAvatarCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 10.0f;
+}
 
 #pragma mark - Show Hide Cell Accessory Views
 

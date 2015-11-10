@@ -51,6 +51,7 @@
 
 @property (assign, nonatomic) CGFloat bottomLabelLeftSpacer;
 
+@property (assign, nonatomic) CGFloat avatarCellSpacer;
 
 /**
  *  The inset of the text container's layout area within the text view's content area in a `JSQMessagesCollectionViewCell`. 
