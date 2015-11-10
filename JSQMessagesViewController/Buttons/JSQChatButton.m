@@ -8,13 +8,13 @@
 
 #import "JSQChatButton.h"
 
-NSString *const kOUSChatButtonHighlightScale = @"kOUSChatButtonHighlightScale";
-NSString *const kOUSChatButtonLineWidth = @"kOUSChatButtonLineWidth";
-NSString *const kOUSChatButtonColor = @"kOUSChatButtonColor";
-NSString *const kOUSChatButtonHighlightedColor = @"kOUSChatButtonHighlightedColor";
-NSString *const kOUSChatButtonHighlightAnimationDuration = @"kOUSChatButtonHighlightAnimationDuration";
-NSString *const kOUSChatButtonUnHighlightAnimationDuration = @"kOUSChatButtonUnHighlightAnimationDuration";
-NSString *const kOUSChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonStyleChangeAnimationDuration";
+NSString *const kJSQChatButtonHighlightScale = @"kOUSChatButtonHighlightScale";
+NSString *const kJSQChatButtonLineWidth = @"kOUSChatButtonLineWidth";
+NSString *const kJSQChatButtonColor = @"kOUSChatButtonColor";
+NSString *const kJSQChatButtonHighlightedColor = @"kOUSChatButtonHighlightedColor";
+NSString *const kJSQChatButtonHighlightAnimationDuration = @"kOUSChatButtonHighlightAnimationDuration";
+NSString *const kJSQChatButtonUnHighlightAnimationDuration = @"kOUSChatButtonUnHighlightAnimationDuration";
+NSString *const kJSQChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonStyleChangeAnimationDuration";
 
 #define GOLDEN_RATIO 1.618
 
@@ -103,8 +103,8 @@ NSString *const kOUSChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonSty
             layer.lineWidth = 0;
         }
         else {
-            layer.lineWidth = [[self valueForOptionKey:kOUSChatButtonLineWidth] floatValue];
-            layer.strokeColor = [[self valueForOptionKey:kOUSChatButtonColor] CGColor];
+            layer.lineWidth = [[self valueForOptionKey:kJSQChatButtonLineWidth] floatValue];
+            layer.strokeColor = [[self valueForOptionKey:kJSQChatButtonColor] CGColor];
         }
     }];
 }
@@ -128,13 +128,13 @@ NSString *const kOUSChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonSty
 
 + (NSDictionary *)defaultOptions {
     return @{
-             kOUSChatButtonColor: [UIColor blackColor],
-             kOUSChatButtonHighlightedColor: [UIColor lightGrayColor],
-             kOUSChatButtonHighlightAnimationDuration: @(0.1),
-             kOUSChatButtonHighlightScale: @(0.9),
-             kOUSChatButtonLineWidth: @(1.0),
-             kOUSChatButtonUnHighlightAnimationDuration: @(0.15),
-             kOUSChatButtonStyleChangeAnimationDuration: @(0.3)
+             kJSQChatButtonColor: [UIColor blackColor],
+             kJSQChatButtonHighlightedColor: [UIColor lightGrayColor],
+             kJSQChatButtonHighlightAnimationDuration: @(0.1),
+             kJSQChatButtonHighlightScale: @(0.9),
+             kJSQChatButtonLineWidth: @(1.0),
+             kJSQChatButtonUnHighlightAnimationDuration: @(0.15),
+             kJSQChatButtonStyleChangeAnimationDuration: @(0.3)
              };
 }
 
@@ -311,7 +311,7 @@ NSString *const kOUSChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonSty
         NSAssert(FALSE, @"unknown type");
     }
     
-    NSTimeInterval duration = [[self valueForOptionKey:kOUSChatButtonStyleChangeAnimationDuration] floatValue];
+    NSTimeInterval duration = [[self valueForOptionKey:kJSQChatButtonStyleChangeAnimationDuration] floatValue];
     
     // animate all the layer path and opacity
     if (animated) {
@@ -402,10 +402,10 @@ NSString *const kOUSChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonSty
 
 // animate button pressed event.
 - (void)showHighlight {
-    float highlightScale = [[self valueForOptionKey:kOUSChatButtonHighlightScale] floatValue];
+    float highlightScale = [[self valueForOptionKey:kJSQChatButtonHighlightScale] floatValue];
     
     [self.shapeLayers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [obj setStrokeColor:[[self valueForOptionKey:kOUSChatButtonHighlightedColor] CGColor]];
+        [obj setStrokeColor:[[self valueForOptionKey:kJSQChatButtonHighlightedColor] CGColor]];
         
         CAShapeLayer *layer = obj;
         
@@ -413,7 +413,7 @@ NSString *const kOUSChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonSty
         CGPathRef scaledPath =  CGPathCreateMutableCopyByTransformingPath(layer.path, &transform);
         
         CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"path"];
-        anim.duration = [[self valueForOptionKey:kOUSChatButtonHighlightAnimationDuration] floatValue];
+        anim.duration = [[self valueForOptionKey:kJSQChatButtonHighlightAnimationDuration] floatValue];
         anim.removedOnCompletion = NO;
         anim.fromValue = (__bridge id) layer.path;
         anim.toValue = (__bridge id) scaledPath;
@@ -427,10 +427,10 @@ NSString *const kOUSChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonSty
 
 // animate button release events i.e. touch up inside or outside.
 -(void) showUnHighlight {
-    float unHighlightScale = 1/[[self valueForOptionKey:kOUSChatButtonHighlightScale] floatValue];
+    float unHighlightScale = 1/[[self valueForOptionKey:kJSQChatButtonHighlightScale] floatValue];
     
     [self.shapeLayers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [obj setStrokeColor:[[self valueForOptionKey:kOUSChatButtonColor] CGColor]];
+        [obj setStrokeColor:[[self valueForOptionKey:kJSQChatButtonColor] CGColor]];
         
         CAShapeLayer *layer = obj;
         CGPathRef path = layer.path;
@@ -453,7 +453,7 @@ NSString *const kOUSChatButtonStyleChangeAnimationDuration = @"kOUSChatButtonSty
         NSArray *times = @[ @(0.0), @(0.85), @(0.93), @(1.0) ];
         
         CAKeyframeAnimation *anim = [CAKeyframeAnimation animationWithKeyPath:@"path"];
-        anim.duration = [[self valueForOptionKey:kOUSChatButtonUnHighlightAnimationDuration] floatValue];;
+        anim.duration = [[self valueForOptionKey:kJSQChatButtonUnHighlightAnimationDuration] floatValue];;
         anim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         anim.removedOnCompletion = NO;
         

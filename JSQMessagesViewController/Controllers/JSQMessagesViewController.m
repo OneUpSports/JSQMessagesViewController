@@ -1387,10 +1387,10 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
     self.chatButton = [[JSQChatButton alloc] initWithFrame:frame];
     [self.chatButton addTarget:self action:@selector(toggleChatButton:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.chatButton setOptions:@{kOUSChatButtonLineWidth: @(2.0f),
-                                        kOUSChatButtonColor: [UIColor whiteColor],
-                                        kOUSChatButtonHighlightScale: @1.0,
-                                        kOUSChatButtonHighlightedColor: [UIColor colorWithRed:203.0/255.0
+    [self.chatButton setOptions:@{kJSQChatButtonLineWidth: @(2.0f),
+                                        kJSQChatButtonColor: [UIColor whiteColor],
+                                        kJSQChatButtonHighlightScale: @1.0,
+                                        kJSQChatButtonHighlightedColor: [UIColor colorWithRed:203.0/255.0
                                                                                         green:203.0/255.0
                                                                                          blue:208.0/255.0
                                                                                         alpha:1.0],
