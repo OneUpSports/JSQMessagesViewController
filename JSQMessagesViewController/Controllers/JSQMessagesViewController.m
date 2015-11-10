@@ -43,8 +43,13 @@
 
 static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObservingContext;
 
-@interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
-                                         JSQMessagesKeyboardControllerDelegate>
+@interface JSQMessagesViewController ()
+<
+JSQMessagesInputToolbarDelegate,
+JSQMessagesKeyboardControllerDelegate,
+JSQMessagesCollectionViewCellIncomingConfigurationDataSource,
+JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
+>
 
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
@@ -248,6 +253,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     [self jsq_configureMessagesViewController];
     [self jsq_registerForNotifications:YES];
+    [JSQMessagesCollectionViewCellIncoming setIncomingConfigurationDataSource:self];
+    [JSQMessagesCollectionViewCellOutgoing setOutgoingConfigurationDataSource:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -883,6 +890,33 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
         }
     }
 }
+
+#pragma mark - JSQMessagesCollectionViewCellIncomingConfigurationDataSource
+
+- (AvatarBorder)incomingCellAvatarBorder:(JSQMessagesCollectionViewCellIncoming *)cell
+{
+    return [self incomingAvatar];
+}
+
+- (AvatarBorder)incomingAvatar
+{
+    AvatarBorder border;
+    return border;
+}
+
+#pragma mark - JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
+
+- (AvatarBorder)outgoingCellAvatarBorder:(JSQMessagesCollectionViewCellIncoming *)cell
+{
+    return [self incomingAvatar];
+}
+
+- (AvatarBorder)outgoingAvatar
+{
+    AvatarBorder border;
+    return border;
+}
+
 
 #pragma mark - Notifications
 

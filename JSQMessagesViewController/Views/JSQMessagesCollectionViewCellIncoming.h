@@ -16,7 +16,10 @@
 //  Released under an MIT license: http://opensource.org/licenses/MIT
 //
 
+#import <Foundation/Foundation.h>
 #import "JSQMessagesCollectionViewCell.h"
+
+@protocol JSQMessagesCollectionViewCellIncomingConfigurationDataSource;
 
 /**
  *  A `JSQMessagesCollectionViewCellIncoming` object is a concrete instance 
@@ -24,4 +27,11 @@
  */
 @interface JSQMessagesCollectionViewCellIncoming : JSQMessagesCollectionViewCell
 
++ (void)setIncomingConfigurationDataSource:(id<JSQMessagesCollectionViewCellIncomingConfigurationDataSource>)dataSource;
+
+@end
+
+@protocol JSQMessagesCollectionViewCellIncomingConfigurationDataSource <NSObject>
+@optional
+- (AvatarBorder)incomingCellAvatarBorder:(JSQMessagesCollectionViewCellIncoming *)cell;
 @end

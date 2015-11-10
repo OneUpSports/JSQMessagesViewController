@@ -28,8 +28,6 @@
 
 static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
-id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
-
 @interface JSQMessagesCollectionViewCell ()
 
 @property (weak, nonatomic) IBOutlet JSQMessagesLabel *cellTopLabel;
@@ -113,11 +111,6 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
     dispatch_once(&onceToken, ^{
         jsqMessagesCollectionViewCellActions = [NSMutableSet new];
     });
-}
-
-+ (void)setConfigDelegate:(id<JSQMessagesCollectionViewCellDelegate>)configurationDelegate
-{
-    configDelegate = configurationDelegate;
 }
 
 + (UINib *)nib
@@ -556,6 +549,12 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
     }
     
     return YES;
+}
+
+
+- (BOOL)isAvatarBorderInvalid:(AvatarBorder)border
+{
+    return border.initilized;
 }
 
 @end

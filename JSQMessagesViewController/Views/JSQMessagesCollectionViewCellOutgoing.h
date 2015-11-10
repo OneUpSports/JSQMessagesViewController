@@ -18,10 +18,18 @@
 
 #import "JSQMessagesCollectionViewCell.h"
 
+@protocol JSQMessagesCollectionViewCellOutgoingConfigurationDataSource;
+
+
 /**
  *  A `JSQMessagesCollectionViewCellOutgoing` object is a concrete instance 
  *  of `JSQMessagesCollectionViewCell` that represents an outgoing message data item.
  */
 @interface JSQMessagesCollectionViewCellOutgoing : JSQMessagesCollectionViewCell
++ (void)setOutgoingConfigurationDataSource:(id<JSQMessagesCollectionViewCellOutgoingConfigurationDataSource>)dataSource;
+@end
 
+@protocol JSQMessagesCollectionViewCellOutgoingConfigurationDataSource <NSObject>
+@optional
+- (AvatarBorder)outgoingCellAvatarBorder:(JSQMessagesCollectionViewCellOutgoing *)cell;
 @end

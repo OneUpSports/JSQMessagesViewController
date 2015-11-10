@@ -24,6 +24,15 @@
 //#import "JSQMessagesAvatarImageView.h"
 #import "JSQMessagesCellAccessoryView.h"
 
+typedef struct AvatarBorder
+{
+    BOOL initilized;
+    CGFloat width;
+    CGFloat cornerRadius;
+    __unsafe_unretained UIColor* color;
+
+} AvatarBorder;
+
 
 @class JSQMessagesCollectionViewCell;
 
@@ -244,6 +253,5 @@ extern id<JSQMessagesCollectionViewCellDelegate> configDelegate;
  */
 + (void)registerMenuAction:(SEL)action;
 
-
-+ (void)setConfigDelegate:(id<JSQMessagesCollectionViewCellDelegate>)configurationDelegate;
+- (BOOL)isAvatarBorderInvalid:(AvatarBorder)border;
 @end

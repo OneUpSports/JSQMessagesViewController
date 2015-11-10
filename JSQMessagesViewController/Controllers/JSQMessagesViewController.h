@@ -30,10 +30,13 @@
  *
  *  @warning This class is intended to be subclassed. You should not use it directly.
  */
-@interface JSQMessagesViewController : UIViewController <JSQMessagesCollectionViewDataSource,
-                                                         JSQMessagesCollectionViewDelegateFlowLayout,
-                                                         UITextViewDelegate, UIScrollViewDelegate>
 
+@interface JSQMessagesViewController : UIViewController
+<
+JSQMessagesCollectionViewDataSource,
+JSQMessagesCollectionViewDelegateFlowLayout,
+UITextViewDelegate, UIScrollViewDelegate
+>
 
 @property (strong, nonatomic) JSQChatButton *chatButton;
 - (JSQChatButton *)chatAccessoryButton:(CGRect)frame;
@@ -297,4 +300,6 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
 - (void)setChatButtonDefault:(BOOL)animated;
 - (void)setChatButtonCharet:(BOOL)animated;
 - (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton;
+- (AvatarBorder)incomingAvatar;
+- (AvatarBorder)outgoingAvatar;
 @end

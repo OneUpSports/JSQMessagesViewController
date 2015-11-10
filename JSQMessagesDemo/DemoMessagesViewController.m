@@ -420,6 +420,8 @@
 
 - (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    return nil;
     /**
      *  Return `nil` here if you do not want avatars.
      *  If you do return `nil`, be sure to do the following in `viewDidLoad`:
@@ -548,7 +550,7 @@
      *  Override point for customizing cells
      */
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[super collectionView:collectionView cellForItemAtIndexPath:indexPath];
-    
+    cell.avatarContainerView.avatarImageView.image = [UIImage imageNamed:@"demo_avatar_cook"];
     /**
      *  Configure almost *anything* on the cell
      *
@@ -793,6 +795,29 @@ spacingForAvatarCellAtIndexPath:(NSIndexPath *)indexPath
         return NO;
     }
     return YES;
+}
+
+- (AvatarBorder)incomingAvatar
+{
+    AvatarBorder border;
+    UIColor *color = [UIColor redColor];
+    border.color = color;
+    border.width = 2.0f;
+    border.cornerRadius = 20.0f;
+    border.initilized = YES;
+    
+    return border;
+}
+
+- (AvatarBorder)outgoingAvatar
+{
+    AvatarBorder border;
+    UIColor *color = [UIColor redColor];
+    border.color = color;
+    border.width = 2.0f;
+    border.cornerRadius = 20.0f;
+    border.initilized = YES;
+    return border;
 }
 
 @end

@@ -210,6 +210,16 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 - (void)attachAccessoryController:(UIViewController *)controller
 {
     if (controller == nil) return;
+    
+    if ([self respondsToSelector:@selector(inputAssistantItem)]) {
+        // iOS9.
+        self.contentView.accessoryView.autocorrectionType = UITextAutocorrectionTypeNo;
+        
+        UITextInputAssistantItem* item = [self.contentView.accessoryView inputAssistantItem];
+        item.leadingBarButtonGroups = @[];
+        item.trailingBarButtonGroups = @[];
+    }
+    
     controller.view.translatesAutoresizingMaskIntoConstraints = NO;
     [controller.view adjustConstraintsForNib];
     self.contentView.accessoryView.inputView = controller.view;
@@ -219,6 +229,16 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 - (void)attachAccessoryView:(UIView *)accessoryView
 {
     if (accessoryView == nil) return;
+    
+    if ([self respondsToSelector:@selector(inputAssistantItem)]) {
+        // iOS9.
+        self.contentView.accessoryView.autocorrectionType = UITextAutocorrectionTypeNo;
+        
+        UITextInputAssistantItem* item = [self.contentView.accessoryView inputAssistantItem];
+        item.leadingBarButtonGroups = @[];
+        item.trailingBarButtonGroups = @[];
+    }
+    
     accessoryView.translatesAutoresizingMaskIntoConstraints = NO;
     [accessoryView adjustConstraintsForNib];
     self.contentView.accessoryView.inputView = accessoryView;
