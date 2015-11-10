@@ -22,6 +22,7 @@
 #import "JSQMessagesCollectionViewFlowLayout.h"
 #import "JSQMessagesInputToolbar.h"
 #import "JSQMessagesKeyboardController.h"
+#import "JSQChatButton.h"
 
 /**
  *  The `JSQMessagesViewController` class is an abstract class that represents a view controller whose content consists of
@@ -32,6 +33,10 @@
 @interface JSQMessagesViewController : UIViewController <JSQMessagesCollectionViewDataSource,
                                                          JSQMessagesCollectionViewDelegateFlowLayout,
                                                          UITextViewDelegate, UIScrollViewDelegate>
+
+
+@property (strong, nonatomic) JSQChatButton *chatButton;
+- (JSQChatButton *)chatAccessoryButton:(CGRect)frame;
 
 @property (nonatomic) UIEdgeInsets contentInsets;
 
@@ -288,4 +293,8 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
  */
 - (void)scrollToBottomAnimated:(BOOL)animated;
 
+
+- (void)setChatButtonDefault:(BOOL)animated;
+- (void)setChatButtonCharet:(BOOL)animated;
+- (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton;
 @end

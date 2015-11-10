@@ -376,7 +376,8 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
 - (void)setBackgroundColor:(UIColor *)backgroundColor
 {
     [super setBackgroundColor:backgroundColor];
-
+    
+    self.bottomAccessoryContainerView.backgroundColor = backgroundColor;
     self.cellTopLabel.backgroundColor = backgroundColor;
     self.messageBubbleTopLabel.backgroundColor = backgroundColor;
     self.cellBottomLabel.backgroundColor = backgroundColor;

@@ -807,6 +807,11 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark - Text view delegate
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    return YES;
+}
+
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
     if (textView != self.inputToolbar.contentView.textView) {
@@ -914,12 +919,15 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
         self.collectionView.contentInset = self.contentInsets;
         self.collectionView.scrollIndicatorInsets = self.contentInsets;
     }
+    
+    [self setChatButtonDefault:NO];
 }
 
 - (void)jsq_didReceiveKeyboardDidShowNotification:(NSNotification *)notification
 {
     if (self.inputToolbar.contentView.textView.isFirstResponder) {
         self.inputToolbar.showAccessory = NO;
+        [self setChatButtonDefault:YES];
     }
 }
 
@@ -1369,6 +1377,110 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
             [alertView performSelectorOnMainThread:@selector(show) withObject:nil waitUntilDone:YES];
         }
     });
+}
+
+
+#pragma mark - JSQChatButton
+
+- (JSQChatButton *)chatAccessoryButton:(CGRect)frame
+{
+    self.chatButton = [[JSQChatButton alloc] initWithFrame:frame];
+    [self.chatButton addTarget:self action:@selector(toggleChatButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.chatButton setOptions:@{kOUSChatButtonLineWidth: @(2.0f),
+                                        kOUSChatButtonColor: [UIColor whiteColor],
+                                        kOUSChatButtonHighlightScale: @1.0,
+                                        kOUSChatButtonHighlightedColor: [UIColor colorWithRed:203.0/255.0
+                                                                                        green:203.0/255.0
+                                                                                         blue:208.0/255.0
+                                                                                        alpha:1.0],
+                                        }];
+    
+    [self.chatButton setStyle:JSQChatButtonStyleCirclePlus animated:NO];
+    [self.chatButton setCircleColor:[UIColor colorWithRed:0.0
+                                                          green:58.0/255.0
+                                                           blue:136.0/255.0
+                                                          alpha:1.0]
+                                 animated:NO];
+    
+    return self.chatButton;
+}
+
+- (void)setChatButtonDefault:(BOOL)animated
+{
+    if (self.chatButton) {
+        [self.chatButton setStyle:JSQChatButtonStyleCirclePlus animated:animated];
+        [self.chatButton setCircleColor:[UIColor colorWithRed:0.0
+                                                        green:58.0/255.0
+                                                         blue:136.0/255.0
+                                                        alpha:1.0]
+                               animated:animated];
+    }
+}
+
+- (void)setChatButtonCharet:(BOOL)animated
+{
+    if (self.chatButton) {
+        if (self.chatButton.buttonStyle == JSQChatButtonStyleCircleClose) {
+            [self.chatButton setStyle:JSQChatButtonStyleCircleCaretLeft
+                                   animated:animated];
+            [self.chatButton setCircleColor:[UIColor colorWithRed:100.0/255.0
+                                                                  green:100.0/255.0
+                                                                   blue:100.0/255.0
+                                                                  alpha:1.0]
+                                         animated:animated];
+        }
+
+    }
+}
+
+- (void)toggleChatButton:(JSQChatButton *)chatButton
+{
+    if (chatButton.buttonStyle == JSQChatButtonStyleCircleClose) {
+//        [self clearTextAndSticker];
+        [self.chatButton setStyle:JSQChatButtonStyleCirclePlus animated:YES];
+        [self.chatButton setCircleColor:[UIColor colorWithRed:0.0
+                                                        green:58.0/255.0
+                                                         blue:136.0/255.0
+                                                        alpha:1.0]
+                               animated:YES];
+    }
+    // close keyboard, open hub
+    else if (chatButton.buttonStyle == JSQChatButtonStyleCirclePlus) {
+        [chatButton setStyle:JSQChatButtonStyleCircleClose
+                               animated:YES];
+        [chatButton setCircleColor:[UIColor colorWithRed:237.0/255.0
+                                                              green:28.0/255.0
+                                                               blue:36.0/255.0
+                                                              alpha:1.0]
+                                     animated:YES];
+        
+//        [self.chatInputTextView resignFirstResponder];
+//        [self presentHubWithOptionalViewController:nil];
+    }
+    else {
+//        [self.hubNavigationController popViewControllerAnimated:YES];
+//        
+//        UIViewController *currentViewController = self.hubNavigationController.visibleViewController;
+//        UIViewController *topViewController = [self.hubNavigationController.viewControllers firstObject];
+//        
+//        if (currentViewController == topViewController) {
+//            [self.navigationButton setStyle:OUSChatButtonStyleCircleClose
+//                                   animated:YES];
+//            [self.navigationButton setCircleColor:[UIColor colorWithRed:237.0/255.0
+//                                                                  green:28.0/255.0
+//                                                                   blue:36.0/255.0
+//                                                                  alpha:1.0]
+//                                         animated:YES];
+//        }
+    }
+    
+    [self chatAccessoryButtonTapped:chatButton];
+}
+
+- (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton
+{
+    
 }
 
 @end

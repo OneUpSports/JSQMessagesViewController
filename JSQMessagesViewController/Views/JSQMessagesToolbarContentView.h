@@ -61,6 +61,9 @@ FOUNDATION_EXPORT const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingD
  */
 @property (assign, nonatomic) CGFloat leftBarButtonItemWidth;
 
+
+@property (assign, nonatomic) CGFloat leftBarButtonItemHeight;
+
 /**
  *  Specifies the amount of spacing between the content view and the leading edge of leftBarButtonItem.
  *

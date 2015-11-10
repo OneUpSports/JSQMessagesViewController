@@ -44,8 +44,11 @@
     self.title = @"JSQMessages";
 //    self.navigationController.navigationBarHidden = YES;
 //    self.collectionView.collectionViewLayout.messageBubbleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    self.bottomAccessoryView = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 60.0f)];
     
+    self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(54.0f, 54.0f);
+    
+    self.bottomAccessoryView = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 60.0f)];
+    self.inputToolbar.contentView.leftBarButtonItem = [self chatAccessoryButton:CGRectMake(0, 0, 32, 32)];
     /**
      *  You MUST set your senderId and display name
      */
