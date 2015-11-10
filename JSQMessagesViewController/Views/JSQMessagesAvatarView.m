@@ -49,21 +49,21 @@
      [self addSubview:self.teamLogo];
      */
     
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithOvalInRect:self.avatarImageView.bounds];
-    
-    CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.frame = self.avatarImageView.bounds;
-    maskLayer.path = maskPath.CGPath;
-    
-    self.avatarImageView.layer.mask = maskLayer;
-    
-    CAShapeLayer *stroke = [CAShapeLayer layer];
-    stroke.frame = self.avatarImageView.bounds;
-    stroke.path = maskPath.CGPath;
-    stroke.lineWidth = 4.0f;
-    stroke.strokeColor = [UIColor lightGrayColor].CGColor;
-    stroke.fillColor = [UIColor clearColor].CGColor;
-    [self.avatarImageView.layer addSublayer:stroke];
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithOvalInRect:self.avatarImageView.bounds];
+//    
+//    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+//    maskLayer.frame = self.avatarImageView.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    
+//    self.avatarImageView.layer.mask = maskLayer;
+//    
+//    CAShapeLayer *stroke = [CAShapeLayer layer];
+//    stroke.frame = self.avatarImageView.bounds;
+//    stroke.path = maskPath.CGPath;
+//    stroke.lineWidth = 4.0f;
+//    stroke.strokeColor = [UIColor lightGrayColor].CGColor;
+//    stroke.fillColor = [UIColor clearColor].CGColor;
+//    [self.avatarImageView.layer addSublayer:stroke];
 }
 
 // TODO: Make category
