@@ -738,6 +738,20 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     return 0.0f;
 }
 
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingBetweenMessageBubbleAndAvatarOfCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 2.0f;
+}
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingForLeftOfCellBottomLabel:(NSIndexPath *)indexPath
+{
+    return 0.0f;
+}
+
 /* Show Cell Accessory Views */
 
 - (BOOL)collectionView:(JSQMessagesCollectionView *)collectionView

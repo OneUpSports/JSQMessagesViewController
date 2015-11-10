@@ -157,6 +157,15 @@ spacingBetweenCellBottomLabelAndBottomAccessoryViewAtIndexPath:(NSIndexPath *)in
 spacingBetweenBottomAccessoryViewAndBottomOfCellAtIndexPath:(NSIndexPath *)indexPath;
 
 
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingBetweenMessageBubbleAndAvatarOfCellAtIndexPath:(NSIndexPath *)indexPath;
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingForLeftOfCellBottomLabel:(NSIndexPath *)indexPath;
+
+
 - (BOOL)collectionView:(JSQMessagesCollectionView *)collectionView
                 layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
 willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath;

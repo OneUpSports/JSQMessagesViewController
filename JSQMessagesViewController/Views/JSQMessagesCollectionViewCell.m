@@ -58,6 +58,9 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleContainerWidthConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleAvatarSpacingConstraint;
+
+
 /* UITextView Constraints */
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewTopVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomVerticalSpaceConstraint;
@@ -74,6 +77,7 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelsSpacerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomAccessorySpacerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomCellSpacerHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelLeftSpacerConstraint;
 
 
 /* Accessory Constraints*/
@@ -157,6 +161,12 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
     self.bottomLabelsSpacerHeightConstraint.constant = 0.0f;
     self.bottomAccessorySpacerHeightConstraint.constant = 0.0f;
     self.bottomCellSpacerHeightConstraint.constant = 0.0f;
+    
+    self.messageBubbleAvatarSpacingConstraint.constant = 2.0f;
+    
+    // label spacers
+    self.bottomLabelLeftSpacerConstraint.constant = 0.0f;
+    
     
     self.avatarViewSize = CGSizeZero;
 
@@ -297,6 +307,13 @@ id<JSQMessagesCollectionViewCellDelegate> configDelegate = nil;
     
     [self jsq_updateConstraint:self.bottomCellSpacerHeightConstraint
                   withConstant:customAttributes.bottomCellSpacerHeight];
+    
+    [self jsq_updateConstraint:self.messageBubbleAvatarSpacingConstraint
+                  withConstant:customAttributes.messageBubbleAvatarSpacing];
+    
+    /* Labels spacers */
+    [self jsq_updateConstraint:self.bottomLabelLeftSpacerConstraint
+                  withConstant:customAttributes.bottomLabelLeftSpacer];
     
 
     if ([self isKindOfClass:[JSQMessagesCollectionViewCellIncoming class]]) {

@@ -114,6 +114,17 @@
     _bottomCellSpacerHeight = [self jsq_correctedLabelHeightForHeight:bottomCellSpacerHeight];
 }
 
+- (void)setMessageBubbleAvatarSpacing:(CGFloat)messageBubbleAvatarSpacing
+{
+    NSParameterAssert(messageBubbleAvatarSpacing >= 0.0f);
+    _messageBubbleAvatarSpacing = [self jsq_correctedLabelHeightForHeight:messageBubbleAvatarSpacing];
+}
+
+- (void)setBottomLabelLeftSpacer:(CGFloat)bottomLabelLeftSpacer
+{
+    _bottomLabelLeftSpacer = [self jsq_correctedLabelHeightForHeight:bottomLabelLeftSpacer];
+}
+
 /* Show Hide Accessory Views */
 
 - (void)setShowBottomCellAccessoryView:(BOOL)showBottomCellAccessoryView
@@ -170,7 +181,10 @@
             || (int)layoutAttributes.bottomAccessoryViewHeight != (int)self.bottomAccessoryViewHeight
             || (int)layoutAttributes.bottomAccessorySpacerHeight != (int)self.bottomAccessorySpacerHeight
             || (int)layoutAttributes.bottomCellSpacerHeight != (int)self.bottomCellSpacerHeight
-            || layoutAttributes.showBottomCellAccessoryView != self.showBottomCellAccessoryView) {
+            || layoutAttributes.showBottomCellAccessoryView != self.showBottomCellAccessoryView
+            || layoutAttributes.messageBubbleAvatarSpacing != self.messageBubbleAvatarSpacing
+            || layoutAttributes.bottomLabelLeftSpacer != self.bottomLabelLeftSpacer) {
+            
             return NO;
         }
     }
@@ -209,6 +223,9 @@
     copy.bottomAccessorySpacerHeight = self.bottomAccessorySpacerHeight;
     copy.bottomCellSpacerHeight = self.bottomCellSpacerHeight;
     copy.showBottomCellAccessoryView = self.showBottomCellAccessoryView;
+    copy.messageBubbleAvatarSpacing = self.messageBubbleAvatarSpacing;
+    copy.bottomLabelLeftSpacer = self.bottomLabelLeftSpacer;
+
     
     return copy;
 }

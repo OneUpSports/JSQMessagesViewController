@@ -512,6 +512,13 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
                                                                                     layout:self
                                spacingBetweenBottomAccessoryViewAndBottomOfCellAtIndexPath:indexPath];
     
+    layoutAttributes.messageBubbleAvatarSpacing = [self.collectionView.delegate collectionView:self.collectionView
+                                                                                        layout:self spacingBetweenMessageBubbleAndAvatarOfCellAtIndexPath:indexPath];
+    
+    layoutAttributes.bottomLabelLeftSpacer = [self.collectionView.delegate collectionView:self.collectionView
+                                                                                   layout:self
+                                                          spacingForLeftOfCellBottomLabel:indexPath];
+    
     /* Show Sccessory Views */
     layoutAttributes.showBottomCellAccessoryView = [self.collectionView.delegate collectionView:self.collectionView
                                                                                          layout:self

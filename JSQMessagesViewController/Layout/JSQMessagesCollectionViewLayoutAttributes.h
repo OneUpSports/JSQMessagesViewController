@@ -40,6 +40,18 @@
  */
 @property (assign, nonatomic) CGFloat messageBubbleContainerViewWidth;
 
+
+/**
+ *  The spacing of the `messageBubble and Avatar` of a `JSQMessagesCollectionViewCell`.
+ *  This value should be greater than `0.0` and no greater than '10.0'. Any greater value may cause issues message bubble layout.
+ *
+ *  @see JSQMessagesCollectionViewCell.
+ */
+@property (assign, nonatomic) CGFloat messageBubbleAvatarSpacing;
+
+@property (assign, nonatomic) CGFloat bottomLabelLeftSpacer;
+
+
 /**
  *  The inset of the text container's layout area within the text view's content area in a `JSQMessagesCollectionViewCell`. 
  *  The specified inset values should be greater than or equal to `0.0`.

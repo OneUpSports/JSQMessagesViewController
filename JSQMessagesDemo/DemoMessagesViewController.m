@@ -500,7 +500,7 @@
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;//[[NSAttributedString alloc] initWithString:@"attributedTextForCellBottomLabelAtIndexPath"];
+    return [[NSAttributedString alloc] initWithString:@"attributedTextForCellBottomLabelAtIndexPath"];
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath
@@ -668,7 +668,7 @@
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0.0f;//kJSQMessagesCollectionViewCellLabelHeightDefault;
+    return kJSQMessagesCollectionViewCellLabelHeightDefault;
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForMessageBubbleBottomLabelAtIndexPath:(NSIndexPath *)indexPath {
@@ -694,6 +694,20 @@
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout spacingBetweenBottomAccessoryViewAndBottomOfCellAtIndexPath:(NSIndexPath *)indexPath {
     return 0.0f;
+}
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingBetweenMessageBubbleAndAvatarOfCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 20.0f;
+}
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingForLeftOfCellBottomLabel:(NSIndexPath *)indexPath
+{
+    return 65.0f;
 }
 
 

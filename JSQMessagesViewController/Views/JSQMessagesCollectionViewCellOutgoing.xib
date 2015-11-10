@@ -173,12 +173,14 @@
                 <outlet property="bottomAccessoryViewHeightConstraint" destination="4Dt-yr-jC4" id="Znr-4w-cma"/>
                 <outlet property="bottomCellSpacerHeightConstraint" destination="KPW-Qx-mPc" id="PzG-5k-oAs"/>
                 <outlet property="bottomCellSpacerView" destination="JzJ-u2-vI1" id="G57-Qd-pFW"/>
+                <outlet property="bottomLabelLeftSpacerConstraint" destination="gR1-w3-ygN" id="gb6-PK-jfe"/>
                 <outlet property="bottomLabelsSpacerHeightConstraint" destination="mfp-lh-Sr2" id="FFO-Lh-NvH"/>
                 <outlet property="bottomLabelsSpacerView" destination="3mY-WD-7iw" id="W7I-Sc-arA"/>
                 <outlet property="cellBottomLabel" destination="nEW-ad-ULK" id="mfi-M0-40z"/>
                 <outlet property="cellBottomLabelHeightConstraint" destination="deR-eo-Yyf" id="nn0-YP-bp3"/>
                 <outlet property="cellTopLabel" destination="jxM-YD-sVG" id="acH-pr-spx"/>
                 <outlet property="cellTopLabelHeightConstraint" destination="9oK-E7-iXA" id="MZM-kV-2dI"/>
+                <outlet property="messageBubbleAvatarSpacingConstraint" destination="vMz-Yi-B0w" id="0VL-YV-daV"/>
                 <outlet property="messageBubbleBottomLabel" destination="7Uc-dI-YDD" id="zVd-tH-sGg"/>
                 <outlet property="messageBubbleBottomLabelHeightConstraint" destination="cPs-M4-tjX" id="oTT-XQ-hr3"/>
                 <outlet property="messageBubbleContainerView" destination="2zh-vR-QJW" id="pu0-GU-eZl"/>
