@@ -714,6 +714,13 @@ spacingForLeftOfCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
+spacingForRightOfCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 20.0f;
+}
+
+- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
+                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
 spacingForAvatarCellAtIndexPath:(NSIndexPath *)indexPath
 {
     return 10.0f;

@@ -61,7 +61,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X89-B1-aAd" userLabel="Avatar container" customClass="JSQMessagesAvatarView">
-                        <rect key="frame" x="286" y="100" width="34" height="34"/>
+                        <rect key="frame" x="286" y="45" width="34" height="34"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y9b-D9-Q7W" userLabel="Avatar Image View" customClass="JSQMessagesAvatarImageView">
                                 <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
@@ -139,6 +139,7 @@
                 <constraint firstItem="Iej-Mn-Nh1" firstAttribute="leading" secondItem="23f-xH-rkY" secondAttribute="leading" id="EjC-BI-J7B"/>
                 <constraint firstAttribute="trailing" secondItem="JzJ-u2-vI1" secondAttribute="trailing" id="FkG-Gz-u5T"/>
                 <constraint firstItem="jxM-YD-sVG" firstAttribute="top" secondItem="23f-xH-rkY" secondAttribute="top" id="HYT-Tw-whz"/>
+                <constraint firstItem="X89-B1-aAd" firstAttribute="top" secondItem="p52-YN-yLu" secondAttribute="bottom" constant="5" id="IEM-3E-RiO"/>
                 <constraint firstAttribute="trailing" secondItem="X89-B1-aAd" secondAttribute="trailing" id="KLt-Ix-wDa"/>
                 <constraint firstItem="JzJ-u2-vI1" firstAttribute="top" secondItem="NkC-oG-Ccr" secondAttribute="bottom" priority="750" id="Mcg-qI-15X"/>
                 <constraint firstAttribute="trailing" secondItem="nEW-ad-ULK" secondAttribute="trailing" id="NK5-7i-FRM"/>
@@ -152,7 +153,7 @@
                 <constraint firstAttribute="trailing" secondItem="p52-YN-yLu" secondAttribute="trailing" id="gen-N0-uZj"/>
                 <constraint firstAttribute="trailing" secondItem="Iej-Mn-Nh1" secondAttribute="trailing" id="hWy-oq-oYO"/>
                 <constraint firstAttribute="bottom" secondItem="JzJ-u2-vI1" secondAttribute="bottom" id="hzU-lA-jvW"/>
-                <constraint firstItem="7Uc-dI-YDD" firstAttribute="top" secondItem="X89-B1-aAd" secondAttribute="bottom" id="iiF-tn-5Ir"/>
+                <constraint firstItem="7Uc-dI-YDD" firstAttribute="top" secondItem="X89-B1-aAd" secondAttribute="bottom" priority="250" id="iiF-tn-5Ir"/>
                 <constraint firstItem="3mY-WD-7iw" firstAttribute="leading" secondItem="23f-xH-rkY" secondAttribute="leading" id="j8z-Ck-MaH"/>
                 <constraint firstItem="p52-YN-yLu" firstAttribute="top" secondItem="jxM-YD-sVG" secondAttribute="bottom" id="jBD-JV-AWk"/>
                 <constraint firstItem="3mY-WD-7iw" firstAttribute="top" secondItem="7Uc-dI-YDD" secondAttribute="bottom" id="nSt-fh-3eo"/>
@@ -175,6 +176,7 @@
                 <outlet property="bottomCellSpacerHeightConstraint" destination="KPW-Qx-mPc" id="PzG-5k-oAs"/>
                 <outlet property="bottomCellSpacerView" destination="JzJ-u2-vI1" id="G57-Qd-pFW"/>
                 <outlet property="bottomLabelLeftSpacerConstraint" destination="gR1-w3-ygN" id="gb6-PK-jfe"/>
+                <outlet property="bottomLabelRightSpacerConstraint" destination="NK5-7i-FRM" id="aJX-mr-wc3"/>
                 <outlet property="bottomLabelsSpacerHeightConstraint" destination="mfp-lh-Sr2" id="FFO-Lh-NvH"/>
                 <outlet property="bottomLabelsSpacerView" destination="3mY-WD-7iw" id="W7I-Sc-arA"/>
                 <outlet property="cellBottomLabel" destination="nEW-ad-ULK" id="mfi-M0-40z"/>

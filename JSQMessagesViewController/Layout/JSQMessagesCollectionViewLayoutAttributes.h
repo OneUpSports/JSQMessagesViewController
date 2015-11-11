@@ -51,6 +51,8 @@
 
 @property (assign, nonatomic) CGFloat bottomLabelLeftSpacer;
 
+@property (assign, nonatomic) CGFloat bottomLabelRightSpacer;
+
 @property (assign, nonatomic) CGFloat avatarCellSpacer;
 
 /**

@@ -76,6 +76,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomAccessorySpacerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomCellSpacerHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelLeftSpacerConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomLabelRightSpacerConstraint;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarCellSpacerConstraint;
 
 
@@ -162,7 +164,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     
     // label spacers
     self.bottomLabelLeftSpacerConstraint.constant = 0.0f;
-    
+    self.bottomLabelRightSpacerConstraint.constant = 0.0f;
     
     self.avatarViewSize = CGSizeZero;
 
@@ -313,6 +315,9 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     /* Labels spacers */
     [self jsq_updateConstraint:self.bottomLabelLeftSpacerConstraint
                   withConstant:customAttributes.bottomLabelLeftSpacer];
+    
+    [self jsq_updateConstraint:self.bottomLabelRightSpacerConstraint
+                  withConstant:customAttributes.bottomLabelRightSpacer];
     
 
     if ([self isKindOfClass:[JSQMessagesCollectionViewCellIncoming class]]) {
