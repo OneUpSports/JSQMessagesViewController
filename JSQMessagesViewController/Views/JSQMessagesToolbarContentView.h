@@ -107,6 +107,8 @@ FOUNDATION_EXPORT const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingD
  */
 @property (assign, nonatomic) CGFloat rightContentPadding;
 
+@property (assign, nonatomic) CGFloat leftAccessoryBottomSpacer;
+
 /**
  *  The container view for the rightBarButtonItem.
  *

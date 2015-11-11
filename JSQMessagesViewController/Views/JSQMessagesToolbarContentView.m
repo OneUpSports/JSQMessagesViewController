@@ -37,6 +37,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftHorizontalSpacingConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightHorizontalSpacingConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftBottomAccessoryEdgeBottomSpacerConstraint;
 
 @end
 
@@ -105,6 +106,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
     self.leftBarButtonContainerView.hidden = NO;
     self.leftHorizontalSpacingConstraint.constant = kJSQMessagesToolbarContentViewHorizontalSpacingDefault;
     self.leftBarButtonItemWidth = CGRectGetWidth(leftBarButtonItem.frame);
+    self.leftBarButtonItemHeight = CGRectGetHeight(leftBarButtonItem.frame);
 //    self.leftBarButtonItemHeight = CGRectGetHeight(leftBarButtonItem.frame);
 
     [leftBarButtonItem setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -175,6 +177,12 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 - (void)setLeftContentPadding:(CGFloat)leftContentPadding
 {
     self.leftHorizontalSpacingConstraint.constant = leftContentPadding;
+    [self setNeedsUpdateConstraints];
+}
+
+- (void)setLeftAccessoryBottomSpacer:(CGFloat)leftAccessoryBottomSpacer
+{
+    _leftBottomAccessoryEdgeBottomSpacerConstraint.constant = leftAccessoryBottomSpacer;
     [self setNeedsUpdateConstraints];
 }
 

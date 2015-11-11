@@ -61,6 +61,9 @@ UITextViewDelegate, UIScrollViewDelegate
 shouldShowErrorOnSendAction:(BOOL)showOnSend
  shouldAllowContinuosTyping:(BOOL)continueTyping;
 
+
+@property (assign, nonatomic) CGFloat toolbarHeight;
+
 /**
  *  Returns the collection view object managed by this view controller.
  *  This view controller is the collection view's data source and delegate.
@@ -302,4 +305,5 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
 - (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton;
 - (AvatarBorder)incomingAvatar;
 - (AvatarBorder)outgoingAvatar;
+- (void)setInputToolBarHeight:(CGFloat)height;
 @end

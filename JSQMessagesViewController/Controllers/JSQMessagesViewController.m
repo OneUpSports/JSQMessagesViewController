@@ -144,7 +144,7 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
     
     self.collectionView.dissmissCellAccessoryViewsOnScroll = YES;
     
-    self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
+    self.toolbarHeightConstraint.constant = 42.0f;//self.inputToolbar.preferredDefaultHeight;
 
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
@@ -241,6 +241,11 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
 {
     _topContentAdditionalInset = topContentAdditionalInset;
     [self jsq_updateCollectionViewInsets];
+}
+
+- (void)setToolbarHeight:(CGFloat)toolbarHeight
+{
+    _toolbarHeightConstraint.constant = toolbarHeight;
 }
 
 #pragma mark - View lifecycle
@@ -1303,6 +1308,18 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
                                                                       action:@selector(jsq_handleInteractivePopGestureRecognizer:)];
         self.currentInteractivePopGestureRecognizer = self.navigationController.interactivePopGestureRecognizer;
     }
+}
+
+- (void)setInputToolBarHeight:(CGFloat)height
+{
+    self.toolbarHeightConstraint.constant = height;
+    self.inputToolbar.preferredDefaultHeight = height;
+    [self.inputToolbar layoutIfNeeded];
+    [self.inputToolbar.contentView layoutIfNeeded];
+
+    [self.inputToolbar.contentView.textView sizeThatFits:self.inputToolbar.contentView.textView.bounds.size];
+    [self.inputToolbar.contentView.textView resetPlaceholder];
+
 }
 
 #pragma mark - Maximum Message Length Configurations

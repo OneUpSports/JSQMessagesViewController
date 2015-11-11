@@ -65,4 +65,6 @@
  */
 - (BOOL)hasText;
 
+- (void)resetPlaceholder;
+
 @end

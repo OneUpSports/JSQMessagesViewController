@@ -101,6 +101,19 @@
     _placeHolderTextColor = nil;
 }
 
+#pragma mark - Overrides
+
+- (void)sizeToFit
+{
+    [super sizeToFit];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return [super sizeThatFits:size];
+}
+
+
 #pragma mark - Composer text view
 
 - (BOOL)hasText
@@ -218,6 +231,15 @@
 }
 
 #pragma mark - Utilities
+
+- (void)resetPlaceholder
+{
+    CGFloat fontsize = self.font.pointSize;
+    self.font = [UIFont fontWithName:self.font.fontName size:self.font.xHeight+4];
+    NSString *text = _placeHolder;
+    self.placeHolder = nil;
+    self.placeHolder = text;
+}
 
 - (NSDictionary *)jsq_placeholderTextAttributes
 {

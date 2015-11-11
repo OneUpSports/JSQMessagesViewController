@@ -44,11 +44,12 @@
     self.title = @"JSQMessages";
 //    self.navigationController.navigationBarHidden = YES;
 //    self.collectionView.collectionViewLayout.messageBubbleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    
+//    [self setInputToolBarHeight:38.0f];
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeMake(54.0f, 54.0f);
     
     self.bottomAccessoryView = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 60.0f)];
-    self.inputToolbar.contentView.leftBarButtonItem = [self chatAccessoryButton:CGRectMake(0, 0, 32, 32)];
+    self.inputToolbar.contentView.leftBarButtonItem = [self chatAccessoryButton:CGRectMake(0, 0, 44, 44)];
+    self.inputToolbar.contentView.leftAccessoryBottomSpacer = 12.0f;
     /**
      *  You MUST set your senderId and display name
      */
@@ -709,14 +710,14 @@ spacingBetweenMessageBubbleAndAvatarOfCellAtIndexPath:(NSIndexPath *)indexPath
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
 spacingForLeftOfCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 65.0f;
+    return 15.0f;
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
                    layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout
 spacingForRightOfCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 20.0f;
+    return 50.0f;
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
