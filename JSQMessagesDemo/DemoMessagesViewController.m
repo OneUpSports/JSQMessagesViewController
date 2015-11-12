@@ -49,7 +49,7 @@
     
     self.bottomAccessoryView = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 60.0f)];
     self.inputToolbar.contentView.leftBarButtonItem = [self chatAccessoryButton:CGRectMake(0, 0, 44, 44)];
-    self.inputToolbar.contentView.leftAccessoryBottomSpacer = 12.0f;
+    self.inputToolbar.contentView.leftAccessoryBottomSpacer = 8.0f;
     /**
      *  You MUST set your senderId and display name
      */
@@ -345,6 +345,17 @@
 
 - (void)didPressAccessoryButton:(UIButton *)sender
 {
+    
+//    UIView *keyboardSuperview = self.view;
+//    [self.transitionCoordinator animateAlongsideTransitionInView:keyboardSuperview
+//                                                       animation:
+//     ^(id<UIViewControllerTransitionCoordinatorContext> context) {
+//         CGRect keyboardFrame = keyboardSuperview.frame;
+//         keyboardFrame.origin.x = self.view.bounds.size.width;
+//         keyboardSuperview.frame = keyboardFrame;
+//     }
+//                                                      completion:nil];
+    
     self.inputToolbar.showAccessory = !self.inputToolbar.showAccessory;
 //    [self.inputToolbar.contentView showAccessoryView];
 //    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Media messages"

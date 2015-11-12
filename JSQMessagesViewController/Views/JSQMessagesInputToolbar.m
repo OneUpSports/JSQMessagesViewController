@@ -26,6 +26,7 @@
 #import "UIImage+JSQMessages.h"
 #import "UIView+JSQMessages.h"
 #import "UIView+JSQNibLoading.h"
+#import "UIButton+JSQButtonUtils.h"
 
 const NSInteger kJSQMessagesToolBarContentViewAttachedAccessoryViewTag = 777;
 
@@ -74,7 +75,9 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 
     self.contentView.leftBarButtonItem = [JSQMessagesToolbarButtonFactory defaultAccessoryButtonItem];
     self.contentView.rightBarButtonItem = [JSQMessagesToolbarButtonFactory defaultSendButtonItem];
-
+    [self.contentView.leftBarButtonItem setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
+    [self.contentView.rightBarButtonItem setHitTestEdgeInsets:UIEdgeInsetsMake(-10, -10, -10, -10)];
+    
     [self toggleSendButtonEnabled];
 }
 

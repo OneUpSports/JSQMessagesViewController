@@ -183,7 +183,7 @@ const CGFloat kJSQMessagesToolbarContentViewHorizontalSpacingDefault = 8.0f;
 - (void)setLeftAccessoryBottomSpacer:(CGFloat)leftAccessoryBottomSpacer
 {
     _leftBottomAccessoryEdgeBottomSpacerConstraint.constant = leftAccessoryBottomSpacer;
-    [self setNeedsUpdateConstraints];
+    
 }
 
 #pragma mark - Getters

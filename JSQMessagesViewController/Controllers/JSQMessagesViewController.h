@@ -23,6 +23,7 @@
 #import "JSQMessagesInputToolbar.h"
 #import "JSQMessagesKeyboardController.h"
 #import "JSQChatButton.h"
+#import "JSQMessagesOverlayView.h"
 
 /**
  *  The `JSQMessagesViewController` class is an abstract class that represents a view controller whose content consists of
@@ -300,10 +301,17 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
 - (void)scrollToBottomAnimated:(BOOL)animated;
 
 
+@property (assign, nonatomic) BOOL showOverlayView;
+
 - (void)setChatButtonDefault:(BOOL)animated;
 - (void)setChatButtonCharet:(BOOL)animated;
 - (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton;
 - (AvatarBorder)incomingAvatar;
 - (AvatarBorder)outgoingAvatar;
 - (void)setInputToolBarHeight:(CGFloat)height;
+
+#pragma mark - JSQMessagesOverlay
+
+- (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
+                                showActivityView:(BOOL)showActivityView;
 @end

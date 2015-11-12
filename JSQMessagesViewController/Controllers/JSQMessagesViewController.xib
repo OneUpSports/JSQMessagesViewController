@@ -9,7 +9,8 @@
             <connections>
                 <outlet property="collectionView" destination="l9u-2b-4LK" id="bLP-6g-CkO"/>
                 <outlet property="inputToolbar" destination="BoD-Az-3DM" id="w74-g9-1qA"/>
-                <outlet property="toolbarBottomLayoutGuide" destination="rHs-6q-NX4" id="d6h-iu-VMX"/>
+                <outlet property="overlayView" destination="QFN-Xl-u8y" id="FmY-cT-w1A"/>
+                <outlet property="toolbarBottomLayoutGuide" destination="DBb-xG-hoU" id="PiA-Bi-ix3"/>
                 <outlet property="toolbarHeightConstraint" destination="HIk-02-qcW" id="jE8-xC-1eD"/>
                 <outlet property="view" destination="mUa-cS-ru4" id="nki-T1-RTI"/>
             </connections>
@@ -19,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
+                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="l9u-2b-4LK" customClass="JSQMessagesCollectionView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewLayout key="collectionViewLayout" id="dZl-7C-LHR" customClass="JSQMessagesCollectionViewFlowLayout"/>
@@ -32,15 +33,46 @@
                     </constraints>
                     <items/>
                 </toolbar>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFN-Xl-u8y" userLabel="OverlayView" customClass="JSQMessagesOverlayView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat is currently unavailable." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLL-9Y-hjR">
+                            <rect key="frame" x="20" y="274" width="280" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="ZQZ-rI-YlI">
+                            <rect key="frame" x="150" y="274" width="20" height="20"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="bLL-9Y-hjR" secondAttribute="trailing" constant="20" id="6HM-WP-Ife"/>
+                        <constraint firstItem="bLL-9Y-hjR" firstAttribute="leading" secondItem="QFN-Xl-u8y" secondAttribute="leading" constant="20" id="6VO-nb-MBF"/>
+                        <constraint firstItem="bLL-9Y-hjR" firstAttribute="centerX" secondItem="QFN-Xl-u8y" secondAttribute="centerX" id="M23-uW-jI8"/>
+                        <constraint firstItem="bLL-9Y-hjR" firstAttribute="centerY" secondItem="QFN-Xl-u8y" secondAttribute="centerY" id="PTA-ct-JSI"/>
+                        <constraint firstItem="ZQZ-rI-YlI" firstAttribute="centerX" secondItem="QFN-Xl-u8y" secondAttribute="centerX" id="W38-7l-5gi"/>
+                        <constraint firstItem="ZQZ-rI-YlI" firstAttribute="centerY" secondItem="QFN-Xl-u8y" secondAttribute="centerY" id="fwz-6N-chK"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="activityView" destination="ZQZ-rI-YlI" id="J2I-Ga-Vgu"/>
+                        <outlet property="descriptionLabel" destination="bLL-9Y-hjR" id="J7h-xL-8Ip"/>
+                    </connections>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="QFN-Xl-u8y" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="4Qz-U0-np5"/>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" id="7xc-Ha-asg"/>
+                <constraint firstAttribute="trailing" secondItem="QFN-Xl-u8y" secondAttribute="trailing" id="BH2-iu-6VC"/>
+                <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="DBb-xG-hoU"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="MmF-oh-Y75"/>
                 <constraint firstAttribute="trailing" secondItem="l9u-2b-4LK" secondAttribute="trailing" id="O9u-TA-A0e"/>
                 <constraint firstAttribute="bottom" secondItem="l9u-2b-4LK" secondAttribute="bottom" id="Re7-WW-UmS"/>
+                <constraint firstItem="QFN-Xl-u8y" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="SkF-5D-007"/>
+                <constraint firstAttribute="bottom" secondItem="QFN-Xl-u8y" secondAttribute="bottom" id="VPi-ut-aQN"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="dCQ-DM-Wdj"/>
-                <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="rHs-6q-NX4"/>
                 <constraint firstItem="BoD-Az-3DM" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="ts7-8f-0lH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

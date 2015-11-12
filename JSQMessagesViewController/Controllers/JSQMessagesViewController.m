@@ -51,6 +51,8 @@ JSQMessagesCollectionViewCellIncomingConfigurationDataSource,
 JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
 >
 
+@property (weak, nonatomic) IBOutlet JSQMessagesOverlayView *overlayView;
+
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
 
@@ -150,6 +152,7 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
     self.collectionView.delegate = self;
 
     self.inputToolbar.delegate = self;
+    
     self.inputToolbar.contentView.textView.placeHolder = [NSBundle jsq_localizedStringForKey:@"new_message"];
     self.inputToolbar.contentView.textView.delegate = self;
 
@@ -246,6 +249,11 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
 - (void)setToolbarHeight:(CGFloat)toolbarHeight
 {
     _toolbarHeightConstraint.constant = toolbarHeight;
+}
+
+- (void)setShowOverlayView:(BOOL)showOverlayView
+{
+    self.overlayView.hidden = showOverlayView;
 }
 
 #pragma mark - View lifecycle
@@ -1458,6 +1466,16 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
     });
 }
 
+#pragma mark - JSQMessagesOverlay
+
+- (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
+                                showActivityView:(BOOL)showActivityView
+{
+    
+    self.showOverlayView = YES;
+    self.overlayView.activityView.hidden = showActivityView;
+    self.overlayView.descriptionLabel.attributedText = text;
+}
 
 #pragma mark - JSQChatButton
 

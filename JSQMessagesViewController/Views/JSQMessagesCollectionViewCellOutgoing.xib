@@ -100,14 +100,14 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mY-WD-7iw">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3mY-WD-7iw">
                         <rect key="frame" x="0.0" y="154" width="320" height="20"/>
                         <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.043137254899999998" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="mfp-lh-Sr2"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iej-Mn-Nh1">
+                    <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iej-Mn-Nh1">
                         <rect key="frame" x="0.0" y="194" width="320" height="20"/>
                         <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.043137254899999998" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -121,7 +121,7 @@
                             <constraint firstAttribute="height" constant="20" id="4Dt-yr-jC4"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzJ-u2-vI1">
+                    <view opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JzJ-u2-vI1">
                         <rect key="frame" x="0.0" y="234" width="320" height="20"/>
                         <color key="backgroundColor" red="0.82352941180000006" green="0.0" blue="0.043137254899999998" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
