@@ -1531,47 +1531,21 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
     }
 }
 
+- (void)setChatButtonClosed:(BOOL)animated
+{
+    if (self.chatButton) {
+        [self.chatButton setStyle:JSQChatButtonStyleCircleClose
+                    animated:animated];
+        [self.chatButton setCircleColor:[UIColor colorWithRed:237.0/255.0
+                                                   green:28.0/255.0
+                                                    blue:36.0/255.0
+                                                   alpha:1.0]
+                          animated:animated];
+    }
+}
+
 - (void)toggleChatButton:(JSQChatButton *)chatButton
 {
-    if (chatButton.buttonStyle == JSQChatButtonStyleCircleClose) {
-//        [self clearTextAndSticker];
-        [self.chatButton setStyle:JSQChatButtonStyleCirclePlus animated:YES];
-        [self.chatButton setCircleColor:[UIColor colorWithRed:0.0
-                                                        green:58.0/255.0
-                                                         blue:136.0/255.0
-                                                        alpha:1.0]
-                               animated:YES];
-    }
-    // close keyboard, open hub
-    else if (chatButton.buttonStyle == JSQChatButtonStyleCirclePlus) {
-        [chatButton setStyle:JSQChatButtonStyleCircleClose
-                               animated:YES];
-        [chatButton setCircleColor:[UIColor colorWithRed:237.0/255.0
-                                                              green:28.0/255.0
-                                                               blue:36.0/255.0
-                                                              alpha:1.0]
-                                     animated:YES];
-        
-//        [self.chatInputTextView resignFirstResponder];
-//        [self presentHubWithOptionalViewController:nil];
-    }
-    else {
-//        [self.hubNavigationController popViewControllerAnimated:YES];
-//        
-//        UIViewController *currentViewController = self.hubNavigationController.visibleViewController;
-//        UIViewController *topViewController = [self.hubNavigationController.viewControllers firstObject];
-//        
-//        if (currentViewController == topViewController) {
-//            [self.navigationButton setStyle:OUSChatButtonStyleCircleClose
-//                                   animated:YES];
-//            [self.navigationButton setCircleColor:[UIColor colorWithRed:237.0/255.0
-//                                                                  green:28.0/255.0
-//                                                                   blue:36.0/255.0
-//                                                                  alpha:1.0]
-//                                         animated:YES];
-//        }
-    }
-    
     [self chatAccessoryButtonTapped:chatButton];
 }
 

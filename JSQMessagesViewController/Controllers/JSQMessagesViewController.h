@@ -305,6 +305,7 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
 
 - (void)setChatButtonDefault:(BOOL)animated;
 - (void)setChatButtonCharet:(BOOL)animated;
+- (void)setChatButtonClosed:(BOOL)animated;
 - (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton;
 - (AvatarBorder)incomingAvatar;
 - (AvatarBorder)outgoingAvatar;
