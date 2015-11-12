@@ -34,4 +34,5 @@
 @protocol JSQMessagesCollectionViewCellIncomingConfigurationDataSource <NSObject>
 @optional
 - (AvatarBorder)incomingCellAvatarBorder:(JSQMessagesCollectionViewCellIncoming *)cell;
+- (UIView *)viewForBottomAccessoryView:(JSQMessagesCollectionViewCellIncoming *)incomingCell;
 @end

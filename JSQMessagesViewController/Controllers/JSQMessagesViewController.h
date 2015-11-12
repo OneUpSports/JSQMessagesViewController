@@ -310,7 +310,8 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
 - (AvatarBorder)incomingAvatar;
 - (AvatarBorder)outgoingAvatar;
 - (void)setInputToolBarHeight:(CGFloat)height;
-
+- (void)keyboardDidHide;
+- (void)keyboardDidShow;
 #pragma mark - JSQMessagesOverlay
 
 - (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text

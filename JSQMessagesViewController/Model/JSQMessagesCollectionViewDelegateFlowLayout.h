@@ -223,4 +223,8 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath;
  */
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView
                 header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender;
+
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryViewForIncomingCell:(JSQMessagesCollectionViewCell *)cell;
+
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryViewForOutgoingCell:(JSQMessagesCollectionViewCell *)cell;
 @end

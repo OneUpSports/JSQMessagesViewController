@@ -543,6 +543,8 @@
 
 #pragma mark - Accessory Views
 - (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
+    
 //    CGSize cellSize = [collectionView.collectionViewLayout sizeForItemAtIndexPath:indexPath];
     JSQMessagesCollectionViewCell *cell = (JSQMessagesCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
     TestBottomAccessoryView *view = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(100.0, 0.0, cell.bottomAccessoryView.bounds.size.width, 60.0f)];
@@ -598,6 +600,12 @@
 
 
 #pragma mark - UICollectionView Delegate
+
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryViewForIncomingCell:(JSQMessagesCollectionViewCell *)cell
+{
+    TestBottomAccessoryView *view = [[TestBottomAccessoryView alloc] initWithFrame:CGRectMake(100.0, 0.0, cell.bottomAccessoryView.bounds.size.width, 60.0f)];
+    return view;
+}
 
 #pragma mark - Custom menu items
 

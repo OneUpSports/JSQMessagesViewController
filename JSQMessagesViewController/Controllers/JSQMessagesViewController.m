@@ -493,6 +493,16 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
     return nil;
 }
 
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryViewForIncomingCell:(JSQMessagesCollectionViewCell *)cell
+{
+    return nil;
+}
+
+- (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryViewForOutgoingCell:(JSQMessagesCollectionViewCell *)cell
+{
+    return nil;
+}
+
 #pragma mark - Accessory Views
 
 - (UIView *)collectionView:(JSQMessagesCollectionView *)collectionView viewForBottomAccessoryAtIndexPath:(NSIndexPath *)indexPath
@@ -599,7 +609,7 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
     /* 
      * Set Cell accessory Views
      */
-    cell.bottomAccessoryView = [collectionView.dataSource collectionView:collectionView viewForBottomAccessoryAtIndexPath:indexPath];
+//    cell.bottomAccessoryView = [collectionView.dataSource collectionView:collectionView viewForBottomAccessoryAtIndexPath:indexPath];
     
     CGFloat bubbleTopLabelInset = (avatarImageDataSource != nil) ? 60.0f : 15.0f;
 
@@ -913,6 +923,12 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark - JSQMessagesCollectionViewCellIncomingConfigurationDataSource
 
+- (UIView *)viewForBottomAccessoryView:(JSQMessagesCollectionViewCellIncoming *)incomingCell
+{
+    return [self.collectionView.delegate collectionView:self.collectionView viewForBottomAccessoryViewForIncomingCell:incomingCell];
+}
+
+
 - (AvatarBorder)incomingCellAvatarBorder:(JSQMessagesCollectionViewCellIncoming *)cell
 {
     return [self incomingAvatar];
@@ -996,6 +1012,8 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
     }
     
     [self setChatButtonDefault:NO];
+    self.inputToolbar.showAccessory = NO;
+    [self keyboardDidHide];
 }
 
 - (void)jsq_didReceiveKeyboardDidShowNotification:(NSNotification *)notification
@@ -1004,6 +1022,8 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
         self.inputToolbar.showAccessory = NO;
         [self setChatButtonDefault:YES];
     }
+    
+    [self keyboardDidShow];
 }
 
 #pragma mark - Key-value observing
@@ -1550,6 +1570,18 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 }
 
 - (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton
+{
+    
+}
+
+#pragma mark - UIKeyboard
+
+- (void)keyboardDidHide
+{
+    
+}
+
+- (void)keyboardDidShow
 {
     
 }

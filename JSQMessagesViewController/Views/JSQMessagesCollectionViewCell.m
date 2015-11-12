@@ -202,7 +202,7 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     _mediaView = nil;
 
     /* Accessory Views */
-    _bottomAccessoryView = nil;
+//    _bottomAccessoryView = nil;
 
     self.avatarContainerView.avatarImageView.image = nil;
 
@@ -236,10 +236,10 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.avatarContainerView.avatarImageView.image = nil;
     self.avatarContainerView.avatarImageView.highlightedImage = nil;
-    if (_bottomAccessoryView != nil) {
-        [_bottomAccessoryView removeFromSuperview];
-    }
-    _bottomAccessoryView = nil;
+//    if (_bottomAccessoryView != nil) {
+//        [_bottomAccessoryView removeFromSuperview];
+//    }
+//    _bottomAccessoryView = nil;
 
     
     self.showBottomAccessoryView = NO;
@@ -469,13 +469,13 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     [self.bottomAccessoryContainerView addSubview:bottomAccessoryView];
     _bottomAccessoryView = bottomAccessoryView;
 
-    dispatch_async(dispatch_get_main_queue(), ^{
-        for (NSUInteger i = 0; i < self.bottomAccessoryContainerView.subviews.count; i++) {
-            if (self.bottomAccessoryContainerView.subviews[i] != _bottomAccessoryView) {
-                [self.bottomAccessoryContainerView.subviews[i] removeFromSuperview];
-            }
-        }
-    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        for (NSUInteger i = 0; i < self.bottomAccessoryContainerView.subviews.count; i++) {
+//            if (self.bottomAccessoryContainerView.subviews[i] != _bottomAccessoryView) {
+//                [self.bottomAccessoryContainerView.subviews[i] removeFromSuperview];
+//            }
+//        }
+//    });
 }
 
 - (void)setShowBottomAccessoryView:(BOOL)showBottomAccessoryView
