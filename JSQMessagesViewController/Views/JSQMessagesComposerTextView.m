@@ -84,6 +84,9 @@
     self = [super initWithFrame:frame textContainer:textContainer];
     if (self) {
         [self jsq_configureTextView];
+//        UIEdgeInsetsMake(<#CGFloat top#>, <#CGFloat left#>, <#CGFloat bottom#>, <#CGFloat right#>)
+        self.textContainerInset = UIEdgeInsetsMake(3.0f, 2.0f, 4.0f, 2.0f);
+
     }
     return self;
 }
@@ -92,6 +95,8 @@
 {
     [super awakeFromNib];
     [self jsq_configureTextView];
+    self.textContainerInset = UIEdgeInsetsMake(3.0f, 2.0f, 4.0f, 2.0f);
+
 }
 
 - (void)dealloc
@@ -185,7 +190,7 @@
     if ([self.text length] == 0 && self.placeHolder) {
         [self.placeHolderTextColor set];
         
-        [self.placeHolder drawInRect:CGRectInset(rect, 7.0f, 5.0f)
+        [self.placeHolder drawInRect:CGRectInset(rect, 7.0f, 3.0f)
                       withAttributes:[self jsq_placeholderTextAttributes]];
     }
 }
