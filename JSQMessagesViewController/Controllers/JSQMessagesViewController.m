@@ -253,6 +253,7 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
 
 - (void)setShowOverlayView:(BOOL)showOverlayView
 {
+    _showOverlayView = showOverlayView;
     self.overlayView.hidden = showOverlayView;
 }
 
@@ -1530,7 +1531,7 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
     }
     
     if (color) {
-        self.overlayView.backgroundColor = color;
+        self.overlayView.bgView.backgroundColor = color;
     }
 }
 

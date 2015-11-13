@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface JSQMessagesOverlayView : UIView
-@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
+@property (weak, nonatomic) IBOutlet UIView *bgView;
 @end

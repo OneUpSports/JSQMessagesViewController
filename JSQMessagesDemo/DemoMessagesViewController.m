@@ -369,6 +369,7 @@
 //    [self showOverlayWithDescriptionAttributedText: [[NSAttributedString alloc] initWithString:@"fuck"]
 //                              hideDescriptionLabel:NO
 //                                      hideActivity:YES activityIndicatorStartAnimating:NO];
+//    self.showOverlayView = !self.showOverlayView;
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
