@@ -315,6 +315,10 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
 
 #pragma mark - JSQMessagesOverlay
 
+- (void)showHideOverlayView:(BOOL)showOverlay
+activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
+               overlayColor:(UIColor *)color;
+
 - (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
                             hideDescriptionLabel:(BOOL)hideDescriptionLabel
                  activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating;

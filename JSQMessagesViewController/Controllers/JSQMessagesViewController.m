@@ -1501,6 +1501,20 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 #pragma mark - JSQMessagesOverlay
 
+- (void)showHideOverlayView:(BOOL)showOverlay
+activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
+               overlayColor:(UIColor *)color
+{
+    self.showOverlayView = showOverlay;
+    self.overlayView.hidden = showOverlay;
+    self.overlayView.descriptionLabel.hidden = YES;
+    activityIndicatorStartAnimating ? [self.overlayView.activityView startAnimating] : [self.overlayView.activityView stopAnimating];
+    
+    if (color) {
+        self.overlayView.bgView.backgroundColor = color;
+    }
+}
+
 - (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
                             hideDescriptionLabel:(BOOL)hideDescriptionLabel
                                 activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
