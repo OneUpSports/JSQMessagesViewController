@@ -213,6 +213,8 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
 
     [_keyboardController endListeningForKeyboard];
     _keyboardController = nil;
+    [JSQMessagesCollectionViewCellIncoming setIncomingConfigurationDataSource:nil];
+    [JSQMessagesCollectionViewCellOutgoing setOutgoingConfigurationDataSource:nil];
 }
 
 #pragma mark - Setters

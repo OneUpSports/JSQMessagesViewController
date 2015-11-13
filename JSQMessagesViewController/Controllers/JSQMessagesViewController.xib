@@ -34,10 +34,10 @@
                     <items/>
                 </toolbar>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFN-Xl-u8y" userLabel="OverlayView" customClass="JSQMessagesOverlayView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                     <subviews>
                         <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTS-eG-WCg">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat is currently unavailable." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLL-9Y-hjR">
@@ -57,11 +57,11 @@
                         <constraint firstItem="YTS-eG-WCg" firstAttribute="top" secondItem="QFN-Xl-u8y" secondAttribute="top" id="JwD-vA-0Ja"/>
                         <constraint firstItem="YTS-eG-WCg" firstAttribute="leading" secondItem="QFN-Xl-u8y" secondAttribute="leading" id="LQn-hu-6wb"/>
                         <constraint firstItem="bLL-9Y-hjR" firstAttribute="centerX" secondItem="QFN-Xl-u8y" secondAttribute="centerX" id="M23-uW-jI8"/>
-                        <constraint firstItem="bLL-9Y-hjR" firstAttribute="centerY" secondItem="QFN-Xl-u8y" secondAttribute="centerY" id="PTA-ct-JSI"/>
+                        <constraint firstItem="bLL-9Y-hjR" firstAttribute="centerY" secondItem="QFN-Xl-u8y" secondAttribute="centerY" constant="22.25" id="PTA-ct-JSI"/>
+                        <constraint firstAttribute="bottom" secondItem="YTS-eG-WCg" secondAttribute="bottom" id="Vd8-W7-NlV"/>
                         <constraint firstItem="ZQZ-rI-YlI" firstAttribute="centerX" secondItem="QFN-Xl-u8y" secondAttribute="centerX" id="W38-7l-5gi"/>
-                        <constraint firstItem="ZQZ-rI-YlI" firstAttribute="centerY" secondItem="QFN-Xl-u8y" secondAttribute="centerY" id="fwz-6N-chK"/>
+                        <constraint firstItem="ZQZ-rI-YlI" firstAttribute="centerY" secondItem="QFN-Xl-u8y" secondAttribute="centerY" constant="22" id="fwz-6N-chK"/>
                         <constraint firstAttribute="trailing" secondItem="YTS-eG-WCg" secondAttribute="trailing" id="r1b-C6-vug"/>
-                        <constraint firstAttribute="bottom" secondItem="YTS-eG-WCg" secondAttribute="bottom" id="rat-65-Wi9"/>
                     </constraints>
                     <connections>
                         <outlet property="activityView" destination="ZQZ-rI-YlI" id="J2I-Ga-Vgu"/>
@@ -80,8 +80,8 @@
                 <constraint firstAttribute="trailing" secondItem="l9u-2b-4LK" secondAttribute="trailing" id="O9u-TA-A0e"/>
                 <constraint firstAttribute="bottom" secondItem="l9u-2b-4LK" secondAttribute="bottom" id="Re7-WW-UmS"/>
                 <constraint firstItem="QFN-Xl-u8y" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="SkF-5D-007"/>
-                <constraint firstAttribute="bottom" secondItem="QFN-Xl-u8y" secondAttribute="bottom" id="VPi-ut-aQN"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="dCQ-DM-Wdj"/>
+                <constraint firstItem="BoD-Az-3DM" firstAttribute="top" secondItem="QFN-Xl-u8y" secondAttribute="bottom" id="qQi-gL-KOE"/>
                 <constraint firstItem="BoD-Az-3DM" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="ts7-8f-0lH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

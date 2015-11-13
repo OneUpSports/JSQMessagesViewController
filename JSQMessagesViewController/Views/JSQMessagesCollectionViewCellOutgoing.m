@@ -29,6 +29,7 @@ id<JSQMessagesCollectionViewCellOutgoingConfigurationDataSource> outgoingConfigD
 + (void)setOutgoingConfigurationDataSource:(id<JSQMessagesCollectionViewCellOutgoingConfigurationDataSource>)dataSource
 {
     outgoingConfigDataSource = dataSource;
+    NSLog(@"...");
 }
 
 #pragma mark - Overrides
