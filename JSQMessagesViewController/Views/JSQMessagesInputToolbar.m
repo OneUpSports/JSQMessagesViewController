@@ -252,6 +252,9 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 {
     if (self.contentView.accessoryView.tag == kJSQMessagesToolBarContentViewAttachedAccessoryViewTag) {
         [self.contentView.accessoryView becomeFirstResponder];
+        if ([self.delegate respondsToSelector:@selector(messagesInputToolbar:didShowAccessoryView:)]) {
+            [self.delegate messagesInputToolbar:self didShowAccessoryView:self.contentView.accessoryView.inputView];
+        }
     }
 }
 
@@ -259,6 +262,9 @@ static void * kJSQMessagesInputToolbarKeyValueObservingContext = &kJSQMessagesIn
 {
     if (self.contentView.accessoryView.tag == kJSQMessagesToolBarContentViewAttachedAccessoryViewTag) {
         [self.contentView.accessoryView resignFirstResponder];
+        if ([self.delegate respondsToSelector:@selector(messagesInputToolbar:didHideAccessoryView:)]) {
+            [self.delegate messagesInputToolbar:self didHideAccessoryView:self.contentView.accessoryView.inputView];
+        }
     }
 }
 

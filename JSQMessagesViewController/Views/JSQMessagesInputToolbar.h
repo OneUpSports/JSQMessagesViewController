@@ -50,6 +50,11 @@
 - (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
        didPressLeftBarButton:(UIButton *)sender;
 
+@optional
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didShowAccessoryView:(UIView *)accessoryView;
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didHideAccessoryView:(UIView *)accessoryView;
+
 @end
 
 

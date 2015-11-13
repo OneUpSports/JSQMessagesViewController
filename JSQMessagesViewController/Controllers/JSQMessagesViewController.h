@@ -315,5 +315,6 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
 #pragma mark - JSQMessagesOverlay
 
 - (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
+                            showDescriptionLabel:(BOOL)showDescriptionLabel
                                 showActivityView:(BOOL)showActivityView;
 @end

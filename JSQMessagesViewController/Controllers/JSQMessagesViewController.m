@@ -268,6 +268,8 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
     [self jsq_registerForNotifications:YES];
     [JSQMessagesCollectionViewCellIncoming setIncomingConfigurationDataSource:self];
     [JSQMessagesCollectionViewCellOutgoing setOutgoingConfigurationDataSource:self];
+    self.collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -606,11 +608,12 @@ JSQMessagesCollectionViewCellOutgoingConfigurationDataSource
     cell.cellBottomLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellBottomLabelAtIndexPath:indexPath];
     cell.messageBubbleBottomLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForMessageBubbleBottomLabelAtIndexPath:indexPath];
 
-    /* 
-     * Set Cell accessory Views
-     */
-//    cell.bottomAccessoryView = [collectionView.dataSource collectionView:collectionView viewForBottomAccessoryAtIndexPath:indexPath];
-    
+    if (cell.bottomAccessoryView) {
+        if ([cell.bottomAccessoryView respondsToSelector:NSSelectorFromString(@"indexPath")]) {
+            [cell.bottomAccessoryView setValue:indexPath forKey:@"indexPath"];
+        }
+    }
+
     CGFloat bubbleTopLabelInset = (avatarImageDataSource != nil) ? 60.0f : 15.0f;
 
     if (isOutgoingMessage) {
@@ -853,6 +856,15 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
         [self didPressAccessoryButton:sender];
     }
 }
+
+- (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar
+        didShowAccessoryView:(UIView *)accessoryView
+{
+    [self scrollToBottomAnimated:YES];
+}
+
+/* - (void)messagesInputToolbar:(JSQMessagesInputToolbar *)toolbar didHideAccessoryView:(UIView *)accessoryView {} */
+
 
 - (NSString *)jsq_currentlyComposedMessageText
 {
@@ -1489,12 +1501,16 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - JSQMessagesOverlay
 
 - (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
+                            showDescriptionLabel:(BOOL)showDescriptionLabel
                                 showActivityView:(BOOL)showActivityView
 {
     
     self.showOverlayView = YES;
     self.overlayView.activityView.hidden = showActivityView;
-    self.overlayView.descriptionLabel.attributedText = text;
+    self.overlayView.descriptionLabel.hidden = showDescriptionLabel;
+    if (text) {
+        self.overlayView.descriptionLabel.attributedText = text;
+    }
 }
 
 #pragma mark - JSQChatButton
