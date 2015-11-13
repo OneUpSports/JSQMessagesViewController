@@ -300,20 +300,15 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
  */
 - (void)scrollToBottomAnimated:(BOOL)animated;
 
+#pragma mark - Cell Avatar Borders
 
-@property (assign, nonatomic) BOOL showOverlayView;
-
-- (void)setChatButtonDefault:(BOOL)animated;
-- (void)setChatButtonCharet:(BOOL)animated;
-- (void)setChatButtonClosed:(BOOL)animated;
-- (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton;
 - (AvatarBorder)incomingAvatar;
+
 - (AvatarBorder)outgoingAvatar;
-- (void)setInputToolBarHeight:(CGFloat)height;
-- (void)keyboardDidHide;
-- (void)keyboardDidShow;
 
 #pragma mark - JSQMessagesOverlay
+
+@property (assign, nonatomic) BOOL showOverlayView;
 
 - (void)showHideOverlayView:(BOOL)showOverlay
 activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
@@ -327,4 +322,37 @@ activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
                             hideDescriptionLabel:(BOOL)hideDescriptionLabel
                  activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
                                     overlayColor:(UIColor *)color;
+
+#pragma mark - Chat Button
+
+- (void)setChatButtonDefault:(BOOL)animated;
+
+- (void)setChatButtonCharet:(BOOL)animated;
+
+- (void)setChatButtonClosed:(BOOL)animated;
+
+- (void)chatAccessoryButtonTapped:(JSQChatButton *)chatButton;
+
+#pragma mark - UITextView Convenience Accessors
+
+- (BOOL)inputToolBarTextViewShouldBeginEditing:(UITextView *)textView;
+
+- (void)inputToolBarTextViewDidBeginEditing:(UITextView *)textView;
+
+- (void)inputToolBarTextViewDidChange:(UITextView *)textView;
+
+- (BOOL)inputToolBarTextView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+
+- (void)inputToolBarTextViewDidEndEditing:(UITextView *)textView;
+
+#pragma mark - UIKeyboard Accessor for keyboard notification states
+
+- (void)keyboardDidHide;
+
+- (void)keyboardDidShow;
+
+#pragma mark - InputToolBar
+
+- (void)setInputToolBarHeight:(CGFloat)height;
+
 @end

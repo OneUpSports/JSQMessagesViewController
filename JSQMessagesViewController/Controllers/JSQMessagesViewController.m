@@ -882,11 +882,13 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    return YES;
+    return [self inputToolBarTextViewShouldBeginEditing:textView];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
+    [self inputToolBarTextViewDidBeginEditing:textView];
+    
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }
@@ -900,6 +902,8 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    [self inputToolBarTextViewDidChange:textView];
+    
     if (textView != self.inputToolbar.contentView.textView) {
         return;
     }
@@ -909,6 +913,10 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+    [self inputToolBarTextView:textView
+       shouldChangeTextInRange:range
+               replacementText:text];
+    
     return [self allowTextInputFromTextView:textView shouldChangeTextInRange:range replacementText:text];
 }
 
@@ -920,6 +928,36 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 
     [textView resignFirstResponder];
 }
+
+#pragma mark - Text view convenience accessors
+
+- (BOOL)inputToolBarTextViewShouldBeginEditing:(UITextView *)textView
+{
+    return YES;
+}
+
+- (void)inputToolBarTextViewDidBeginEditing:(UITextView *)textView
+{
+   
+}
+
+- (void)inputToolBarTextViewDidChange:(UITextView *)textView
+{
+
+}
+
+- (BOOL)inputToolBarTextView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    return [self allowTextInputFromTextView:textView shouldChangeTextInRange:range replacementText:text];
+}
+
+- (void)inputToolBarTextViewDidEndEditing:(UITextView *)textView
+{
+ 
+}
+
+
+
 
 #pragma mark - UIScrollViewDelegate
 
