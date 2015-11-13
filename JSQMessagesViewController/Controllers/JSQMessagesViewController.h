@@ -312,9 +312,15 @@ shouldShowErrorOnSendAction:(BOOL)showOnSend
 - (void)setInputToolBarHeight:(CGFloat)height;
 - (void)keyboardDidHide;
 - (void)keyboardDidShow;
+
 #pragma mark - JSQMessagesOverlay
 
 - (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
-                            showDescriptionLabel:(BOOL)showDescriptionLabel
-                                showActivityView:(BOOL)showActivityView;
+                            hideDescriptionLabel:(BOOL)hideDescriptionLabel
+                 activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating;
+
+- (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
+                            hideDescriptionLabel:(BOOL)hideDescriptionLabel
+                 activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
+                                    overlayColor:(UIColor *)color;
 @end

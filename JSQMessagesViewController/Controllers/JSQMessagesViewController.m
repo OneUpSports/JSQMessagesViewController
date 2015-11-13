@@ -1501,17 +1501,39 @@ willShowBottomAccessoryViewAtIndexPath:(NSIndexPath *)indexPath
 #pragma mark - JSQMessagesOverlay
 
 - (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
-                            showDescriptionLabel:(BOOL)showDescriptionLabel
-                                showActivityView:(BOOL)showActivityView
+                            hideDescriptionLabel:(BOOL)hideDescriptionLabel
+                                activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
 {
     
     self.showOverlayView = YES;
-    self.overlayView.activityView.hidden = showActivityView;
-    self.overlayView.descriptionLabel.hidden = showDescriptionLabel;
+    self.overlayView.hidden = NO;
+    self.overlayView.descriptionLabel.hidden = hideDescriptionLabel;
+    activityIndicatorStartAnimating ? [self.overlayView.activityView startAnimating] : [self.overlayView.activityView stopAnimating];
+    
     if (text) {
         self.overlayView.descriptionLabel.attributedText = text;
     }
 }
+
+- (void)showOverlayWithDescriptionAttributedText:(NSAttributedString *)text
+                            hideDescriptionLabel:(BOOL)hideDescriptionLabel
+                 activityIndicatorStartAnimating:(BOOL)activityIndicatorStartAnimating
+                                    overlayColor:(UIColor *)color
+{
+    self.showOverlayView = YES;
+    self.overlayView.hidden = NO;
+    self.overlayView.descriptionLabel.hidden = hideDescriptionLabel;
+    activityIndicatorStartAnimating ? [self.overlayView.activityView startAnimating] : [self.overlayView.activityView stopAnimating];
+    
+    if (text) {
+        self.overlayView.descriptionLabel.attributedText = text;
+    }
+    
+    if (color) {
+        self.overlayView.backgroundColor = color;
+    }
+}
+
 
 #pragma mark - JSQChatButton
 

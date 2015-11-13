@@ -365,6 +365,10 @@
 //                                              otherButtonTitles:@"Send photo", @"Send location", @"Send video", nil];
 //    
 //    [sheet showFromToolbar:self.inputToolbar];
+   
+//    [self showOverlayWithDescriptionAttributedText: [[NSAttributedString alloc] initWithString:@"fuck"]
+//                              hideDescriptionLabel:NO
+//                                      hideActivity:YES activityIndicatorStartAnimating:NO];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
